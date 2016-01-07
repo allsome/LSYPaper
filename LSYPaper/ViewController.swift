@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let maxTitleLabelY = SCREEN_WIDTH + 15
+
 class ViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
@@ -54,7 +56,16 @@ class ViewController: UIViewController {
         pageControl.didScrollOption = {(targetPage:NSInteger,views:[UIView]) in
             let view = views[targetPage] as! SectionPosterView
             let frame = view.titleLabel.convertRect(view.titleLabel.bounds, toView: self.view)
-            print(frame)
+            
+            let rightEdge = SCREEN_WIDTH - 20
+            let leftEdge = SCREEN_WIDTH - 131
+            if frame.origin.x > rightEdge {
+                view.titleLabel.alpha = (frame.origin.x - rightEdge) / view.titleLabel.bounds.width
+            }else if frame.origin.x <= rightEdge && frame.origin.x >= leftEdge {
+                view.titleLabel.alpha = 0.0;
+            }else {
+                view.titleLabel.alpha = (leftEdge - frame.origin.x) / view.titleLabel.bounds.width
+            }
         }
         view.addSubview(pageControl)
         
