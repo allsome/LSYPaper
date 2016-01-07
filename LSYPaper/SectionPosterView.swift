@@ -10,10 +10,12 @@ import UIKit
 
 class SectionPosterView: UIView {
 
-    @IBOutlet weak var shadowImage: UIImageView!
-    @IBOutlet weak var posterImage: UIImageView!
-    @IBOutlet weak var posterImageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var shadowImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var shadowImage: UIImageView!
+    @IBOutlet private weak var posterImage: UIImageView!
+    @IBOutlet private weak var posterImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var shadowImageHeightConstraint: NSLayoutConstraint!
     private var sectionData:SectionData?
     private var targetFrame:CGRect = CGRectZero
 
@@ -21,7 +23,7 @@ class SectionPosterView: UIView {
         posterImageHeightConstraint.constant = POSTER_HEIGHT
         shadowImageHeightConstraint.constant = POSTER_HEIGHT
         shadowImage.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 1, 0, 0)
-
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = CGRectMake(0, 2 * POSTER_HEIGHT - SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - POSTER_HEIGHT)
         gradientLayer.colors = [UIColor(white: 0.0, alpha: 1.0).CGColor,UIColor.clearColor().CGColor]
@@ -39,6 +41,8 @@ class SectionPosterView: UIView {
         let posterView = objs.last as! SectionPosterView
         posterView.posterImage.image = UIImage(named: data.icon)
         posterView.shadowImage.image = UIImage(named: data.icon)
+        posterView.titleLabel.text = data.title
+        posterView.subTitleLabel.text = data.subTitle
         posterView.targetFrame = frame
         posterView.frame = frame
         return posterView

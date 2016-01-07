@@ -15,13 +15,13 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
     @IBOutlet private weak var containerViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet weak var pageControlBottomConstraint: NSLayoutConstraint!
+    var didScrollOption:((NSInteger,[UIView]) -> Void)?
     private var targetFrame:CGRect = CGRectZero
     private var views:[UIView] = [] {
         didSet {
             let count = views.count
             containerViewWidthConstraint.constant = CGFloat(count) * SCREEN_WIDTH
             pageControl.numberOfPages = count
-//            let maxNumOfViews = SCREEN_WIDTH / (view?.frame.size.width)! + 1
             for view in views {
                 containerView.addSubview(view)
             }
@@ -41,7 +41,13 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        pageControl.currentPage = NSInteger(scrollView.contentOffset.x / SCREEN_WIDTH)
+        pageControl.currentPage = NSInteger((scrollView.contentOffset.x + SCREEN_WIDTH / 2) / SCREEN_WIDTH)
+        let targetPage = NSInteger((scrollView.contentOffset.x - 0.1) / SCREEN_WIDTH) + 1
+        if targetPage < views.count {
+            if (didScrollOption != nil) {
+                didScrollOption!(targetPage,views)
+            }
+        }
     }
     
 }

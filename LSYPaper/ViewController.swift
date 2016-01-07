@@ -48,16 +48,21 @@ class ViewController: UIViewController {
             }
             views.append(view)
         }
-        
+
         let pageControl = LSYPageControl.pageControlWith(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), views: views)
         pageControl.pageControlBottomConstraint.constant = SCREEN_HEIGHT - POSTER_HEIGHT
+        pageControl.didScrollOption = {(targetPage:NSInteger,views:[UIView]) in
+            let view = views[targetPage] as! SectionPosterView
+            let frame = view.titleLabel.convertRect(view.titleLabel.bounds, toView: self.view)
+            print(frame)
+        }
         view.addSubview(pageControl)
         
         setTopRoundCorner(forView: view, cornerOption: [UIRectCorner.TopLeft,UIRectCorner.TopRight])
     }
     
     func setTopRoundCorner(forView view:UIView,cornerOption:UIRectCorner) {
-        let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(5, 5))
+        let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(6, 6))
         let maskLayer = CAShapeLayer()
         maskLayer.frame = view.bounds;
         maskLayer.path = maskPath.CGPath;
