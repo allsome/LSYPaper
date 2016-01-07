@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>subTitle</key>
+		<string>Understanding today&apos;s startups and tomorrow&apos;s innovators.</string>
+		<key>title</key>
+		<string>Tech</string>
+		<key>icon</key>
+		<string>SectionCoverTechnology.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>There&apos;s strength in community.</string>
+		<key>title</key>
+		<string>Pride</string>
+		<key>icon</key>
+		<string>SectionCoverLGBTQ.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>Essential news and analysis from the world&apos;s best sources.</string>
+		<key>title</key>
+		<string>Headlines</string>
+		<key>icon</key>
+		<string>SectionCoverNews.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>The top stories that everyone is talking about right now.</string>
+		<key>title</key>
+		<string>Trending</string>
+		<key>icon</key>
+		<string>SectionCoverTrending.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>Celebrity chatter,deals and the lowdown on TV,movies and tunes.</string>
+		<key>title</key>
+		<string>Pop Life</string>
+		<key>icon</key>
+		<string>SectionCoverEntertainment.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>What&apos;s trending in destinations,activities,fashion and culture.</string>
+		<key>title</key>
+		<string>Lifestyle</string>
+		<key>icon</key>
+		<string>SectionCoverStyles.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>Sports news and commentary from journalists,fans and the athletes themselves.</string>
+		<key>title</key>
+		<string>Score</string>
+		<key>icon</key>
+		<string>SectionCoverSports.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>Urban arts,sports,music and style.</string>
+		<key>title</key>
+		<string>All City</string>
+		<key>icon</key>
+		<string>SectionCoverStreet.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>Fresh tastes,recipes,culinary news and food-related travel.</string>
+		<key>title</key>
+		<string>Flavor</string>
+		<key>icon</key>
+		<string>SectionCoverFoodie.jpg</string>
+	</dict>
+	<dict>
+		<key>subTitle</key>
+		<string>Empathy,advice and hacks for life with babies,kids and teens.</string>
+		<key>title</key>
+		<string>Family Matters</string>
+		<key>icon</key>
+		<string>SectionCoverFamily.jpg</string>
+	</dict>
+</array>
+</plist>

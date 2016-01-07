@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D9c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SectionPosterView" customModule="LSYPaper" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kgM-ps-7hb">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="314"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="314" id="uTi-Eh-gRB"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H2l-3H-SR7">
+                    <rect key="frame" x="0.0" y="314" width="320" height="254"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="254" id="rNw-au-hJK"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="kgM-ps-7hb" secondAttribute="trailing" id="7PQ-SM-9qM"/>
+                <constraint firstItem="H2l-3H-SR7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Zv7-14-hFq"/>
+                <constraint firstItem="kgM-ps-7hb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dXy-Dr-91X"/>
+                <constraint firstItem="kgM-ps-7hb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hWN-1I-Gib"/>
+                <constraint firstItem="H2l-3H-SR7" firstAttribute="top" secondItem="kgM-ps-7hb" secondAttribute="bottom" id="rgZ-Lv-4ub"/>
+                <constraint firstAttribute="bottom" secondItem="H2l-3H-SR7" secondAttribute="bottom" id="tGg-YG-bnV"/>
+                <constraint firstAttribute="trailing" secondItem="H2l-3H-SR7" secondAttribute="trailing" id="ydj-pT-Sk7"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="tGg-YG-bnV"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="posterImage" destination="kgM-ps-7hb" id="oTM-w3-xjT"/>
+                <outlet property="posterImageHeightConstraint" destination="uTi-Eh-gRB" id="9kl-hP-uER"/>
+                <outlet property="shadowImage" destination="H2l-3H-SR7" id="iT2-cU-jtw"/>
+                <outlet property="shadowImageHeightConstraint" destination="rNw-au-hJK" id="xvy-3b-lq4"/>
+            </connections>
+            <point key="canvasLocation" x="236" y="235"/>
+        </view>
+    </objects>
+</document>
