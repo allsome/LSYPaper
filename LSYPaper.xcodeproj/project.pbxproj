@@ -46,6 +46,8 @@
 		EA78CFE71C3D79170092F84D /* SectionCoverStyles@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78CFE61C3D79170092F84D /* SectionCoverStyles@2x.jpg */; };
 		EA78CFE91C3D79550092F84D /* SectionCoverStreet@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78CFE81C3D79550092F84D /* SectionCoverStreet@2x.jpg */; };
 		EA78CFEC1C3E28C60092F84D /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFEB1C3E28C60092F84D /* SectionData.swift */; };
+		EA78CFF41C3FAE660092F84D /* MTAnimatedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFF31C3FAE660092F84D /* MTAnimatedLabel.m */; };
+		EA78CFF61C3FB0DB0092F84D /* LSYShimmerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFF51C3FB0DB0092F84D /* LSYShimmerLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +95,9 @@
 		EA78CFE61C3D79170092F84D /* SectionCoverStyles@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SectionCoverStyles@2x.jpg"; sourceTree = "<group>"; };
 		EA78CFE81C3D79550092F84D /* SectionCoverStreet@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SectionCoverStreet@2x.jpg"; sourceTree = "<group>"; };
 		EA78CFEB1C3E28C60092F84D /* SectionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
+		EA78CFF21C3FAE660092F84D /* MTAnimatedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAnimatedLabel.h; sourceTree = "<group>"; };
+		EA78CFF31C3FAE660092F84D /* MTAnimatedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAnimatedLabel.m; sourceTree = "<group>"; };
+		EA78CFF51C3FB0DB0092F84D /* LSYShimmerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LSYShimmerLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +148,8 @@
 				EA78CF661C3809FD0092F84D /* ViewController.swift */,
 				EA78CF7C1C3812330092F84D /* Extension.swift */,
 				EA78CF851C38222E0092F84D /* Constant.swift */,
+				EA78CFF21C3FAE660092F84D /* MTAnimatedLabel.h */,
+				EA78CFF31C3FAE660092F84D /* MTAnimatedLabel.m */,
 				EA78CF681C3809FD0092F84D /* Main.storyboard */,
 				EA78CFCF1C3D40D20092F84D /* Resource */,
 				EA78CF821C3815350092F84D /* SupportFile */,
@@ -153,6 +160,7 @@
 		EA78CF761C380DC00092F84D /* LSYUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				EA78CFED1C3EB05C0092F84D /* LSYShimmerLabel */,
 				EA78CF771C380DEF0092F84D /* LSYPageControl */,
 			);
 			name = LSYUIKit;
@@ -235,6 +243,14 @@
 				EA78CFEB1C3E28C60092F84D /* SectionData.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		EA78CFED1C3EB05C0092F84D /* LSYShimmerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				EA78CFF51C3FB0DB0092F84D /* LSYShimmerLabel.swift */,
+			);
+			name = LSYShimmerLabel;
 			sourceTree = "<group>";
 		};
 		F05316D6013B82D11A7F6975 /* Pods */ = {
@@ -400,8 +416,10 @@
 				EA78CF651C3809FD0092F84D /* AppDelegate.swift in Sources */,
 				EA78CF861C38222E0092F84D /* Constant.swift in Sources */,
 				EA78CFEC1C3E28C60092F84D /* SectionData.swift in Sources */,
+				EA78CFF41C3FAE660092F84D /* MTAnimatedLabel.m in Sources */,
 				EA78CFA11C3CF1260092F84D /* LSYPageControl.swift in Sources */,
 				EA78CF7D1C3812330092F84D /* Extension.swift in Sources */,
+				EA78CFF61C3FB0DB0092F84D /* LSYShimmerLabel.swift in Sources */,
 				EA78CFDD1C3D44940092F84D /* MessageView.swift in Sources */,
 				EA78CFCC1C3D105F0092F84D /* SectionPosterView.swift in Sources */,
 			);
