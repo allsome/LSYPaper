@@ -10,7 +10,7 @@ import UIKit
 
 class SectionPosterView: UIView {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: LSYShimmerLabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var shadowImage: UIImageView!
     @IBOutlet private weak var posterImage: UIImageView!
@@ -42,6 +42,7 @@ class SectionPosterView: UIView {
         posterView.posterImage.image = UIImage(named: data.icon)
         posterView.shadowImage.image = UIImage(named: data.icon)
         posterView.titleLabel.text = data.title
+        posterView.titleLabel.startAnimate()
         posterView.subTitleLabel.text = data.subTitle
         posterView.targetFrame = frame
         posterView.frame = frame
