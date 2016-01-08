@@ -22,7 +22,7 @@ class LSYShimmerLabel: UILabel {
         }
     }
     
-    var shimmerWidth:CGFloat = 0.5 {
+    var shimmerWidth:CGFloat = 1.0 {
         didSet {
             
         }
@@ -30,11 +30,11 @@ class LSYShimmerLabel: UILabel {
     
     var shimmerColor:UIColor = UIColor.whiteColor() {
         didSet {
-            
+            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
         }
     }
     
-    var animateDuration:Double = 2.5 {
+    var animateDuration:Double = 2.0 {
         didSet {
             
         }
@@ -42,7 +42,6 @@ class LSYShimmerLabel: UILabel {
     
     override var text:String? {
         didSet {
-            super.text = text
             textLayer.string = text
         }
     }
@@ -53,7 +52,6 @@ class LSYShimmerLabel: UILabel {
             let fontRef = CTFontCreateWithName(font.fontName as CFStringRef, font.pointSize, &transform)
             textLayer.font = fontRef
             textLayer.fontSize = font.pointSize
-            self.setNeedsDisplay()
         }
     }
     
@@ -81,15 +79,10 @@ class LSYShimmerLabel: UILabel {
     }
 
     private func initialSetting() {
-        gradientLayer.frame = bounds
-        gradientLayer.backgroundColor = textColor.CGColor
-        gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
-        
         textLayer.backgroundColor = UIColor.clearColor().CGColor
         textLayer.contentsScale = UIScreen.mainScreen().scale
         textLayer.rasterizationScale = UIScreen.mainScreen().scale
-        textLayer.bounds = bounds
-        
+
         font = super.font
         text = super.text
         textAlignment = super.textAlignment
@@ -138,6 +131,8 @@ class LSYShimmerLabel: UILabel {
             return kCAAlignmentNatural
         }
     }
+    
+    override func drawRect(rect: CGRect) {}
     
     override class func layerClass() -> AnyClass {
         return CAGradientLayer.self
