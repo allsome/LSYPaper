@@ -4,8 +4,8 @@
 //
 //  Created by 梁树元 on 1/8/16.
 //  Copyright © 2016 allsome.love. All rights reserved.
-//
 
+//  Heavily refer to MTAnimatedLabel
 import UIKit
 
 private let shimmerAnimateKey = "shimmerAnimateKey"
