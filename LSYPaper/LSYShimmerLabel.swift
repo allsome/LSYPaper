@@ -34,7 +34,7 @@ class LSYShimmerLabel: UILabel {
         }
     }
     
-    var animateDuration:Double = 2.0 {
+    var animateDuration:Double = 1.5 {
         didSet {
             
         }
