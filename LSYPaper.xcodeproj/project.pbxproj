@@ -47,6 +47,9 @@
 		EA78CFE91C3D79550092F84D /* SectionCoverStreet@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78CFE81C3D79550092F84D /* SectionCoverStreet@2x.jpg */; };
 		EA78CFEC1C3E28C60092F84D /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFEB1C3E28C60092F84D /* SectionData.swift */; };
 		EA78CFF61C3FB0DB0092F84D /* LSYShimmerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFF51C3FB0DB0092F84D /* LSYShimmerLabel.swift */; };
+		EA78CFFA1C4147560092F84D /* NewsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFF81C4147560092F84D /* NewsDetailCell.swift */; };
+		EA78CFFB1C4147560092F84D /* NewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA78CFF91C4147560092F84D /* NewsDetailCell.xib */; };
+		EA78CFFD1C4151540092F84D /* NewsDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFFC1C4151540092F84D /* NewsDetailLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +98,9 @@
 		EA78CFE81C3D79550092F84D /* SectionCoverStreet@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SectionCoverStreet@2x.jpg"; sourceTree = "<group>"; };
 		EA78CFEB1C3E28C60092F84D /* SectionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		EA78CFF51C3FB0DB0092F84D /* LSYShimmerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LSYShimmerLabel.swift; sourceTree = "<group>"; };
+		EA78CFF81C4147560092F84D /* NewsDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailCell.swift; sourceTree = "<group>"; };
+		EA78CFF91C4147560092F84D /* NewsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetailCell.xib; sourceTree = "<group>"; };
+		EA78CFFC1C4151540092F84D /* NewsDetailLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 			children = (
 				EA78CFEA1C3E28B10092F84D /* Model */,
 				EA78CF841C38183F0092F84D /* View */,
+				EA78CFF71C41411A0092F84D /* Layout */,
 				EA78CF641C3809FD0092F84D /* AppDelegate.swift */,
 				EA78CF661C3809FD0092F84D /* ViewController.swift */,
 				EA78CF7C1C3812330092F84D /* Extension.swift */,
@@ -193,6 +200,8 @@
 				EA78CFCD1C3D10690092F84D /* SectionPosterView.xib */,
 				EA78CFDC1C3D44940092F84D /* MessageView.swift */,
 				EA78CFDE1C3D44A30092F84D /* MessageView.xib */,
+				EA78CFF81C4147560092F84D /* NewsDetailCell.swift */,
+				EA78CFF91C4147560092F84D /* NewsDetailCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -246,6 +255,14 @@
 				EA78CFF51C3FB0DB0092F84D /* LSYShimmerLabel.swift */,
 			);
 			name = LSYShimmerLabel;
+			sourceTree = "<group>";
+		};
+		EA78CFF71C41411A0092F84D /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				EA78CFFC1C4151540092F84D /* NewsDetailLayout.swift */,
+			);
+			name = Layout;
 			sourceTree = "<group>";
 		};
 		F05316D6013B82D11A7F6975 /* Pods */ = {
@@ -348,6 +365,7 @@
 				EA78CFB01C3D07530092F84D /* Default-iOS7-667h@2x.png in Resources */,
 				EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */,
 				EA78CFBD1C3D0F740092F84D /* SectionCoverLGBTQ@2x.jpg in Resources */,
+				EA78CFFB1C4147560092F84D /* NewsDetailCell.xib in Resources */,
 				EA78CFD91C3D41000092F84D /* Messages@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,10 +428,12 @@
 				EA78CF671C3809FD0092F84D /* ViewController.swift in Sources */,
 				EA78CF651C3809FD0092F84D /* AppDelegate.swift in Sources */,
 				EA78CF861C38222E0092F84D /* Constant.swift in Sources */,
+				EA78CFFD1C4151540092F84D /* NewsDetailLayout.swift in Sources */,
 				EA78CFEC1C3E28C60092F84D /* SectionData.swift in Sources */,
 				EA78CFA11C3CF1260092F84D /* LSYPageControl.swift in Sources */,
 				EA78CF7D1C3812330092F84D /* Extension.swift in Sources */,
 				EA78CFF61C3FB0DB0092F84D /* LSYShimmerLabel.swift in Sources */,
+				EA78CFFA1C4147560092F84D /* NewsDetailCell.swift in Sources */,
 				EA78CFDD1C3D44940092F84D /* MessageView.swift in Sources */,
 				EA78CFCC1C3D105F0092F84D /* SectionPosterView.swift in Sources */,
 			);
