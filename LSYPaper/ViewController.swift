@@ -8,13 +8,14 @@
 
 import UIKit
 
+let cellGap:CGFloat = 2
 private let cellReuseIdentifier = "NewsDetailCell"
 private let maxTitleLabelY = SCREEN_WIDTH + 15
 private let collectionViewFrame = CGRectMake(0, POSTER_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - POSTER_HEIGHT)
 
 
 class ViewController: UIViewController {
-    private let collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: UICollectionViewFlowLayout())
+    private let collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: NewsDetailLayout(cellWidth: (SCREEN_WIDTH - cellGap - 36) / 2, cellHeight: SCREEN_HEIGHT - POSTER_HEIGHT, cellGap: cellGap))
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -90,12 +91,12 @@ private extension ViewController {
         view.addSubview(messageView)
     }
     private func setCollectionView() {
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.clearColor()
         collectionView.dataSource = self
         collectionView.delegate = self
         let nib = UINib(nibName: cellReuseIdentifier, bundle: nil)
         collectionView.registerNib(nib, forCellWithReuseIdentifier: cellReuseIdentifier)
-        
+        collectionView.clipsToBounds = false
         view.addSubview(collectionView)
     }
 }

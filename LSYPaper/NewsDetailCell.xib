@@ -7,13 +7,32 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NewsDetailCell" customModule="LSYPaper" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NewsDetailCell" customModule="LSYPaper" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="193" height="191"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="193" height="191"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOd-dd-HsB">
+                        <rect key="frame" x="0.0" y="0.0" width="191" height="191"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="tOd-dd-HsB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="CxC-sI-ctd"/>
+                <constraint firstAttribute="bottom" secondItem="tOd-dd-HsB" secondAttribute="bottom" id="ERD-pa-RHJ"/>
+                <constraint firstItem="tOd-dd-HsB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YLl-zT-kdQ"/>
+                <constraint firstAttribute="trailing" secondItem="tOd-dd-HsB" secondAttribute="trailing" constant="2" id="gp8-ts-4Re"/>
+            </constraints>
+            <size key="customSize" width="193" height="191"/>
+            <connections>
+                <outlet property="containerView" destination="tOd-dd-HsB" id="8sa-Du-Ptx"/>
+                <outlet property="trailingConstraint" destination="gp8-ts-4Re" id="mMf-FS-rfu"/>
+            </connections>
+            <point key="canvasLocation" x="514.5" y="247.5"/>
         </collectionViewCell>
     </objects>
 </document>

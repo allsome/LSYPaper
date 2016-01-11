@@ -9,10 +9,20 @@
 import UIKit
 
 class NewsDetailCell: UICollectionViewCell {
-
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        trailingConstraint.constant = cellGap
+        containerView.layer.masksToBounds = true
+        containerView.layer.cornerRadius = cellGap
+        
+        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowOffset = CGSizeMake(0, -cellGap)
+        layer.shadowRadius = cellGap
+        layer.shadowOpacity = 0.5
     }
 
 }
