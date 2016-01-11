@@ -16,56 +16,7 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pqF-5v-UBa">
-                                <rect key="frame" x="160" y="0.0" width="160" height="55"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZE-6T-scg">
-                                        <rect key="frame" x="115" y="0.0" width="45" height="55"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="JpG-AS-jeJ"/>
-                                            <constraint firstAttribute="height" constant="55" id="Oje-zz-4ul"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="Notifications.png"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLa-n0-5de">
-                                        <rect key="frame" x="70" y="0.0" width="45" height="55"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="45" id="00s-Lx-WyG"/>
-                                            <constraint firstAttribute="height" constant="55" id="X1w-qJ-oDY"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="Messages.png"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bi-JJ-KoU">
-                                        <rect key="frame" x="25" y="0.0" width="45" height="55"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="55" id="Rpb-SI-37i"/>
-                                            <constraint firstAttribute="width" constant="45" id="ulU-pT-emX"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="FriendRequests.png"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="MLa-n0-5de" firstAttribute="top" secondItem="pqF-5v-UBa" secondAttribute="top" id="8T1-zq-Jwe"/>
-                                    <constraint firstAttribute="trailing" secondItem="BZE-6T-scg" secondAttribute="trailing" id="MEJ-gd-4hc"/>
-                                    <constraint firstAttribute="height" constant="55" id="Owa-ak-jLg"/>
-                                    <constraint firstItem="7bi-JJ-KoU" firstAttribute="top" secondItem="pqF-5v-UBa" secondAttribute="top" id="PGd-Na-0z6"/>
-                                    <constraint firstItem="BZE-6T-scg" firstAttribute="leading" secondItem="MLa-n0-5de" secondAttribute="trailing" id="Vnc-YV-gEv"/>
-                                    <constraint firstAttribute="width" constant="160" id="YSb-2n-GwA"/>
-                                    <constraint firstItem="MLa-n0-5de" firstAttribute="leading" secondItem="7bi-JJ-KoU" secondAttribute="trailing" id="gQZ-C2-Zis"/>
-                                    <constraint firstItem="BZE-6T-scg" firstAttribute="top" secondItem="pqF-5v-UBa" secondAttribute="top" id="ycd-gy-m1K"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="pqF-5v-UBa" secondAttribute="trailing" id="G1S-Q4-tDR"/>
-                            <constraint firstItem="pqF-5v-UBa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="KwR-Df-8gT"/>
-                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -75,9 +26,4 @@
             <point key="canvasLocation" x="261" y="312"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="FriendRequests.png" width="25" height="25"/>
-        <image name="Messages.png" width="25" height="25"/>
-        <image name="Notifications.png" width="25" height="25"/>
-    </resources>
 </document>
