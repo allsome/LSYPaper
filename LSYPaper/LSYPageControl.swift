@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum PageChangeDirectionType : Int {
+    case Right
+    case Left
+}
+
 class LSYPageControl: UIView,UIScrollViewDelegate{
     
     @IBOutlet private weak var containerView: UIView!
@@ -16,6 +21,9 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet weak var pageControlBottomConstraint: NSLayoutConstraint!
     var didScrollOption:((NSInteger,[UIView]) -> Void)?
+    var didEndDeceleratingOption:(NSInteger -> Void)?
+    var pageDidChangeOption:((NSInteger,PageChangeDirectionType) -> Void)?
+    private var lastPage:Int = 0
     private var targetFrame:CGRect = CGRectZero
     private var views:[UIView] = [] {
         didSet {
@@ -50,4 +58,21 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         }
     }
     
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if (didEndDeceleratingOption != nil) {
+            didEndDeceleratingOption!(pageControl.currentPage)
+        }
+    }
+    
+    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetContentOffsetX = targetContentOffset.memory.x
+        let currentPage = NSInteger((targetContentOffsetX + SCREEN_WIDTH / 2) / SCREEN_WIDTH)
+        if lastPage != currentPage {
+            if (pageDidChangeOption != nil) {
+                let changeDirection = currentPage > lastPage ? PageChangeDirectionType.Right : PageChangeDirectionType.Left
+                pageDidChangeOption!(currentPage,changeDirection)
+                lastPage = currentPage
+            }
+        }
+    }
 }

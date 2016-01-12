@@ -75,10 +75,21 @@ private extension ViewController {
                 view.titleLabel.alpha = (leftEdge - frame.origin.x) / view.titleLabel.bounds.width
             }
         }
+        
+        pageControl.pageDidChangeOption = {(currentPage:Int,changeDirection:PageChangeDirectionType) in
+            self.collectionView.setContentOffset(CGPointZero, animated: false)
+            let anim = CATransition()
+            anim.type = kCATransitionPush
+            anim.subtype = changeDirection == PageChangeDirectionType.Left ? kCATransitionFromLeft : kCATransitionFromRight
+            anim.duration = 0.25;
+            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            self.collectionView.layer.addAnimation(anim, forKey: nil)
+        }
         view.addSubview(pageControl)
         
         setTopRoundCorner(forView: view, cornerOption: [UIRectCorner.TopLeft,UIRectCorner.TopRight])
     }
+    
     private func setTopRoundCorner(forView view:UIView,cornerOption:UIRectCorner) {
         let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(6, 6))
         let maskLayer = CAShapeLayer()
@@ -86,10 +97,12 @@ private extension ViewController {
         maskLayer.path = maskPath.CGPath;
         view.layer.mask = maskLayer;
     }
+    
     private func setMessageView() {
         let messageView = MessageView.messageViewWith(frame: CGRectMake(SCREEN_WIDTH - 135, 0, 135, 55))
         view.addSubview(messageView)
     }
+    
     private func setCollectionView() {
         collectionView.backgroundColor = UIColor.clearColor()
         collectionView.dataSource = self
@@ -97,6 +110,10 @@ private extension ViewController {
         let nib = UINib(nibName: cellReuseIdentifier, bundle: nil)
         collectionView.registerNib(nib, forCellWithReuseIdentifier: cellReuseIdentifier)
         collectionView.clipsToBounds = false
+        collectionView.layer.shadowColor = UIColor.blackColor().CGColor
+        collectionView.layer.shadowOffset = CGSizeMake(0, -cellGap)
+        collectionView.layer.shadowRadius = cellGap
+        collectionView.layer.shadowOpacity = 0.5
         view.addSubview(collectionView)
     }
 }

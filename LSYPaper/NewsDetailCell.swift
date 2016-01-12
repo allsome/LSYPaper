@@ -18,11 +18,6 @@ class NewsDetailCell: UICollectionViewCell {
         trailingConstraint.constant = cellGap
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = cellGap
-        
-        layer.shadowColor = UIColor.blackColor().CGColor
-        layer.shadowOffset = CGSizeMake(0, -cellGap)
-        layer.shadowRadius = cellGap
-        layer.shadowOpacity = 0.5
     }
 
 }

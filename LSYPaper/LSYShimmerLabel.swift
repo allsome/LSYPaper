@@ -5,7 +5,8 @@
 //  Created by 梁树元 on 1/8/16.
 //  Copyright © 2016 allsome.love. All rights reserved.
 
-//  Heavily refer to MTAnimatedLabel
+// ********* Heavily refer to MTAnimatedLabel *********
+
 import UIKit
 
 private let shimmerAnimateKey = "shimmerAnimateKey"
@@ -30,11 +31,11 @@ class LSYShimmerLabel: UILabel {
     
     var shimmerColor:UIColor = UIColor.whiteColor() {
         didSet {
-            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
+            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
         }
     }
     
-    var animateDuration:Double = 1.5 {
+    var animateDuration:Double = 2.0 {
         didSet {
             
         }
@@ -64,7 +65,7 @@ class LSYShimmerLabel: UILabel {
     override var textColor:UIColor! {
         didSet {
             gradientLayer.backgroundColor = textColor.CGColor
-            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
+            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
         }
     }
     

@@ -8,13 +8,58 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NewsDetailCell" customModule="LSYPaper" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="193" height="191"/>
+            <rect key="frame" x="0.0" y="0.0" width="426" height="434"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="193" height="191"/>
+                <rect key="frame" x="0.0" y="0.0" width="426" height="434"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOd-dd-HsB">
-                        <rect key="frame" x="0.0" y="0.0" width="191" height="191"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOd-dd-HsB">
+                        <rect key="frame" x="0.0" y="0.0" width="424" height="434"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Verge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJX-hl-Byb">
+                                <rect key="frame" x="22" y="27" width="76" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Elon Mush says a Tesla Motors vehicle will soon be able to drive itself on &quot;virtually all roads.&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixx-0t-ArS">
+                                <rect key="frame" x="22" y="69" width="239" height="57"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Elon Musk predicts a Tesla will be able to drive iteself across the country in 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-bj-qnp">
+                                <rect key="frame" x="21" y="223" width="239" height="57"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfG-2t-Tix">
+                                <rect key="frame" x="22" y="312" width="239" height="77"/>
+                                <string key="text">Do you think Tesla's new Summon self-parking feature is neat?Well,CEO Elon Musk says that's just the beginning. On a call with reporters today,Musk reiterated his prediction that...</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DANTE D'ORAZIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-r5-b4u">
+                                <rect key="frame" x="111" y="173" width="120" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16 HRS · PUBLIC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nz5-cR-uHZ">
+                                <rect key="frame" x="21" y="134" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="theverge.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yf-Ab-GXe">
+                                <rect key="frame" x="22" y="173" width="71" height="21"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bigMusk.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="waN-Pv-01Z">
+                                <rect key="frame" x="66" y="104" width="252" height="133"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
@@ -27,12 +72,16 @@
                 <constraint firstItem="tOd-dd-HsB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YLl-zT-kdQ"/>
                 <constraint firstAttribute="trailing" secondItem="tOd-dd-HsB" secondAttribute="trailing" constant="2" id="gp8-ts-4Re"/>
             </constraints>
-            <size key="customSize" width="193" height="191"/>
+            <size key="customSize" width="426" height="434"/>
             <connections>
                 <outlet property="containerView" destination="tOd-dd-HsB" id="8sa-Du-Ptx"/>
                 <outlet property="trailingConstraint" destination="gp8-ts-4Re" id="mMf-FS-rfu"/>
             </connections>
-            <point key="canvasLocation" x="514.5" y="247.5"/>
+            <point key="canvasLocation" x="631" y="369"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="bigMusk.jpg" width="2050" height="1367"/>
+        <image name="theverge.png" width="71" height="21"/>
+    </resources>
 </document>
