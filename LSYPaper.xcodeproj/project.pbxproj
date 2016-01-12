@@ -50,6 +50,10 @@
 		EA78CFFB1C4147560092F84D /* NewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA78CFF91C4147560092F84D /* NewsDetailCell.xib */; };
 		EA78CFFD1C4151540092F84D /* NewsDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFFC1C4151540092F84D /* NewsDetailLayout.swift */; };
 		EA78CFFE1C435AA40092F84D /* NewsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFF81C4147560092F84D /* NewsDetailCell.swift */; };
+		EA78D0041C43CF370092F84D /* thevergeAvatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0021C43CF360092F84D /* thevergeAvatar.jpg */; };
+		EA78D0051C43CF370092F84D /* smallMusk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0031C43CF360092F84D /* smallMusk.jpg */; };
+		EA78D0071C43CFE70092F84D /* bigMusk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0061C43CFE70092F84D /* bigMusk.jpg */; };
+		EA78D00D1C43D6980092F84D /* theverge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA78D00C1C43D6980092F84D /* theverge@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +105,10 @@
 		EA78CFF81C4147560092F84D /* NewsDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailCell.swift; sourceTree = "<group>"; };
 		EA78CFF91C4147560092F84D /* NewsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetailCell.xib; sourceTree = "<group>"; };
 		EA78CFFC1C4151540092F84D /* NewsDetailLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailLayout.swift; sourceTree = "<group>"; };
+		EA78D0021C43CF360092F84D /* thevergeAvatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thevergeAvatar.jpg; sourceTree = "<group>"; };
+		EA78D0031C43CF360092F84D /* smallMusk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = smallMusk.jpg; sourceTree = "<group>"; };
+		EA78D0061C43CFE70092F84D /* bigMusk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bigMusk.jpg; sourceTree = "<group>"; };
+		EA78D00C1C43D6980092F84D /* theverge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theverge@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +158,6 @@
 				EA78CFF71C41411A0092F84D /* Layout */,
 				EA78CF641C3809FD0092F84D /* AppDelegate.swift */,
 				EA78CF661C3809FD0092F84D /* ViewController.swift */,
-				EA78CF7C1C3812330092F84D /* Extension.swift */,
-				EA78CF851C38222E0092F84D /* Constant.swift */,
 				EA78CF681C3809FD0092F84D /* Main.storyboard */,
 				EA78CFCF1C3D40D20092F84D /* Resource */,
 				EA78CF821C3815350092F84D /* SupportFile */,
@@ -188,6 +194,8 @@
 				EA78CFAE1C3D07530092F84D /* Default-iOS7@2x.png */,
 				EA78CF701C3809FD0092F84D /* Info.plist */,
 				EA78CFE01C3D72370092F84D /* Section.plist */,
+				EA78CF7C1C3812330092F84D /* Extension.swift */,
+				EA78CF851C38222E0092F84D /* Constant.swift */,
 				EA78CF7E1C3814EC0092F84D /* LSYPaper-Bridging-Header.h */,
 			);
 			name = SupportFile;
@@ -223,6 +231,10 @@
 				EA78CFE41C3D79020092F84D /* SectionCoverEntertainment@2x.jpg */,
 				EA78CFE61C3D79170092F84D /* SectionCoverStyles@2x.jpg */,
 				EA78CFE81C3D79550092F84D /* SectionCoverStreet@2x.jpg */,
+				EA78D0021C43CF360092F84D /* thevergeAvatar.jpg */,
+				EA78D0061C43CFE70092F84D /* bigMusk.jpg */,
+				EA78D0031C43CF360092F84D /* smallMusk.jpg */,
+				EA78D00C1C43D6980092F84D /* theverge@2x.png */,
 			);
 			name = tmpPNG;
 			sourceTree = "<group>";
@@ -340,6 +352,8 @@
 				EA78CFB71C3D0F4E0092F84D /* SectionCoverDesign@2x.jpg in Resources */,
 				EA78CFE51C3D79020092F84D /* SectionCoverEntertainment@2x.jpg in Resources */,
 				EA78CFB91C3D0F5C0092F84D /* SectionCoverFeminist@2x.jpg in Resources */,
+				EA78D00D1C43D6980092F84D /* theverge@2x.png in Resources */,
+				EA78D0071C43CFE70092F84D /* bigMusk.jpg in Resources */,
 				EA78CFB11C3D07530092F84D /* Default-iOS7-736h@3x.png in Resources */,
 				EA78CF6F1C3809FD0092F84D /* LaunchScreen.storyboard in Resources */,
 				EA78CFDB1C3D41000092F84D /* Notifications@3x.png in Resources */,
@@ -351,6 +365,7 @@
 				EA78CFC51C3D10160092F84D /* SectionCoverFamily@2x.jpg in Resources */,
 				EA78CFDA1C3D41000092F84D /* Notifications@2x.png in Resources */,
 				EA78CFC91C3D102F0092F84D /* SectionCoverFoodie@2x.jpg in Resources */,
+				EA78D0041C43CF370092F84D /* thevergeAvatar.jpg in Resources */,
 				EA78CFE91C3D79550092F84D /* SectionCoverStreet@2x.jpg in Resources */,
 				EA78CFDF1C3D44A30092F84D /* MessageView.xib in Resources */,
 				EA78CFC31C3D0FA70092F84D /* SectionCoverTrending@2x.jpg in Resources */,
@@ -363,6 +378,7 @@
 				EA78CFB21C3D07530092F84D /* Default-iOS7@2x.png in Resources */,
 				EA78CFE71C3D79170092F84D /* SectionCoverStyles@2x.jpg in Resources */,
 				EA78CFB01C3D07530092F84D /* Default-iOS7-667h@2x.png in Resources */,
+				EA78D0051C43CF370092F84D /* smallMusk.jpg in Resources */,
 				EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */,
 				EA78CFBD1C3D0F740092F84D /* SectionCoverLGBTQ@2x.jpg in Resources */,
 				EA78CFFB1C4147560092F84D /* NewsDetailCell.xib in Resources */,
