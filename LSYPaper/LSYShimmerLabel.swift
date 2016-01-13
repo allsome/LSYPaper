@@ -90,6 +90,9 @@ class LSYShimmerLabel: UILabel {
         textColor = super.textColor
         
         gradientLayer.mask = textLayer
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillResignActive:", name: UIApplicationWillResignActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
     
     func startAnimate() {
@@ -118,6 +121,15 @@ class LSYShimmerLabel: UILabel {
         if (gradientLayer.animationForKey(shimmerAnimateKey) != nil) {
             gradientLayer.removeAnimationForKey(shimmerAnimateKey)
         }
+    }
+    
+    
+    func applicationWillResignActive(note:NSNotification) {
+        stopAnimate()
+    }
+    
+    func applicationDidBecomeActive(note:NSNotification) {
+        startAnimate()
     }
     
     class func CAAlignmentFromNSTextAlignment(textAlignment: NSTextAlignment) -> String {

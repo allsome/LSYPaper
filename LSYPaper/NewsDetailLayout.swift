@@ -42,8 +42,12 @@ class NewsDetailLayout: UICollectionViewLayout {
         }
     }
     
+    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+        return true
+    }
+    
     override func collectionViewContentSize() -> CGSize {
-        return CGSizeMake(cellWidth * CGFloat(attributeArray.count) + cellGap, 0);
+        return CGSizeMake(cellWidth * CGFloat(attributeArray.count) + cellGap, cellHeight);
     }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {

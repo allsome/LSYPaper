@@ -46,7 +46,7 @@ class SectionPosterView: UIView {
         posterView.subTitleLabel.text = data.subTitle
         posterView.targetFrame = frame
         posterView.frame = frame
+        
         return posterView
     }
-    
 }

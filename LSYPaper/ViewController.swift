@@ -16,6 +16,8 @@ private let collectionViewFrame = CGRectMake(0, POSTER_HEIGHT, SCREEN_WIDTH, SCR
 
 class ViewController: UIViewController {
     private let collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: NewsDetailLayout(cellWidth: (SCREEN_WIDTH - cellGap - 36) / 2, cellHeight: SCREEN_HEIGHT - POSTER_HEIGHT, cellGap: cellGap))
+    private var panCollect:UIPanGestureRecognizer = UIPanGestureRecognizer()
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -33,6 +35,17 @@ class ViewController: UIViewController {
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizerState.Began {
+            
+        } else if recognizer.state == UIGestureRecognizerState.Changed {
+            if recognizer.translationInView(view).y >= 0 {
+                print(recognizer.translationInView(view))
+            }
+        } else if recognizer.state == UIGestureRecognizerState.Ended {
+        }
     }
     
 }
@@ -114,12 +127,27 @@ private extension ViewController {
         collectionView.layer.shadowOffset = CGSizeMake(0, -cellGap)
         collectionView.layer.shadowRadius = cellGap
         collectionView.layer.shadowOpacity = 0.5
+//        panCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
+//        panCollect.delegate = self
+//        collectionView.addGestureRecognizer(panCollect)
+        collectionView.panGestureRecognizer.addTarget(self, action: "handleCollectPanGesture:")
         view.addSubview(collectionView)
     }
 }
 
-extension ViewController:UICollectionViewDelegate {
+extension ViewController:UIGestureRecognizerDelegate {
     
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panCollect && otherGestureRecognizer == collectionView.panGestureRecognizer {
+            return true
+        }else {
+            return false
+        }
+    }
+}
+
+extension ViewController:UICollectionViewDelegate {
+
 }
 
 extension ViewController:UICollectionViewDataSource {

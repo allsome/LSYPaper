@@ -56,9 +56,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="theverge.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yf-Ab-GXe">
                                 <rect key="frame" x="22" y="173" width="71" height="21"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bigMusk.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="waN-Pv-01Z">
-                                <rect key="frame" x="66" y="104" width="252" height="133"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -81,7 +78,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="bigMusk.jpg" width="2050" height="1367"/>
         <image name="theverge.png" width="71" height="21"/>
     </resources>
 </document>

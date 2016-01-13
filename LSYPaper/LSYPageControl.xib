@@ -39,13 +39,23 @@
                     <color key="pageIndicatorTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                     <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </pageControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jrd-Sy-qWs">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="ZXy-wr-FFM"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="7l9-TM-cmg" firstAttribute="top" secondItem="miX-ob-Buv" secondAttribute="top" id="Azq-bb-NLa"/>
+                <constraint firstItem="jrd-Sy-qWs" firstAttribute="top" secondItem="miX-ob-Buv" secondAttribute="top" id="Qln-0g-jVb"/>
                 <constraint firstAttribute="trailing" secondItem="7l9-TM-cmg" secondAttribute="trailing" id="RwC-9u-lTi"/>
+                <constraint firstAttribute="trailing" secondItem="jrd-Sy-qWs" secondAttribute="trailing" id="TZI-Vo-9eW"/>
                 <constraint firstAttribute="bottom" secondItem="7l9-TM-cmg" secondAttribute="bottom" id="ixV-to-hZy"/>
                 <constraint firstItem="EQe-4A-yBC" firstAttribute="centerX" secondItem="miX-ob-Buv" secondAttribute="centerX" id="jR6-Mh-MzN"/>
+                <constraint firstItem="jrd-Sy-qWs" firstAttribute="leading" secondItem="miX-ob-Buv" secondAttribute="leading" id="jzu-Rq-B5M"/>
                 <constraint firstAttribute="bottom" secondItem="EQe-4A-yBC" secondAttribute="bottom" id="kPQ-lt-xi3"/>
                 <constraint firstItem="7l9-TM-cmg" firstAttribute="leading" secondItem="miX-ob-Buv" secondAttribute="leading" id="qDC-o5-jkP"/>
             </constraints>
