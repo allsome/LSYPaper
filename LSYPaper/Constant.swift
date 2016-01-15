@@ -10,5 +10,7 @@ import UIKit
 
 public let SCREEN_WIDTH = UIScreen.mainScreen().bounds.size.width
 public let SCREEN_HEIGHT = UIScreen.mainScreen().bounds.size.height
-public let APPDELEGATE = UIApplication.sharedApplication().delegate
-public let POSTER_HEIGHT = SCREEN_HEIGHT * 5 / 9
+public let POSTER_HEIGHT_RATIO:CGFloat = 5 / 9
+public let POSTER_HEIGHT = SCREEN_HEIGHT * POSTER_HEIGHT_RATIO
+public let CELL_NORMAL_HEIGHT = SCREEN_HEIGHT - POSTER_HEIGHT
+public let CORNER_REDIUS:CGFloat = 6

@@ -10,14 +10,10 @@ import UIKit
 
 class NewsDetailCell: UICollectionViewCell {
     
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        trailingConstraint.constant = cellGap
-        containerView.layer.masksToBounds = true
-        containerView.layer.cornerRadius = cellGap
+        layer.masksToBounds = true
+        layer.cornerRadius = cellGap
     }
 
 }

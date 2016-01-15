@@ -31,7 +31,7 @@ class LSYShimmerLabel: UILabel {
     
     var shimmerColor:UIColor = UIColor.whiteColor() {
         didSet {
-            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
+            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor]
         }
     }
     
@@ -65,7 +65,7 @@ class LSYShimmerLabel: UILabel {
     override var textColor:UIColor! {
         didSet {
             gradientLayer.backgroundColor = textColor.CGColor
-            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor];
+            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor]
         }
     }
     
@@ -91,8 +91,8 @@ class LSYShimmerLabel: UILabel {
         
         gradientLayer.mask = textLayer
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillResignActive:", name: UIApplicationWillResignActiveNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationDidEnterBackground:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     func startAnimate() {
@@ -111,7 +111,7 @@ class LSYShimmerLabel: UILabel {
             group.animations = [startPointAnimation, endPointAnimation]
             group.duration = animateDuration
             group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            group.repeatCount = FLT_MAX;
+            group.repeatCount = FLT_MAX
             
             gradientLayer.addAnimation(group, forKey: shimmerAnimateKey)
         }
@@ -124,11 +124,11 @@ class LSYShimmerLabel: UILabel {
     }
     
     
-    func applicationWillResignActive(note:NSNotification) {
+    func applicationDidEnterBackground(note:NSNotification) {
         stopAnimate()
     }
     
-    func applicationDidBecomeActive(note:NSNotification) {
+    func applicationWillEnterForeground(note:NSNotification) {
         startAnimate()
     }
     
