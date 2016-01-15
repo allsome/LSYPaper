@@ -64,6 +64,7 @@
             <connections>
                 <outlet property="containerView" destination="zih-VT-JsY" id="Cj0-Tm-yJd"/>
                 <outlet property="containerViewWidthConstraint" destination="X9U-Ht-C4l" id="U6b-BU-0sY"/>
+                <outlet property="makeRealView" destination="jrd-Sy-qWs" id="1jA-pl-EII"/>
                 <outlet property="pageControl" destination="EQe-4A-yBC" id="IPH-qk-gg7"/>
                 <outlet property="pageControlBottomConstraint" destination="kPQ-lt-xi3" id="hjO-Bb-A6B"/>
                 <outlet property="scrollView" destination="7l9-TM-cmg" id="TIi-mm-Mo2"/>

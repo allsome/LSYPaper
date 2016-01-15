@@ -8,7 +8,7 @@
 
 import UIKit
 
-// horizontal layout
+// A deprecated horizontal layout
 
 private let sectionNumber = 0
 class NewsDetailLayout: UICollectionViewLayout {

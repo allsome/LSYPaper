@@ -8,6 +8,16 @@
 
 import UIKit
 
+public extension UIView {
+    public func setSpecialCorner(cornerOption:UIRectCorner) {
+        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(CORNER_REDIUS, CORNER_REDIUS))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = self.bounds
+        maskLayer.path = maskPath.CGPath
+        self.layer.mask = maskLayer
+    }
+}
+
 public extension UIColor {
     /**
      Create non-autoreleased color with in the given hex string. Alpha will be set as 1 by default.

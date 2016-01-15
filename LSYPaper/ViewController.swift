@@ -13,13 +13,13 @@ private let cellReuseIdentifier = "NewsDetailCell"
 private let maxTitleLabelY = SCREEN_WIDTH + 15
 private let collectionViewFrame = CGRectMake(0, POSTER_HEIGHT, SCREEN_WIDTH, CELL_NORMAL_HEIGHT)
 private let minCellRatio:CGFloat = 0.5
-private let normalCellWidth:CGFloat = (SCREEN_WIDTH - 3 * cellGap - 36) / 2
+private let normalCellWidth:CGFloat = CELL_NORMAL_HEIGHT * SCREEN_WIDTH / SCREEN_HEIGHT
 
 class ViewController: UIViewController {
     
-    private let collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: NewsDetailLayout(cellWidth: normalCellWidth, cellHeight: CELL_NORMAL_HEIGHT, cellGap: cellGap))
-    private var collectLayout:NewsDetailLayout {
-        return collectionView.collectionViewLayout as! NewsDetailLayout
+    private let collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: UICollectionViewFlowLayout())
+    private var collectLayout:UICollectionViewFlowLayout {
+        return collectionView.collectionViewLayout as! UICollectionViewFlowLayout
     }
     private var panCollect:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var isPanVertical:Bool = false
@@ -44,26 +44,25 @@ class ViewController: UIViewController {
     }
     
     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
-        let translation = recognizer.translationInView(view)
         if recognizer.state == UIGestureRecognizerState.Began {
             let velocity = recognizer.velocityInView(view)
             if fabs(velocity.x) <= fabs(velocity.y) {
                 isPanVertical = true
-                collectionView.panGestureRecognizer.enabled = false
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
             if isPanVertical {
+                let translation = recognizer.translationInView(view)
                 if translation.y >= 0 {
-                    //                print(translation)
                     let newCellWidth = normalCellWidth - (translation.y * minCellRatio * normalCellWidth) / CELL_NORMAL_HEIGHT
                     let newCellHeight = CELL_NORMAL_HEIGHT - translation.y * minCellRatio
                     let newCellGap = newCellWidth / normalCellWidth * cellGap
-                    collectLayout.invalidateLayoutwith(newCellWidth, newCellHeight: newCellHeight, newCellGap: newCellGap)
+                    collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
+                    collectLayout.minimumLineSpacing = newCellGap
+                    collectLayout.sectionInset = UIEdgeInsetsMake(CELL_NORMAL_HEIGHT - newCellHeight, newCellGap, 0, newCellGap)
                 }
             }
         } else {
             isPanVertical = false
-            collectionView.panGestureRecognizer.enabled = true
         }
     }
 }
@@ -80,19 +79,12 @@ private extension ViewController {
             let data = SectionData(dictionary: dic as! [String : AnyObject])
             let frame = CGRectMake(SCREEN_WIDTH * CGFloat(index), 0, SCREEN_WIDTH, SCREEN_HEIGHT)
             let view = SectionPosterView.sectionPosterViewWith(data: data, frame: frame)
-            if index == 0 {
-                setTopRoundCorner(forView: view, cornerOption: UIRectCorner.TopLeft)
-            }
-            
-            if index == 9 {
-                setTopRoundCorner(forView: view, cornerOption: UIRectCorner.TopRight)
-            }
             views.append(view)
         }
         
         let pageControl = LSYPageControl.pageControlWith(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), views: views)
         pageControl.pageControlBottomConstraint.constant = SCREEN_HEIGHT - POSTER_HEIGHT
-        pageControl.didScrollOption = {(targetPage:NSInteger,views:[UIView]) in
+        pageControl.didScrollOption = {(targetPage:NSInteger,views:[UIView],contentOffsetX:CGFloat) in
             let view = views[targetPage] as! SectionPosterView
             let frame = view.titleLabel.convertRect(view.titleLabel.bounds, toView: self.view)
             
@@ -105,6 +97,14 @@ private extension ViewController {
             }else {
                 view.titleLabel.alpha = (leftEdge - frame.origin.x) / view.titleLabel.bounds.width
             }
+            
+            let firstView = views.first
+            if contentOffsetX == 0 {
+                firstView!.layer.masksToBounds = false
+            }else if contentOffsetX < 0 {
+                firstView!.layer.masksToBounds = true
+                firstView!.layer.cornerRadius = CORNER_REDIUS
+            }
         }
         
         pageControl.pageDidChangeOption = {(currentPage:Int,changeDirection:PageChangeDirectionType) in
@@ -116,17 +116,29 @@ private extension ViewController {
             anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             self.collectionView.layer.addAnimation(anim, forKey: nil)
         }
+        
+        pageControl.didScrollCrossLeftEdge = {(contentOffsetX:CGFloat) in
+            if self.collectionView.contentOffset.x == 0 {
+                self.collectionView.transform = CGAffineTransformMakeTranslation(-contentOffsetX, 0)
+            }
+        }
+        
+        pageControl.didScrollCrossRightEdge = {(translation:CGFloat,lastView:UIView) in
+            if translation == 0 {
+                lastView.layer.masksToBounds = false
+            }else if translation < 0 {
+                lastView.layer.masksToBounds = true
+                lastView.layer.cornerRadius = CORNER_REDIUS
+            }
+
+        }
+        
+        pageControl.backFromLeftEdge = {() in
+            self.collectionView.setContentOffset(CGPointZero, animated: true)
+        }
         view.addSubview(pageControl)
         
-        setTopRoundCorner(forView: view, cornerOption: [UIRectCorner.TopLeft,UIRectCorner.TopRight])
-    }
-    
-    private func setTopRoundCorner(forView view:UIView,cornerOption:UIRectCorner) {
-        let maskPath = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(CORNER_REDIUS, CORNER_REDIUS))
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = view.bounds
-        maskLayer.path = maskPath.CGPath
-        view.layer.mask = maskLayer
+        view.setSpecialCorner([UIRectCorner.TopLeft,UIRectCorner.TopRight])
     }
     
     private func setMessageView() {
@@ -148,8 +160,11 @@ private extension ViewController {
         panCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
         panCollect.delegate = self
         collectionView.addGestureRecognizer(panCollect)
-
-//        collectionView.panGestureRecognizer.addTarget(self, action: "handleCollectPanGesture:")
+        collectLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        collectLayout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
+        collectLayout.minimumLineSpacing = cellGap
+        collectLayout.sectionInset = UIEdgeInsetsMake(0, cellGap, 0, cellGap)
+//NewsDetailLayout(cellWidth: normalCellWidth, cellHeight: CELL_NORMAL_HEIGHT, cellGap: cellGap)
         view.addSubview(collectionView)
     }
 }
@@ -170,7 +185,7 @@ extension ViewController:UICollectionViewDelegate {
 
 extension ViewController:UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return 1000
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

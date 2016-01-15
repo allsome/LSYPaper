@@ -15,14 +15,18 @@ enum PageChangeDirectionType : Int {
 
 class LSYPageControl: UIView,UIScrollViewDelegate{
     
+    @IBOutlet weak var makeRealView: UIView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var containerViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet weak var pageControlBottomConstraint: NSLayoutConstraint!
-    var didScrollOption:((NSInteger,[UIView]) -> Void)?
+    var didScrollOption:((NSInteger,[UIView],CGFloat) -> Void)?
     var didEndDeceleratingOption:(NSInteger -> Void)?
     var pageDidChangeOption:((NSInteger,PageChangeDirectionType) -> Void)?
+    var didScrollCrossLeftEdge:(CGFloat -> Void)?
+    var didScrollCrossRightEdge:((CGFloat,UIView) -> Void)?
+    var backFromLeftEdge:(() -> Void)?
     private var lastPage:Int = 0
     private var targetFrame:CGRect = CGRectZero
     private var views:[UIView] = [] {
@@ -40,6 +44,11 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         frame = targetFrame
     }
     
+    override func awakeFromNib() {
+        makeRealView.layer.masksToBounds = true
+        makeRealView.layer.cornerRadius = CORNER_REDIUS
+    }
+    
     class func pageControlWith(frame:CGRect, views:[UIView]) -> LSYPageControl {
         let objs = NSBundle.mainBundle().loadNibNamed("LSYPageControl", owner: nil, options: nil)
         let pageControl = objs.last as! LSYPageControl
@@ -53,7 +62,22 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         let targetPage = NSInteger((scrollView.contentOffset.x - 0.1) / SCREEN_WIDTH) + 1
         if targetPage < views.count {
             if (didScrollOption != nil) {
-                didScrollOption!(targetPage,views)
+                didScrollOption!(targetPage,views,scrollView.contentOffset.x)
+            }
+        }
+        
+        if scrollView.contentOffset.x <= 0 {
+            makeRealView.transform = CGAffineTransformMakeTranslation(-scrollView.contentOffset.x, 0)
+            if (didScrollCrossLeftEdge != nil) {
+                didScrollCrossLeftEdge!(scrollView.contentOffset.x)
+            }
+        }
+        
+        let translation = containerViewWidthConstraint.constant - scrollView.contentOffset.x - SCREEN_WIDTH
+        if translation <= 0{
+            makeRealView.transform = CGAffineTransformMakeTranslation(translation, 0)
+            if (didScrollCrossRightEdge != nil) {
+                didScrollCrossRightEdge!(translation,views.last!)
             }
         }
     }
@@ -72,6 +96,11 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
                 let changeDirection = currentPage > lastPage ? PageChangeDirectionType.Right : PageChangeDirectionType.Left
                 pageDidChangeOption!(currentPage,changeDirection)
                 lastPage = currentPage
+            }
+        }
+        if targetContentOffsetX == 0 && scrollView.contentOffset.x < 0 {
+            if (backFromLeftEdge != nil) {
+                backFromLeftEdge!()
             }
         }
     }
