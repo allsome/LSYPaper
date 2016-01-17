@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     }
     private var panCollect:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var isPanVertical:Bool = false
+    private var locationInViewX:CGFloat = 0
+    private var locationRatio:CGFloat = 0
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,7 +48,10 @@ class ViewController: UIViewController {
     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Began {
             let velocity = recognizer.velocityInView(view)
+            locationInViewX = recognizer.locationInView(collectionView).x
+            locationRatio = locationInViewX / (cellGap + normalCellWidth)
             if fabs(velocity.x) <= fabs(velocity.y) {
+                collectionView.panGestureRecognizer.enabled = false
                 isPanVertical = true
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
@@ -55,13 +60,17 @@ class ViewController: UIViewController {
                 if translation.y >= 0 {
                     let newCellWidth = normalCellWidth - (translation.y * minCellRatio * normalCellWidth) / CELL_NORMAL_HEIGHT
                     let newCellHeight = CELL_NORMAL_HEIGHT - translation.y * minCellRatio
-                    let newCellGap = newCellWidth / normalCellWidth * cellGap
+                    let ratio = newCellWidth / normalCellWidth
+                    let newCellGap = ratio * cellGap
+                    let fastenCellGap = locationInViewX - locationRatio * (newCellWidth + newCellGap)
                     collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
                     collectLayout.minimumLineSpacing = newCellGap
-                    collectLayout.sectionInset = UIEdgeInsetsMake(CELL_NORMAL_HEIGHT - newCellHeight, newCellGap, 0, newCellGap)
+                    collectLayout.sectionInset = UIEdgeInsetsMake(CELL_NORMAL_HEIGHT - newCellHeight, newCellGap + fastenCellGap + translation.x, 0, newCellGap)
+                    collectLayout.invalidateLayout()
                 }
             }
         } else {
+            collectionView.panGestureRecognizer.enabled = true
             isPanVertical = false
         }
     }
