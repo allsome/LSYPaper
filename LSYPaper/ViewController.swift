@@ -12,7 +12,7 @@ let cellGap:CGFloat = 2
 private let cellReuseIdentifier = "NewsDetailCell"
 private let maxTitleLabelY = SCREEN_WIDTH + 15
 private let collectionViewFrame = CGRectMake(0, POSTER_HEIGHT, SCREEN_WIDTH, CELL_NORMAL_HEIGHT)
-private let minCellRatio:CGFloat = 0.5
+private let minCellRatio:CGFloat = 0.3
 private let normalCellWidth:CGFloat = CELL_NORMAL_HEIGHT * SCREEN_WIDTH / SCREEN_HEIGHT
 
 class ViewController: UIViewController {
@@ -21,9 +21,17 @@ class ViewController: UIViewController {
     private var collectLayout:UICollectionViewFlowLayout {
         return collectionView.collectionViewLayout as! UICollectionViewFlowLayout
     }
+    private var normalCollectLayout:UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        layout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
+        layout.minimumLineSpacing = cellGap
+        layout.sectionInset = UIEdgeInsetsMake(0, cellGap, 0, cellGap)
+        return layout
+    }
     private var panCollect:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var isPanVertical:Bool = false
-    private var locationInViewX:CGFloat = 0
+    private var locationInView:CGPoint = CGPointZero
     private var locationRatio:CGFloat = 0
     
     override func viewWillAppear(animated: Bool) {
@@ -48,30 +56,36 @@ class ViewController: UIViewController {
     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Began {
             let velocity = recognizer.velocityInView(view)
-            locationInViewX = recognizer.locationInView(collectionView).x
-            locationRatio = locationInViewX / (cellGap + normalCellWidth)
             if fabs(velocity.x) <= fabs(velocity.y) {
                 collectionView.panGestureRecognizer.enabled = false
+                locationInView = recognizer.locationInView(collectionView)
+                locationRatio = locationInView.x / (cellGap + normalCellWidth)
                 isPanVertical = true
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
             if isPanVertical {
+                let ultraRatio = minCellRatio * (CELL_NORMAL_HEIGHT / (CELL_NORMAL_HEIGHT - locationInView.y))
                 let translation = recognizer.translationInView(view)
                 if translation.y >= 0 {
-                    let newCellWidth = normalCellWidth - (translation.y * minCellRatio * normalCellWidth) / CELL_NORMAL_HEIGHT
-                    let newCellHeight = CELL_NORMAL_HEIGHT - translation.y * minCellRatio
+                    let newCellWidth = normalCellWidth - (translation.y * ultraRatio * normalCellWidth) / CELL_NORMAL_HEIGHT
+                    let newCellHeight = CELL_NORMAL_HEIGHT - translation.y * ultraRatio
                     let ratio = newCellWidth / normalCellWidth
                     let newCellGap = ratio * cellGap
-                    let fastenCellGap = locationInViewX - locationRatio * (newCellWidth + newCellGap)
+                    let fastenCellGap = locationInView.x - locationRatio * (newCellWidth + newCellGap)
                     collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
                     collectLayout.minimumLineSpacing = newCellGap
                     collectLayout.sectionInset = UIEdgeInsetsMake(CELL_NORMAL_HEIGHT - newCellHeight, newCellGap + fastenCellGap + translation.x, 0, newCellGap)
-                    collectLayout.invalidateLayout()
                 }
             }
         } else {
-            collectionView.panGestureRecognizer.enabled = true
-            isPanVertical = false
+            if isPanVertical == true {
+                UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                    self.collectionView.setCollectionViewLayout(self.normalCollectLayout, animated: true)
+                    }, completion: { (stop:Bool) -> Void in
+                        self.collectionView.panGestureRecognizer.enabled = true
+                        self.isPanVertical = false
+                })
+            }
         }
     }
 }
@@ -168,12 +182,13 @@ private extension ViewController {
         collectionView.layer.shadowOpacity = 0.5
         panCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
         panCollect.delegate = self
+//        panCollect.cancelsTouchesInView = false
+//        panCollect.delaysTouchesBegan = true
+//        panCollect.delaysTouchesEnded = false
+        panCollect.maximumNumberOfTouches = 1;
         collectionView.addGestureRecognizer(panCollect)
-        collectLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
-        collectLayout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
-        collectLayout.minimumLineSpacing = cellGap
-        collectLayout.sectionInset = UIEdgeInsetsMake(0, cellGap, 0, cellGap)
-//NewsDetailLayout(cellWidth: normalCellWidth, cellHeight: CELL_NORMAL_HEIGHT, cellGap: cellGap)
+        collectionView.collectionViewLayout = normalCollectLayout
+        //NewsDetailLayout(cellWidth: normalCellWidth, cellHeight: CELL_NORMAL_HEIGHT, cellGap: cellGap)
         view.addSubview(collectionView)
     }
 }
@@ -189,7 +204,6 @@ extension ViewController:UIGestureRecognizerDelegate {
 }
 
 extension ViewController:UICollectionViewDelegate {
-    
 }
 
 extension ViewController:UICollectionViewDataSource {
