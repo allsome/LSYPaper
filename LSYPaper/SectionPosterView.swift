@@ -27,7 +27,7 @@ class SectionPosterView: UIView {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = CGRectMake(0, 2 * POSTER_HEIGHT - SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - POSTER_HEIGHT)
         gradientLayer.colors = [UIColor(white: 0.0, alpha: 1.0).CGColor,UIColor.clearColor().CGColor]
-        gradientLayer.startPoint = CGPointMake(0.5, 0.2)
+        gradientLayer.startPoint = CGPointMake(0.5, 0.3)
         gradientLayer.endPoint = CGPointMake(0.5, 1.0)
         shadowImage.layer.addSublayer(gradientLayer)
     }

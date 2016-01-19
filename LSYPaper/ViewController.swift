@@ -12,12 +12,16 @@ let cellGap:CGFloat = 2
 private let cellReuseIdentifier = "NewsDetailCell"
 private let maxTitleLabelY = SCREEN_WIDTH + 15
 private let collectionViewFrame = CGRectMake(0, POSTER_HEIGHT, SCREEN_WIDTH, CELL_NORMAL_HEIGHT)
-private let minCellRatio:CGFloat = 0.3
+private let fullScreenCollectFrame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+
+private let minCellRatio:CGFloat = 4 / 5
+private let maxCellRatio:CGFloat = 1.1
 private let normalCellWidth:CGFloat = CELL_NORMAL_HEIGHT * SCREEN_WIDTH / SCREEN_HEIGHT
 
 class ViewController: UIViewController {
     
     private let collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: UICollectionViewFlowLayout())
+    private var pageControl:LSYPageControl = LSYPageControl()
     private var collectLayout:UICollectionViewFlowLayout {
         return collectionView.collectionViewLayout as! UICollectionViewFlowLayout
     }
@@ -29,8 +33,21 @@ class ViewController: UIViewController {
         layout.sectionInset = UIEdgeInsetsMake(0, cellGap, 0, cellGap)
         return layout
     }
+    private var fullScreenLayout:UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        let fullScreenGap = cellGap * SCREEN_WIDTH / normalCellWidth
+        layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        layout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)
+        layout.minimumLineSpacing = fullScreenGap
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, fullScreenGap)
+        return layout
+    }
     private var panCollect:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var isPanVertical:Bool = false
+    private var isFromFullScreen:Bool = false
+    private var hasReachNormalHeightFromFullScreen:Bool = false
+    private var reachNormalLocationYFromFullScreen:CGFloat = 0.0
+    private var reachNormalTransitionYFromFullScreen:CGFloat = 0.0
     private var locationInView:CGPoint = CGPointZero
     private var locationRatio:CGFloat = 0
     
@@ -54,36 +71,66 @@ class ViewController: UIViewController {
     }
     
     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
+        let velocity = recognizer.velocityInView(view)
         if recognizer.state == UIGestureRecognizerState.Began {
-            let velocity = recognizer.velocityInView(view)
             if fabs(velocity.x) <= fabs(velocity.y) {
                 collectionView.panGestureRecognizer.enabled = false
                 locationInView = recognizer.locationInView(collectionView)
-                locationRatio = locationInView.x / (cellGap + normalCellWidth)
+                locationRatio = locationInView.x / (collectLayout.minimumLineSpacing + collectLayout.itemSize.width)
                 isPanVertical = true
+                isFromFullScreen = collectionView.frame.height == SCREEN_HEIGHT ? true : false
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
             if isPanVertical {
-                let ultraRatio = minCellRatio * (CELL_NORMAL_HEIGHT / (CELL_NORMAL_HEIGHT - locationInView.y))
                 let translation = recognizer.translationInView(view)
-                if translation.y >= 0 {
-                    let newCellWidth = normalCellWidth - (translation.y * ultraRatio * normalCellWidth) / CELL_NORMAL_HEIGHT
-                    let newCellHeight = CELL_NORMAL_HEIGHT - translation.y * ultraRatio
+                if isFromFullScreen == false {
+                    let minRatio = minCellRatio * (CELL_NORMAL_HEIGHT / (CELL_NORMAL_HEIGHT - locationInView.y))
+                    var newCellHeight = translation.y >= 0 ? CELL_NORMAL_HEIGHT - translation.y * minRatio:((CELL_NORMAL_HEIGHT - (locationInView.y + translation.y)) * CELL_NORMAL_HEIGHT) / (CELL_NORMAL_HEIGHT - locationInView.y)
+                    let gap = newCellHeight - maxCellRatio * SCREEN_HEIGHT
+                    newCellHeight = gap >= 0 ? maxCellRatio * SCREEN_HEIGHT + gap / 25 : newCellHeight
+                    let newCellWidth = normalCellWidth * newCellHeight / CELL_NORMAL_HEIGHT
                     let ratio = newCellWidth / normalCellWidth
                     let newCellGap = ratio * cellGap
                     let fastenCellGap = locationInView.x - locationRatio * (newCellWidth + newCellGap)
                     collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
                     collectLayout.minimumLineSpacing = newCellGap
                     collectLayout.sectionInset = UIEdgeInsetsMake(CELL_NORMAL_HEIGHT - newCellHeight, newCellGap + fastenCellGap + translation.x, 0, newCellGap)
+                }else {
+                    var newCellHeight = ((SCREEN_HEIGHT - (locationInView.y + translation.y)) * SCREEN_HEIGHT) / (SCREEN_HEIGHT - locationInView.y)
+                    if newCellHeight <= CELL_NORMAL_HEIGHT {
+                        if hasReachNormalHeightFromFullScreen == false {
+                            reachNormalLocationYFromFullScreen = recognizer.locationInView(collectionView).y
+                            reachNormalTransitionYFromFullScreen = recognizer.translationInView(collectionView).y
+                            hasReachNormalHeightFromFullScreen = true
+                        }
+                        // (normalHeight - locationY) / ((1- minRatio) * normalHeight) = transitionY / panOffY
+                        newCellHeight = CELL_NORMAL_HEIGHT - ((1 - minCellRatio) * CELL_NORMAL_HEIGHT * (translation.y - reachNormalTransitionYFromFullScreen) / (CELL_NORMAL_HEIGHT - reachNormalLocationYFromFullScreen + POSTER_HEIGHT))
+                    }
+                    let newCellWidth = normalCellWidth * newCellHeight / CELL_NORMAL_HEIGHT
+                    let ratio = newCellWidth / normalCellWidth
+                    let newCellGap = ratio * cellGap
+                    let fastenCellGap = locationInView.x - locationRatio * (newCellWidth + newCellGap)
+                    collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
+                    collectLayout.minimumLineSpacing = newCellGap
+                    collectLayout.sectionInset = UIEdgeInsetsMake(SCREEN_HEIGHT - newCellHeight, newCellGap + fastenCellGap + translation.x, 0, newCellGap)
                 }
             }
-        } else {
+        } else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended){
             if isPanVertical == true {
-                UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-                    self.collectionView.setCollectionViewLayout(self.normalCollectLayout, animated: true)
+                let isZoomed = collectLayout.itemSize.width / normalCellWidth > 1
+                let duration = isZoomed ? 0.3 : 0.2
+                let option = isZoomed ? UIViewAnimationOptions.CurveEaseInOut:UIViewAnimationOptions.CurveEaseOut
+                
+                let isFullScreen = collectLayout.itemSize.width / SCREEN_WIDTH > 2 / 3
+                let layout = isFullScreen ? self.fullScreenLayout : self.normalCollectLayout
+                self.collectionView.pagingEnabled = isFullScreen ? true : false
+                self.collectionView.frame = isFullScreen ? fullScreenCollectFrame : collectionViewFrame
+                UIView.animateWithDuration(duration, delay: 0.0, options: option, animations: { () -> Void in
+                    self.collectionView.setCollectionViewLayout(layout, animated: true)
                     }, completion: { (stop:Bool) -> Void in
                         self.collectionView.panGestureRecognizer.enabled = true
                         self.isPanVertical = false
+                        self.hasReachNormalHeightFromFullScreen = false
                 })
             }
         }
@@ -159,8 +206,8 @@ private extension ViewController {
         pageControl.backFromLeftEdge = {() in
             self.collectionView.setContentOffset(CGPointZero, animated: true)
         }
+        self.pageControl = pageControl
         view.addSubview(pageControl)
-        
         view.setSpecialCorner([UIRectCorner.TopLeft,UIRectCorner.TopRight])
     }
     
@@ -176,19 +223,11 @@ private extension ViewController {
         let nib = UINib(nibName: cellReuseIdentifier, bundle: nil)
         collectionView.registerNib(nib, forCellWithReuseIdentifier: cellReuseIdentifier)
         collectionView.clipsToBounds = false
-        collectionView.layer.shadowColor = UIColor.blackColor().CGColor
-        collectionView.layer.shadowOffset = CGSizeMake(0, -cellGap)
-        collectionView.layer.shadowRadius = cellGap
-        collectionView.layer.shadowOpacity = 0.5
         panCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
         panCollect.delegate = self
-//        panCollect.cancelsTouchesInView = false
-//        panCollect.delaysTouchesBegan = true
-//        panCollect.delaysTouchesEnded = false
         panCollect.maximumNumberOfTouches = 1;
         collectionView.addGestureRecognizer(panCollect)
         collectionView.collectionViewLayout = normalCollectLayout
-        //NewsDetailLayout(cellWidth: normalCellWidth, cellHeight: CELL_NORMAL_HEIGHT, cellGap: cellGap)
         view.addSubview(collectionView)
     }
 }

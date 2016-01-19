@@ -53,6 +53,8 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         let objs = NSBundle.mainBundle().loadNibNamed("LSYPageControl", owner: nil, options: nil)
         let pageControl = objs.last as! LSYPageControl
         pageControl.targetFrame = frame
+        pageControl.layer.masksToBounds = true
+        pageControl.layer.cornerRadius = CORNER_REDIUS
         pageControl.views = views
         return pageControl
     }
