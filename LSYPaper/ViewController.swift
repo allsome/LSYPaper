@@ -49,6 +49,7 @@ class ViewController: UIViewController {
     private var reachNormalLocationYFromFullScreen:CGFloat = 0.0
     private var reachNormalTransitionYFromFullScreen:CGFloat = 0.0
     private var locationInView:CGPoint = CGPointZero
+    private var translationInView:CGPoint = CGPointZero
     private var locationRatio:CGFloat = 0
     
     override func viewWillAppear(animated: Bool) {
@@ -82,57 +83,39 @@ class ViewController: UIViewController {
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
             if isPanVertical {
-                let translation = recognizer.translationInView(view)
+                translationInView = recognizer.translationInView(view)
+                var newCellHeight:CGFloat = 0
                 if isFromFullScreen == false {
-                    let minRatio = minCellRatio * (CELL_NORMAL_HEIGHT / (CELL_NORMAL_HEIGHT - locationInView.y))
-                    var newCellHeight = translation.y >= 0 ? CELL_NORMAL_HEIGHT - translation.y * minRatio:((CELL_NORMAL_HEIGHT - (locationInView.y + translation.y)) * CELL_NORMAL_HEIGHT) / (CELL_NORMAL_HEIGHT - locationInView.y)
-                    let gap = newCellHeight - maxCellRatio * SCREEN_HEIGHT
-                    newCellHeight = gap >= 0 ? maxCellRatio * SCREEN_HEIGHT + gap / 25 : newCellHeight
-                    let newCellWidth = normalCellWidth * newCellHeight / CELL_NORMAL_HEIGHT
-                    let ratio = newCellWidth / normalCellWidth
-                    let newCellGap = ratio * cellGap
-                    let fastenCellGap = locationInView.x - locationRatio * (newCellWidth + newCellGap)
-                    collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
-                    collectLayout.minimumLineSpacing = newCellGap
-                    collectLayout.sectionInset = UIEdgeInsetsMake(CELL_NORMAL_HEIGHT - newCellHeight, newCellGap + fastenCellGap + translation.x, 0, newCellGap)
-                }else {
-                    if translation.y >= 0 {
-                        var newCellHeight = ((SCREEN_HEIGHT - (locationInView.y + translation.y)) * SCREEN_HEIGHT) / (SCREEN_HEIGHT - locationInView.y)
-                        if newCellHeight <= CELL_NORMAL_HEIGHT {
-                            if hasReachNormalHeightFromFullScreen == false {
-                                reachNormalLocationYFromFullScreen = recognizer.locationInView(collectionView).y
-                                reachNormalTransitionYFromFullScreen = recognizer.translationInView(collectionView).y
-                                hasReachNormalHeightFromFullScreen = true
-                            }
-                            // panOffY * panOffY = (1- minRatio) * (1- minRatio) * normalHeight * normalHeight * transitionY/ (normalHeight - locationY)
-                            let gap = translation.y - reachNormalTransitionYFromFullScreen < 0 ? 0 : translation.y - reachNormalTransitionYFromFullScreen;
-                            let denominator = CELL_NORMAL_HEIGHT - reachNormalLocationYFromFullScreen + POSTER_HEIGHT
-                            let numerator = (1 - minCellRatio) * (1 - minCellRatio) * CELL_NORMAL_HEIGHT * CELL_NORMAL_HEIGHT * (gap)
-                            let panOffsetY = sqrt(numerator / denominator)
-                            newCellHeight = CELL_NORMAL_HEIGHT - panOffsetY
-                        }
-                        let newCellWidth = normalCellWidth * newCellHeight / CELL_NORMAL_HEIGHT
-                        let ratio = newCellWidth / normalCellWidth
-                        let newCellGap = ratio * cellGap
-                        let fastenCellGap = locationInView.x - locationRatio * (newCellWidth + newCellGap)
-                        collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
-                        collectLayout.minimumLineSpacing = newCellGap
-                        collectLayout.sectionInset = UIEdgeInsetsMake(SCREEN_HEIGHT - newCellHeight, newCellGap + fastenCellGap + translation.x, 0, newCellGap)
+                    if translationInView.y >= 0 {
+                        newCellHeight = computeCellHeightUnderExtraZoomOut()
                     }else {
-                        // panOffY * panOffY = (locationY / screenH) * (locationY / screenH) * (maxRatio - 1) * (maxRatio - 1) * screenH * (-translationY)
-                        let panOffsetY = locationInView.y / SCREEN_HEIGHT * (maxCellRatio - 1) * sqrt(SCREEN_HEIGHT * (-translation.y))
-                        let newCellHeight = SCREEN_HEIGHT + panOffsetY
-                        let newCellWidth = normalCellWidth * newCellHeight / CELL_NORMAL_HEIGHT
-                        let ratio = newCellWidth / normalCellWidth
-                        let newCellGap = ratio * cellGap
-                        let fastenCellGap = locationInView.x - locationRatio * (newCellWidth + newCellGap)
-                        collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
-                        collectLayout.minimumLineSpacing = newCellGap
-                        collectLayout.sectionInset = UIEdgeInsetsMake(SCREEN_HEIGHT - newCellHeight, newCellGap + fastenCellGap + translation.x, 0, newCellGap)
+                        newCellHeight = computeCellHeightUnderNormalZoomInOut()
+                        if newCellHeight >= SCREEN_HEIGHT {
+                            reachNormalHeightSetting(recognizer)
+                            newCellHeight = computeCellHeightUnderExtraZoomIn()
+                        }
+                    }
+                }else {
+                    if translationInView.y >= 0 {
+                        newCellHeight = computeCellHeightUnderNormalZoomInOut()
+                        if newCellHeight <= CELL_NORMAL_HEIGHT {
+                            reachNormalHeightSetting(recognizer)
+                            newCellHeight = computeCellHeightUnderExtraZoomOut()
+                        }
+                    }else {
+                        newCellHeight = computeCellHeightUnderExtraZoomIn()
                     }
                 }
+                let newCellWidth = normalCellWidth * newCellHeight / CELL_NORMAL_HEIGHT
+                let ratio = newCellWidth / normalCellWidth
+                let newCellGap = ratio * cellGap
+                let fastenCellGap = locationInView.x - locationRatio * (newCellWidth + newCellGap)
+                let targetCellheight = isFromFullScreen == false ? CELL_NORMAL_HEIGHT : SCREEN_HEIGHT
+                collectLayout.itemSize = CGSizeMake(newCellWidth, newCellHeight)
+                collectLayout.minimumLineSpacing = newCellGap
+                collectLayout.sectionInset = UIEdgeInsetsMake(targetCellheight - newCellHeight, newCellGap + fastenCellGap + translationInView.x, 0, newCellGap)
             }
-        } else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended){
+        }else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended){
             if isPanVertical == true {
                 let isZoomed = collectLayout.itemSize.width / normalCellWidth > 1
                 let duration = isZoomed ? 0.3 : 0.2
@@ -148,8 +131,40 @@ class ViewController: UIViewController {
                         self.collectionView.panGestureRecognizer.enabled = true
                         self.isPanVertical = false
                         self.hasReachNormalHeightFromFullScreen = false
+                        self.reachNormalLocationYFromFullScreen = 0
+                        self.reachNormalTransitionYFromFullScreen = 0
                 })
             }
+        }
+    }
+    
+    // panOffY * panOffY = (locationY / screenH) * (locationY / screenH) * (maxRatio - 1) * (maxRatio - 1) * screenH * (-translationY)
+    func computeCellHeightUnderExtraZoomIn() -> CGFloat {
+        let gap = isFromFullScreen == false ? (-translationInView.y + reachNormalTransitionYFromFullScreen < 0 ? 0 : -translationInView.y + reachNormalTransitionYFromFullScreen) : -translationInView.y
+        let panOffsetY = locationInView.y / SCREEN_HEIGHT * (maxCellRatio - 1) * sqrt(SCREEN_HEIGHT * (gap))
+        return SCREEN_HEIGHT + panOffsetY
+    }
+    
+    // (normalHeight - locationY) / normalHeight = (normalHeight - (locationY + transitionY)) / newCellHeight
+    func computeCellHeightUnderNormalZoomInOut() -> CGFloat {
+        let targetCellheight = isFromFullScreen == false ? CELL_NORMAL_HEIGHT : SCREEN_HEIGHT
+        return ((targetCellheight - (locationInView.y + translationInView.y)) * targetCellheight) / (targetCellheight - locationInView.y)
+    }
+    
+    // panOffY * panOffY = (1- minRatio) * (1- minRatio) * normalHeight * normalHeight * transitionY/ (normalHeight - locationY)
+    func computeCellHeightUnderExtraZoomOut() -> CGFloat {
+        let gap = isFromFullScreen == false ? translationInView.y : (translationInView.y - reachNormalTransitionYFromFullScreen < 0 ? 0 : translationInView.y - reachNormalTransitionYFromFullScreen)
+        let denominator = isFromFullScreen == false ? CELL_NORMAL_HEIGHT - locationInView.y : CELL_NORMAL_HEIGHT - reachNormalLocationYFromFullScreen + POSTER_HEIGHT
+        let numerator = (1 - minCellRatio) * (1 - minCellRatio) * CELL_NORMAL_HEIGHT * CELL_NORMAL_HEIGHT * (gap)
+        let panOffsetY = sqrt(numerator / denominator)
+        return CELL_NORMAL_HEIGHT - panOffsetY
+    }
+    
+    func reachNormalHeightSetting(recognizer:UIPanGestureRecognizer) {
+        if hasReachNormalHeightFromFullScreen == false {
+            reachNormalLocationYFromFullScreen = recognizer.locationInView(collectionView).y
+            reachNormalTransitionYFromFullScreen = recognizer.translationInView(collectionView).y
+            hasReachNormalHeightFromFullScreen = true
         }
     }
 }
