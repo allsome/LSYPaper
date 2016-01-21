@@ -10,6 +10,7 @@ import UIKit
 
 let cellGap:CGFloat = 2
 private let cellReuseIdentifier = "NewsDetailCell"
+private let fullScreenGap:CGFloat = cellGap * SCREEN_WIDTH / normalCellWidth
 private let maxTitleLabelY = SCREEN_WIDTH + 15
 private let collectionViewFrame = CGRectMake(0, POSTER_HEIGHT, SCREEN_WIDTH, CELL_NORMAL_HEIGHT)
 private let fullScreenCollectFrame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
     private var collectLayout:UICollectionViewFlowLayout {
         return collectionView.collectionViewLayout as! UICollectionViewFlowLayout
     }
-    private var normalCollectLayout:UICollectionViewFlowLayout {
+    private var normalCollectLayoutForNormal:UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
@@ -33,15 +34,31 @@ class ViewController: UIViewController {
         layout.sectionInset = UIEdgeInsetsMake(0, cellGap, 0, cellGap)
         return layout
     }
-    private var fullScreenLayout:UICollectionViewFlowLayout {
+    private var normalCollectLayoutForFullScreen:UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        let fullScreenGap = cellGap * SCREEN_WIDTH / normalCellWidth
+        layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        layout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
+        layout.minimumLineSpacing = cellGap
+        layout.sectionInset = UIEdgeInsetsMake(POSTER_HEIGHT, cellGap, 0, cellGap)
+        return layout
+    }
+    private var fullScreenLayoutForNormal:UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)
         layout.minimumLineSpacing = fullScreenGap
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, fullScreenGap)
+        layout.sectionInset = UIEdgeInsetsMake(-POSTER_HEIGHT, fullScreenGap, 0, fullScreenGap)
         return layout
     }
+    private var fullScreenLayoutForFullScreen:UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        layout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)
+        layout.minimumLineSpacing = fullScreenGap
+        layout.sectionInset = UIEdgeInsetsMake(0, fullScreenGap, 0, fullScreenGap)
+        return layout
+    }
+    
     private var panCollect:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var isPanVertical:Bool = false
     private var isFromFullScreen:Bool = false
@@ -50,6 +67,7 @@ class ViewController: UIViewController {
     private var reachNormalTransitionYFromFullScreen:CGFloat = 0.0
     private var locationInView:CGPoint = CGPointZero
     private var translationInView:CGPoint = CGPointZero
+    private var contentOffset:CGPoint = CGPointZero
     private var locationRatio:CGFloat = 0
     
     override func viewWillAppear(animated: Bool) {
@@ -75,11 +93,13 @@ class ViewController: UIViewController {
         let velocity = recognizer.velocityInView(view)
         if recognizer.state == UIGestureRecognizerState.Began {
             if fabs(velocity.x) <= fabs(velocity.y) {
-                collectionView.panGestureRecognizer.enabled = false
+                collectionView.pagingEnabled = false
                 locationInView = recognizer.locationInView(collectionView)
                 locationRatio = locationInView.x / (collectLayout.minimumLineSpacing + collectLayout.itemSize.width)
                 isPanVertical = true
                 isFromFullScreen = collectionView.frame.height == SCREEN_HEIGHT ? true : false
+                collectionView.panGestureRecognizer.enabled = false
+                contentOffset = collectionView.contentOffset
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
             if isPanVertical {
@@ -122,45 +142,53 @@ class ViewController: UIViewController {
                 let option = isZoomed ? UIViewAnimationOptions.CurveEaseInOut:UIViewAnimationOptions.CurveEaseOut
                 
                 let isFullScreen = collectLayout.itemSize.width / SCREEN_WIDTH > 2 / 3
-                let layout = isFullScreen ? self.fullScreenLayout : self.normalCollectLayout
-                self.collectionView.pagingEnabled = isFullScreen ? true : false
-                self.collectionView.frame = isFullScreen ? fullScreenCollectFrame : collectionViewFrame
+                let layout = isFullScreen ? (isFromFullScreen ? fullScreenLayoutForFullScreen : fullScreenLayoutForNormal):(isFromFullScreen ? normalCollectLayoutForFullScreen : normalCollectLayoutForNormal)
+                let frame = isFullScreen ? fullScreenCollectFrame : collectionViewFrame
+                collectionView.pagingEnabled = isFullScreen ? true : false
+                let visibleCells = collectionView.visibleCells()
                 UIView.animateWithDuration(duration, delay: 0.0, options: option, animations: { () -> Void in
                     self.collectionView.setCollectionViewLayout(layout, animated: true)
+                    for cell in visibleCells {
+                        cell.layoutIfNeeded()
+                    }
                     }, completion: { (stop:Bool) -> Void in
-                        self.collectionView.panGestureRecognizer.enabled = true
+                        if (isFullScreen && !self.isFromFullScreen) || (!isFullScreen && self.isFromFullScreen) {
+                            let contentOffset = self.collectionView.contentOffset
+                            self.collectionView.frame = frame
+                            self.collectionView.contentOffset = contentOffset
+                            self.collectLayout.sectionInset.top = 0
+                        }
+//                        self.collectionView.contentOffset = self.contentOffset
                         self.isPanVertical = false
                         self.hasReachNormalHeightFromFullScreen = false
-                        self.reachNormalLocationYFromFullScreen = 0
-                        self.reachNormalTransitionYFromFullScreen = 0
+                        self.collectionView.panGestureRecognizer.enabled = true
                 })
             }
         }
     }
     
-    // panOffY * panOffY = (locationY / screenH) * (locationY / screenH) * (maxRatio - 1) * (maxRatio - 1) * screenH * (-translationY)
-    func computeCellHeightUnderExtraZoomIn() -> CGFloat {
+    /* panOffY * panOffY = (locationY / screenH) * (locationY / screenH) * (maxRatio - 1) * (maxRatio - 1) * screenH * (-translationY) */
+    private func computeCellHeightUnderExtraZoomIn() -> CGFloat {
         let gap = isFromFullScreen == false ? (-translationInView.y + reachNormalTransitionYFromFullScreen < 0 ? 0 : -translationInView.y + reachNormalTransitionYFromFullScreen) : -translationInView.y
         let panOffsetY = locationInView.y / SCREEN_HEIGHT * (maxCellRatio - 1) * sqrt(SCREEN_HEIGHT * (gap))
         return SCREEN_HEIGHT + panOffsetY
     }
     
-    // (normalHeight - locationY) / normalHeight = (normalHeight - (locationY + transitionY)) / newCellHeight
-    func computeCellHeightUnderNormalZoomInOut() -> CGFloat {
+    /* (normalHeight - locationY) / normalHeight = (normalHeight - (locationY + transitionY)) / newCellHeight */
+    private func computeCellHeightUnderNormalZoomInOut() -> CGFloat {
         let targetCellheight = isFromFullScreen == false ? CELL_NORMAL_HEIGHT : SCREEN_HEIGHT
         return ((targetCellheight - (locationInView.y + translationInView.y)) * targetCellheight) / (targetCellheight - locationInView.y)
     }
     
-    // panOffY * panOffY = (1- minRatio) * (1- minRatio) * normalHeight * normalHeight * transitionY/ (normalHeight - locationY)
-    func computeCellHeightUnderExtraZoomOut() -> CGFloat {
-        let gap = isFromFullScreen == false ? translationInView.y : (translationInView.y - reachNormalTransitionYFromFullScreen < 0 ? 0 : translationInView.y - reachNormalTransitionYFromFullScreen)
+    /* panOffY * panOffY = (1- minRatio) * (1- minRatio) * normalHeight * normalHeight * transitionY/ (normalHeight - locationY) */
+    private func computeCellHeightUnderExtraZoomOut() -> CGFloat {
+        let gap = isFromFullScreen == false ? translationInView.y :         (translationInView.y - reachNormalTransitionYFromFullScreen < 0 ? 0 : translationInView.y - reachNormalTransitionYFromFullScreen)
         let denominator = isFromFullScreen == false ? CELL_NORMAL_HEIGHT - locationInView.y : CELL_NORMAL_HEIGHT - reachNormalLocationYFromFullScreen + POSTER_HEIGHT
-        let numerator = (1 - minCellRatio) * (1 - minCellRatio) * CELL_NORMAL_HEIGHT * CELL_NORMAL_HEIGHT * (gap)
-        let panOffsetY = sqrt(numerator / denominator)
+        let panOffsetY = (1 - minCellRatio) * CELL_NORMAL_HEIGHT * sqrt(gap / denominator)
         return CELL_NORMAL_HEIGHT - panOffsetY
     }
     
-    func reachNormalHeightSetting(recognizer:UIPanGestureRecognizer) {
+    private func reachNormalHeightSetting(recognizer:UIPanGestureRecognizer) {
         if hasReachNormalHeightFromFullScreen == false {
             reachNormalLocationYFromFullScreen = recognizer.locationInView(collectionView).y
             reachNormalTransitionYFromFullScreen = recognizer.translationInView(collectionView).y
@@ -259,7 +287,7 @@ private extension ViewController {
         panCollect.delegate = self
         panCollect.maximumNumberOfTouches = 1;
         collectionView.addGestureRecognizer(panCollect)
-        collectionView.collectionViewLayout = normalCollectLayout
+        collectionView.collectionViewLayout = normalCollectLayoutForNormal
         view.addSubview(collectionView)
     }
 }
@@ -283,7 +311,8 @@ extension ViewController:UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! NewsDetailCell
+        cell.testLabel.text = String(indexPath.item)
         return cell
     }
 }

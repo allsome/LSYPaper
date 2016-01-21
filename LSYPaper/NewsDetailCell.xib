@@ -56,11 +56,24 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDP-XV-pWi">
+                        <rect key="frame" x="142.5" y="180.5" width="142.5" height="72"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                        <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fDP-XV-pWi" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="NMa-ip-Jk0"/>
+                <constraint firstItem="fDP-XV-pWi" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Xfj-5s-F1l"/>
+            </constraints>
             <size key="customSize" width="426" height="434"/>
+            <connections>
+                <outlet property="testLabel" destination="fDP-XV-pWi" id="D3m-Jt-x66"/>
+            </connections>
             <point key="canvasLocation" x="631" y="369"/>
         </collectionViewCell>
     </objects>

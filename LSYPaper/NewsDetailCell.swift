@@ -10,6 +10,7 @@ import UIKit
 
 class NewsDetailCell: UICollectionViewCell {
     
+    @IBOutlet weak var testLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.masksToBounds = true
