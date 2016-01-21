@@ -12,17 +12,20 @@ let cellGap:CGFloat = 2
 private let cellReuseIdentifier = "NewsDetailCell"
 private let fullScreenGap:CGFloat = cellGap * SCREEN_WIDTH / normalCellWidth
 private let maxTitleLabelY = SCREEN_WIDTH + 15
-private let collectionViewFrame = CGRectMake(0, POSTER_HEIGHT, SCREEN_WIDTH, CELL_NORMAL_HEIGHT)
-private let fullScreenCollectFrame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+private let collectionViewFrame = CGRectMake(-fullScreenGap / 2, POSTER_HEIGHT, SCREEN_WIDTH + fullScreenGap, CELL_NORMAL_HEIGHT)
+private let fullScreenCollectFrame = CGRectMake(-fullScreenGap / 2, 0, SCREEN_WIDTH + fullScreenGap, SCREEN_HEIGHT)
 
 private let minCellRatio:CGFloat = 3 / 4
 private let maxCellRatio:CGFloat = 1.5
+private let minScale:CGFloat = 0.95
 private let normalCellWidth:CGFloat = CELL_NORMAL_HEIGHT * SCREEN_WIDTH / SCREEN_HEIGHT
 
 class ViewController: UIViewController {
     
     private let collectionView = UICollectionView(frame: collectionViewFrame, collectionViewLayout: UICollectionViewFlowLayout())
     private var pageControl:LSYPageControl = LSYPageControl()
+    private var blackView:UIView = UIView()
+    
     private var collectLayout:UICollectionViewFlowLayout {
         return collectionView.collectionViewLayout as! UICollectionViewFlowLayout
     }
@@ -31,7 +34,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
         layout.minimumLineSpacing = cellGap
-        layout.sectionInset = UIEdgeInsetsMake(0, cellGap, 0, cellGap)
+        layout.sectionInset = UIEdgeInsetsMake(0, cellGap + fullScreenGap / 2, 0, cellGap + fullScreenGap / 2)
         return layout
     }
     private var normalCollectLayoutForFullScreen:UICollectionViewFlowLayout {
@@ -39,7 +42,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
         layout.minimumLineSpacing = cellGap
-        layout.sectionInset = UIEdgeInsetsMake(POSTER_HEIGHT, cellGap, 0, cellGap)
+        layout.sectionInset = UIEdgeInsetsMake(POSTER_HEIGHT, cellGap + fullScreenGap / 2, 0, cellGap + fullScreenGap / 2)
         return layout
     }
     private var fullScreenLayoutForNormal:UICollectionViewFlowLayout {
@@ -47,7 +50,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)
         layout.minimumLineSpacing = fullScreenGap
-        layout.sectionInset = UIEdgeInsetsMake(-POSTER_HEIGHT, fullScreenGap, 0, fullScreenGap)
+        layout.sectionInset = UIEdgeInsetsMake(-POSTER_HEIGHT, fullScreenGap / 2, 0, fullScreenGap / 2)
         return layout
     }
     private var fullScreenLayoutForFullScreen:UICollectionViewFlowLayout {
@@ -55,7 +58,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)
         layout.minimumLineSpacing = fullScreenGap
-        layout.sectionInset = UIEdgeInsetsMake(0, fullScreenGap, 0, fullScreenGap)
+        layout.sectionInset = UIEdgeInsetsMake(0, fullScreenGap / 2, 0, fullScreenGap / 2)
         return layout
     }
     
@@ -82,6 +85,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setPageControl()
         setMessageView()
+        setBlackView()
         setCollectionView()
     }
     
@@ -126,6 +130,12 @@ class ViewController: UIViewController {
                         newCellHeight = computeCellHeightUnderExtraZoomIn()
                     }
                 }
+                var scale = ((minScale - 1) * newCellHeight + SCREEN_HEIGHT - minScale * CELL_NORMAL_HEIGHT) / (SCREEN_HEIGHT - CELL_NORMAL_HEIGHT)
+                if scale >= 1 {
+                   scale = 1
+                }
+                blackView.alpha = -20 * scale + 20
+                pageControl.transform = CGAffineTransformMakeScale(scale, scale)
                 let newCellWidth = normalCellWidth * newCellHeight / CELL_NORMAL_HEIGHT
                 let ratio = newCellWidth / normalCellWidth
                 let newCellGap = ratio * cellGap
@@ -144,10 +154,17 @@ class ViewController: UIViewController {
                 let isFullScreen = collectLayout.itemSize.width / SCREEN_WIDTH > 2 / 3
                 let layout = isFullScreen ? (isFromFullScreen ? fullScreenLayoutForFullScreen : fullScreenLayoutForNormal):(isFromFullScreen ? normalCollectLayoutForFullScreen : normalCollectLayoutForNormal)
                 let frame = isFullScreen ? fullScreenCollectFrame : collectionViewFrame
+                let scale:CGFloat = isFullScreen ? minScale : 1.0
+                let alpha:CGFloat = isFullScreen ? 1.0 : 0.0
                 collectionView.pagingEnabled = isFullScreen ? true : false
                 let visibleCells = collectionView.visibleCells()
                 UIView.animateWithDuration(duration, delay: 0.0, options: option, animations: { () -> Void in
                     self.collectionView.setCollectionViewLayout(layout, animated: true)
+                    self.pageControl.transform = CGAffineTransformMakeScale(scale, scale)
+                    self.blackView.alpha = alpha
+                    if isFullScreen {
+                        self.collectionView.contentOffset = CGPointMake(CGFloat(Int(self.locationRatio)) * fullScreenCollectFrame.size.width, 0)
+                    }
                     for cell in visibleCells {
                         cell.layoutIfNeeded()
                     }
@@ -273,7 +290,14 @@ private extension ViewController {
     
     private func setMessageView() {
         let messageView = MessageView.messageViewWith(frame: CGRectMake(SCREEN_WIDTH - 135, 0, 135, 55))
-        view.addSubview(messageView)
+        self.pageControl.addSubview(messageView)
+    }
+    
+    private func setBlackView() {
+        blackView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
+        blackView.backgroundColor = UIColor.blackColor()
+        blackView.alpha = 0.0
+        view.addSubview(blackView)
     }
     
     private func setCollectionView() {
