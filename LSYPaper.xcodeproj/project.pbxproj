@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA54163C1C50F27F00E4FFA7 /* fav1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA54162C1C50F27F00E4FFA7 /* fav1@2x.jpg */; };
+		EA54163F1C50F27F00E4FFA7 /* fav4@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA54162F1C50F27F00E4FFA7 /* fav4@2x.jpg */; };
+		EA5416401C50F27F00E4FFA7 /* fav5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416301C50F27F00E4FFA7 /* fav5@2x.jpg */; };
+		EA5416411C50F27F00E4FFA7 /* fav6@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416311C50F27F00E4FFA7 /* fav6@2x.jpg */; };
+		EA5416441C50F27F00E4FFA7 /* fav9@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416341C50F27F00E4FFA7 /* fav9@2x.jpg */; };
+		EA5416461C50F27F00E4FFA7 /* fav11@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416361C50F27F00E4FFA7 /* fav11@2x.jpg */; };
+		EA5416491C50F27F00E4FFA7 /* fav14@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416391C50F27F00E4FFA7 /* fav14@2x.jpg */; };
+		EA5416541C50F80F00E4FFA7 /* fav16@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416531C50F80F00E4FFA7 /* fav16@2x.jpg */; };
+		EA5416591C50FA7600E4FFA7 /* fav18@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416571C50FA7600E4FFA7 /* fav18@2x.jpg */; };
+		EA54165A1C50FA7600E4FFA7 /* fav19@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA5416581C50FA7600E4FFA7 /* fav19@2x.jpg */; };
+		EA54165C1C50FC6600E4FFA7 /* News.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA54165B1C50FC6500E4FFA7 /* News.plist */; };
+		EA5416601C51038B00E4FFA7 /* theguardianLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA54165D1C51038A00E4FFA7 /* theguardianLogo@2x.png */; };
+		EA5416621C51038B00E4FFA7 /* theguardianNewsIcon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA54165F1C51038A00E4FFA7 /* theguardianNewsIcon@2x.jpg */; };
+		EA5416641C51350A00E4FFA7 /* theverge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416631C51350A00E4FFA7 /* theverge@2x.png */; };
+		EA5416661C51366800E4FFA7 /* theguardianNameLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416651C51366800E4FFA7 /* theguardianNameLogo@2x.png */; };
 		EA78CF651C3809FD0092F84D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF641C3809FD0092F84D /* AppDelegate.swift */; };
 		EA78CF671C3809FD0092F84D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF661C3809FD0092F84D /* ViewController.swift */; };
 		EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA78CF681C3809FD0092F84D /* Main.storyboard */; };
@@ -49,14 +64,28 @@
 		EA78CFFB1C4147560092F84D /* NewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA78CFF91C4147560092F84D /* NewsDetailCell.xib */; };
 		EA78CFFD1C4151540092F84D /* NewsDetailLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFFC1C4151540092F84D /* NewsDetailLayout.swift */; };
 		EA78CFFE1C435AA40092F84D /* NewsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CFF81C4147560092F84D /* NewsDetailCell.swift */; };
-		EA78D0041C43CF370092F84D /* thevergeAvatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0021C43CF360092F84D /* thevergeAvatar.jpg */; };
-		EA78D0051C43CF370092F84D /* smallMusk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0031C43CF360092F84D /* smallMusk.jpg */; };
+		EA78D0041C43CF370092F84D /* thevergeAvatar@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0021C43CF360092F84D /* thevergeAvatar@2x.jpg */; };
+		EA78D0051C43CF370092F84D /* smallMusk@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0031C43CF360092F84D /* smallMusk@2x.jpg */; };
 		EA78D0071C43CFE70092F84D /* bigMusk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0061C43CFE70092F84D /* bigMusk.jpg */; };
-		EA78D00D1C43D6980092F84D /* theverge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA78D00C1C43D6980092F84D /* theverge@2x.png */; };
 		EA78D0111C464A620092F84D /* DefaultBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0101C464A620092F84D /* DefaultBackground@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA54162C1C50F27F00E4FFA7 /* fav1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav1@2x.jpg"; sourceTree = "<group>"; };
+		EA54162F1C50F27F00E4FFA7 /* fav4@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav4@2x.jpg"; sourceTree = "<group>"; };
+		EA5416301C50F27F00E4FFA7 /* fav5@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav5@2x.jpg"; sourceTree = "<group>"; };
+		EA5416311C50F27F00E4FFA7 /* fav6@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav6@2x.jpg"; sourceTree = "<group>"; };
+		EA5416341C50F27F00E4FFA7 /* fav9@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav9@2x.jpg"; sourceTree = "<group>"; };
+		EA5416361C50F27F00E4FFA7 /* fav11@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav11@2x.jpg"; sourceTree = "<group>"; };
+		EA5416391C50F27F00E4FFA7 /* fav14@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav14@2x.jpg"; sourceTree = "<group>"; };
+		EA5416531C50F80F00E4FFA7 /* fav16@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav16@2x.jpg"; sourceTree = "<group>"; };
+		EA5416571C50FA7600E4FFA7 /* fav18@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav18@2x.jpg"; sourceTree = "<group>"; };
+		EA5416581C50FA7600E4FFA7 /* fav19@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fav19@2x.jpg"; sourceTree = "<group>"; };
+		EA54165B1C50FC6500E4FFA7 /* News.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = News.plist; sourceTree = "<group>"; };
+		EA54165D1C51038A00E4FFA7 /* theguardianLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theguardianLogo@2x.png"; sourceTree = "<group>"; };
+		EA54165F1C51038A00E4FFA7 /* theguardianNewsIcon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "theguardianNewsIcon@2x.jpg"; sourceTree = "<group>"; };
+		EA5416631C51350A00E4FFA7 /* theverge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theverge@2x.png"; sourceTree = "<group>"; };
+		EA5416651C51366800E4FFA7 /* theguardianNameLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theguardianNameLogo@2x.png"; sourceTree = "<group>"; };
 		EA78CF611C3809FD0092F84D /* LSYPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSYPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA78CF641C3809FD0092F84D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA78CF661C3809FD0092F84D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,10 +131,9 @@
 		EA78CFF81C4147560092F84D /* NewsDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailCell.swift; sourceTree = "<group>"; };
 		EA78CFF91C4147560092F84D /* NewsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetailCell.xib; sourceTree = "<group>"; };
 		EA78CFFC1C4151540092F84D /* NewsDetailLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailLayout.swift; sourceTree = "<group>"; };
-		EA78D0021C43CF360092F84D /* thevergeAvatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thevergeAvatar.jpg; sourceTree = "<group>"; };
-		EA78D0031C43CF360092F84D /* smallMusk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = smallMusk.jpg; sourceTree = "<group>"; };
+		EA78D0021C43CF360092F84D /* thevergeAvatar@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "thevergeAvatar@2x.jpg"; sourceTree = "<group>"; };
+		EA78D0031C43CF360092F84D /* smallMusk@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "smallMusk@2x.jpg"; sourceTree = "<group>"; };
 		EA78D0061C43CFE70092F84D /* bigMusk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bigMusk.jpg; sourceTree = "<group>"; };
-		EA78D00C1C43D6980092F84D /* theverge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "theverge@2x.png"; sourceTree = "<group>"; };
 		EA78D0101C464A620092F84D /* DefaultBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultBackground@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +148,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA54162A1C50F25500E4FFA7 /* SectionPoster1 */ = {
+			isa = PBXGroup;
+			children = (
+				EA78CFB61C3D0F4E0092F84D /* SectionCoverDesign@2x.jpg */,
+				EA78CFB81C3D0F5C0092F84D /* SectionCoverFeminist@2x.jpg */,
+				EA78CFBA1C3D0F6B0092F84D /* SectionCoverIdeas@2x.jpg */,
+				EA78CFBC1C3D0F740092F84D /* SectionCoverLGBTQ@2x.jpg */,
+				EA78CFBE1C3D0F7E0092F84D /* SectionCoverSports@2x.jpg */,
+				EA78CFC01C3D0F890092F84D /* SectionCoverTechnology@2x.jpg */,
+				EA78CFC21C3D0FA70092F84D /* SectionCoverTrending@2x.jpg */,
+				EA78CFC41C3D10160092F84D /* SectionCoverFamily@2x.jpg */,
+				EA78CFC61C3D10240092F84D /* SectionCoverLens@2x.jpg */,
+				EA78CFC81C3D102F0092F84D /* SectionCoverFoodie@2x.jpg */,
+				EA78CFE21C3D78D80092F84D /* SectionCoverNews@2x.jpg */,
+				EA78CFE41C3D79020092F84D /* SectionCoverEntertainment@2x.jpg */,
+				EA78CFE61C3D79170092F84D /* SectionCoverStyles@2x.jpg */,
+				EA78CFE81C3D79550092F84D /* SectionCoverStreet@2x.jpg */,
+			);
+			name = SectionPoster1;
+			sourceTree = "<group>";
+		};
+		EA54162B1C50F26600E4FFA7 /* SectionPoster2 */ = {
+			isa = PBXGroup;
+			children = (
+				EA54162C1C50F27F00E4FFA7 /* fav1@2x.jpg */,
+				EA54162F1C50F27F00E4FFA7 /* fav4@2x.jpg */,
+				EA5416301C50F27F00E4FFA7 /* fav5@2x.jpg */,
+				EA5416311C50F27F00E4FFA7 /* fav6@2x.jpg */,
+				EA5416341C50F27F00E4FFA7 /* fav9@2x.jpg */,
+				EA5416361C50F27F00E4FFA7 /* fav11@2x.jpg */,
+				EA5416391C50F27F00E4FFA7 /* fav14@2x.jpg */,
+				EA5416531C50F80F00E4FFA7 /* fav16@2x.jpg */,
+				EA5416571C50FA7600E4FFA7 /* fav18@2x.jpg */,
+				EA5416581C50FA7600E4FFA7 /* fav19@2x.jpg */,
+			);
+			name = SectionPoster2;
+			sourceTree = "<group>";
+		};
 		EA78CF581C3809FD0092F84D = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +251,7 @@
 				EA78CFAE1C3D07530092F84D /* Default-iOS7@2x.png */,
 				EA78CF701C3809FD0092F84D /* Info.plist */,
 				EA78CFE01C3D72370092F84D /* Section.plist */,
+				EA54165B1C50FC6500E4FFA7 /* News.plist */,
 			);
 			name = SupportFile;
 			sourceTree = "<group>";
@@ -205,24 +272,15 @@
 		EA78CFB51C3D0ED20092F84D /* tmpPNG */ = {
 			isa = PBXGroup;
 			children = (
-				EA78CFB61C3D0F4E0092F84D /* SectionCoverDesign@2x.jpg */,
-				EA78CFB81C3D0F5C0092F84D /* SectionCoverFeminist@2x.jpg */,
-				EA78CFBA1C3D0F6B0092F84D /* SectionCoverIdeas@2x.jpg */,
-				EA78CFBC1C3D0F740092F84D /* SectionCoverLGBTQ@2x.jpg */,
-				EA78CFBE1C3D0F7E0092F84D /* SectionCoverSports@2x.jpg */,
-				EA78CFC01C3D0F890092F84D /* SectionCoverTechnology@2x.jpg */,
-				EA78CFC21C3D0FA70092F84D /* SectionCoverTrending@2x.jpg */,
-				EA78CFC41C3D10160092F84D /* SectionCoverFamily@2x.jpg */,
-				EA78CFC61C3D10240092F84D /* SectionCoverLens@2x.jpg */,
-				EA78CFC81C3D102F0092F84D /* SectionCoverFoodie@2x.jpg */,
-				EA78CFE21C3D78D80092F84D /* SectionCoverNews@2x.jpg */,
-				EA78CFE41C3D79020092F84D /* SectionCoverEntertainment@2x.jpg */,
-				EA78CFE61C3D79170092F84D /* SectionCoverStyles@2x.jpg */,
-				EA78CFE81C3D79550092F84D /* SectionCoverStreet@2x.jpg */,
-				EA78D0021C43CF360092F84D /* thevergeAvatar.jpg */,
+				EA54162B1C50F26600E4FFA7 /* SectionPoster2 */,
+				EA54162A1C50F25500E4FFA7 /* SectionPoster1 */,
+				EA78D0021C43CF360092F84D /* thevergeAvatar@2x.jpg */,
 				EA78D0061C43CFE70092F84D /* bigMusk.jpg */,
-				EA78D0031C43CF360092F84D /* smallMusk.jpg */,
-				EA78D00C1C43D6980092F84D /* theverge@2x.png */,
+				EA78D0031C43CF360092F84D /* smallMusk@2x.jpg */,
+				EA5416631C51350A00E4FFA7 /* theverge@2x.png */,
+				EA5416651C51366800E4FFA7 /* theguardianNameLogo@2x.png */,
+				EA54165D1C51038A00E4FFA7 /* theguardianLogo@2x.png */,
+				EA54165F1C51038A00E4FFA7 /* theguardianNewsIcon@2x.jpg */,
 			);
 			name = tmpPNG;
 			sourceTree = "<group>";
@@ -324,41 +382,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5416601C51038B00E4FFA7 /* theguardianLogo@2x.png in Resources */,
 				EA78CFE11C3D72370092F84D /* Section.plist in Resources */,
 				EA78CFB71C3D0F4E0092F84D /* SectionCoverDesign@2x.jpg in Resources */,
+				EA5416621C51038B00E4FFA7 /* theguardianNewsIcon@2x.jpg in Resources */,
 				EA78CFE51C3D79020092F84D /* SectionCoverEntertainment@2x.jpg in Resources */,
 				EA78CFB91C3D0F5C0092F84D /* SectionCoverFeminist@2x.jpg in Resources */,
-				EA78D00D1C43D6980092F84D /* theverge@2x.png in Resources */,
+				EA5416541C50F80F00E4FFA7 /* fav16@2x.jpg in Resources */,
 				EA78D0071C43CFE70092F84D /* bigMusk.jpg in Resources */,
+				EA5416591C50FA7600E4FFA7 /* fav18@2x.jpg in Resources */,
 				EA78CFB11C3D07530092F84D /* Default-iOS7-736h@3x.png in Resources */,
 				EA78CF6F1C3809FD0092F84D /* LaunchScreen.storyboard in Resources */,
 				EA78CFDB1C3D41000092F84D /* Notifications@3x.png in Resources */,
 				EA78CFA21C3CF12B0092F84D /* LSYPageControl.xib in Resources */,
 				EA78CFE31C3D78D80092F84D /* SectionCoverNews@2x.jpg in Resources */,
 				EA78CFBF1C3D0F7E0092F84D /* SectionCoverSports@2x.jpg in Resources */,
+				EA54163C1C50F27F00E4FFA7 /* fav1@2x.jpg in Resources */,
 				EA78CFC71C3D10240092F84D /* SectionCoverLens@2x.jpg in Resources */,
 				EA78CFBB1C3D0F6B0092F84D /* SectionCoverIdeas@2x.jpg in Resources */,
 				EA78CFC51C3D10160092F84D /* SectionCoverFamily@2x.jpg in Resources */,
+				EA5416661C51366800E4FFA7 /* theguardianNameLogo@2x.png in Resources */,
 				EA78CFDA1C3D41000092F84D /* Notifications@2x.png in Resources */,
 				EA78CFC91C3D102F0092F84D /* SectionCoverFoodie@2x.jpg in Resources */,
-				EA78D0041C43CF370092F84D /* thevergeAvatar.jpg in Resources */,
+				EA78D0041C43CF370092F84D /* thevergeAvatar@2x.jpg in Resources */,
 				EA78D0111C464A620092F84D /* DefaultBackground@2x.png in Resources */,
 				EA78CFE91C3D79550092F84D /* SectionCoverStreet@2x.jpg in Resources */,
+				EA5416401C50F27F00E4FFA7 /* fav5@2x.jpg in Resources */,
 				EA78CFDF1C3D44A30092F84D /* MessageView.xib in Resources */,
+				EA5416491C50F27F00E4FFA7 /* fav14@2x.jpg in Resources */,
 				EA78CFC31C3D0FA70092F84D /* SectionCoverTrending@2x.jpg in Resources */,
 				EA78CFD71C3D41000092F84D /* FriendRequests@3x.png in Resources */,
 				EA78CF6C1C3809FD0092F84D /* Assets.xcassets in Resources */,
 				EA78CFD81C3D41000092F84D /* Messages@2x.png in Resources */,
 				EA78CFC11C3D0F890092F84D /* SectionCoverTechnology@2x.jpg in Resources */,
 				EA78CFCE1C3D10690092F84D /* SectionPosterView.xib in Resources */,
+				EA5416411C50F27F00E4FFA7 /* fav6@2x.jpg in Resources */,
 				EA78CFD61C3D41000092F84D /* FriendRequests@2x.png in Resources */,
+				EA54165C1C50FC6600E4FFA7 /* News.plist in Resources */,
 				EA78CFB21C3D07530092F84D /* Default-iOS7@2x.png in Resources */,
 				EA78CFE71C3D79170092F84D /* SectionCoverStyles@2x.jpg in Resources */,
+				EA5416441C50F27F00E4FFA7 /* fav9@2x.jpg in Resources */,
 				EA78CFB01C3D07530092F84D /* Default-iOS7-667h@2x.png in Resources */,
-				EA78D0051C43CF370092F84D /* smallMusk.jpg in Resources */,
+				EA78D0051C43CF370092F84D /* smallMusk@2x.jpg in Resources */,
 				EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */,
 				EA78CFBD1C3D0F740092F84D /* SectionCoverLGBTQ@2x.jpg in Resources */,
+				EA5416641C51350A00E4FFA7 /* theverge@2x.png in Resources */,
+				EA54163F1C50F27F00E4FFA7 /* fav4@2x.jpg in Resources */,
+				EA54165A1C50FA7600E4FFA7 /* fav19@2x.jpg in Resources */,
 				EA78CFFB1C4147560092F84D /* NewsDetailCell.xib in Resources */,
+				EA5416461C50F27F00E4FFA7 /* fav11@2x.jpg in Resources */,
 				EA78CFD91C3D41000092F84D /* Messages@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
