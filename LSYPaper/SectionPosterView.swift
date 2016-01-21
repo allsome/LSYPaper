@@ -39,8 +39,8 @@ class SectionPosterView: UIView {
     class func sectionPosterViewWith(data data:SectionData, frame:CGRect) -> SectionPosterView {
         let objs = NSBundle.mainBundle().loadNibNamed("SectionPosterView", owner: nil, options: nil)
         let posterView = objs.last as! SectionPosterView
-        posterView.posterImage.image = UIImage(named: data.icon)
-        posterView.shadowImage.image = UIImage(named: data.icon)
+        posterView.posterImage.image = UIImage(named: data.standByIcon)
+        posterView.shadowImage.image = UIImage(named: data.standByIcon)
         posterView.titleLabel.text = data.title
         posterView.titleLabel.startAnimate()
         posterView.subTitleLabel.text = data.subTitle

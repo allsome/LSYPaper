@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>logoImage</key>
+		<string>theguardianLogo</string>
+		<key>logoName</key>
+		<string>The Guardian</string>
+		<key>abstract</key>
+		<string>Google on fighting Isis propaganda and why the terrorist organisation &quot;has managed to create an exaggerated sense of their size online&quot;.</string>
+		<key>newsIcon</key>
+		<string>theguardianNewsIcon.jpg</string>
+		<key>nameLogo</key>
+		<string>theguardianNameLogo</string>
+		<key>authorName</key>
+		<string>SAMUEL GIBBS</string>
+		<key>nameColor</key>
+		<string>#234781</string>
+		<key>lineColor</key>
+		<string>#234781</string>
+		<key>title</key>
+		<string>Google says Isis must be locked out of the open web</string>
+		<key>subTitle</key>
+		<string>Search company&apos;s head of ideas sees short term wins against non-tech-savvy organisation,but says stifling group&apos;s propaganda must not be neglected</string>
+		<key>url</key>
+		<string>http://www.theguardian.com/technology/2016/jan/20/google-says-isis-must-be-locked-out-of-the-open-web?CMP=fb_gu</string>
+	</dict>
+	<dict>
+		<key>logoImage</key>
+		<string>thevergeAvatar.jpg</string>
+		<key>logoName</key>
+		<string>The Verge</string>
+		<key>abstract</key>
+		<string>Elon Musk says a Tesla Motors vehicle will soon be able to drive itself on &quot;virtually all roads&quot;.</string>
+		<key>newsIcon</key>
+		<string>smallMusk.jpg</string>
+		<key>nameLogo</key>
+		<string>theverge</string>
+		<key>authorName</key>
+		<string>DANTE D&apos;ORAZIO</string>
+		<key>nameColor</key>
+		<string>#ED0000</string>
+		<key>lineColor</key>
+		<string>#FFFFFF</string>
+		<key>title</key>
+		<string>Elon Musk predicts a Tesla will be able to drive iteself across the country in 2018</string>
+		<key>subTitle</key>
+		<string>Do you think Tesla&apos;s new Summon self-parking feature is neat?Well,CEO Elon Musk says that&apos;s just the beginning. On a call with reporters today,Musk reiterated his prediction that...</string>
+		<key>url</key>
+		<string>http://www.theverge.com/2016/1/10/10746020/elon-musk-tesla-autonomous-driving-predictions-summon</string>
+	</dict>
+</array>
+</plist>

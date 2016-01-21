@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kgM-ps-7hb">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fav17.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kgM-ps-7hb">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="314"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="314" id="uTi-Eh-gRB"/>
@@ -23,6 +23,12 @@
                         <constraint firstAttribute="height" constant="254" id="rNw-au-hJK"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Moments from facebook" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbU-On-rPp">
+                    <rect key="frame" x="15" y="58" width="225" height="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DrB-Q7-cPi" customClass="LSYShimmerLabel" customModule="LSYPaper" customModuleProvider="target">
                     <rect key="frame" x="15" y="13" width="103" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -31,12 +37,6 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Moments from facebook" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbU-On-rPp">
-                    <rect key="frame" x="15" y="58" width="225" height="16"/>
-                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -73,4 +73,7 @@
             <point key="canvasLocation" x="236" y="235"/>
         </view>
     </objects>
+    <resources>
+        <image name="fav17.jpg" width="320" height="320"/>
+    </resources>
 </document>

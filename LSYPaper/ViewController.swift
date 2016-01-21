@@ -336,7 +336,6 @@ extension ViewController:UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! NewsDetailCell
-        cell.testLabel.text = String(indexPath.item)
         return cell
     }
 }

@@ -9,6 +9,8 @@
 		<string>Tech</string>
 		<key>icon</key>
 		<string>SectionCoverTechnology.jpg</string>
+		<key>standByIcon</key>
+		<string>fav19.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -17,6 +19,8 @@
 		<string>Pride</string>
 		<key>icon</key>
 		<string>SectionCoverLGBTQ.jpg</string>
+		<key>standByIcon</key>
+		<string>fav11.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -25,6 +29,8 @@
 		<string>Headlines</string>
 		<key>icon</key>
 		<string>SectionCoverNews.jpg</string>
+		<key>standByIcon</key>
+		<string>fav16.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -33,6 +39,8 @@
 		<string>Trending</string>
 		<key>icon</key>
 		<string>SectionCoverTrending.jpg</string>
+		<key>standByIcon</key>
+		<string>fav4.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -41,6 +49,8 @@
 		<string>Pop Life</string>
 		<key>icon</key>
 		<string>SectionCoverEntertainment.jpg</string>
+		<key>standByIcon</key>
+		<string>fav5.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -49,6 +59,8 @@
 		<string>Lifestyle</string>
 		<key>icon</key>
 		<string>SectionCoverStyles.jpg</string>
+		<key>standByIcon</key>
+		<string>fav6.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -57,6 +69,8 @@
 		<string>Score</string>
 		<key>icon</key>
 		<string>SectionCoverSports.jpg</string>
+		<key>standByIcon</key>
+		<string>fav14.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -65,6 +79,8 @@
 		<string>All City</string>
 		<key>icon</key>
 		<string>SectionCoverStreet.jpg</string>
+		<key>standByIcon</key>
+		<string>fav1.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -73,6 +89,8 @@
 		<string>Flavor</string>
 		<key>icon</key>
 		<string>SectionCoverFoodie.jpg</string>
+		<key>standByIcon</key>
+		<string>fav9.jpg</string>
 	</dict>
 	<dict>
 		<key>subTitle</key>
@@ -81,6 +99,8 @@
 		<string>Family Matters</string>
 		<key>icon</key>
 		<string>SectionCoverFamily.jpg</string>
+		<key>standByIcon</key>
+		<string>fav18.jpg</string>
 	</dict>
 </array>
 </plist>
