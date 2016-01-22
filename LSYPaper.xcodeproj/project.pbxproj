@@ -46,6 +46,7 @@
 		EA5416A11C51CBCA00E4FFA7 /* SharePhoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416901C51CBCA00E4FFA7 /* SharePhoto@3x.png */; };
 		EA5416A21C51CBCA00E4FFA7 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416911C51CBCA00E4FFA7 /* Sparkle.png */; };
 		EA5416A41C51D18600E4FFA7 /* UnfoldableAttachmentSpecularHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416A31C51D18600E4FFA7 /* UnfoldableAttachmentSpecularHighlight.png */; };
+		EA5416A61C520C5900E4FFA7 /* NewsTopShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */; };
 		EA78CF651C3809FD0092F84D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF641C3809FD0092F84D /* AppDelegate.swift */; };
 		EA78CF671C3809FD0092F84D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF661C3809FD0092F84D /* ViewController.swift */; };
 		EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA78CF681C3809FD0092F84D /* Main.storyboard */; };
@@ -134,6 +135,7 @@
 		EA5416901C51CBCA00E4FFA7 /* SharePhoto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SharePhoto@3x.png"; sourceTree = "<group>"; };
 		EA5416911C51CBCA00E4FFA7 /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		EA5416A31C51D18600E4FFA7 /* UnfoldableAttachmentSpecularHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UnfoldableAttachmentSpecularHighlight.png; sourceTree = "<group>"; };
+		EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewsTopShadow@2x.png"; sourceTree = "<group>"; };
 		EA78CF611C3809FD0092F84D /* LSYPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSYPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA78CF641C3809FD0092F84D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA78CF661C3809FD0092F84D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				EA5416901C51CBCA00E4FFA7 /* SharePhoto@3x.png */,
 				EA5416911C51CBCA00E4FFA7 /* Sparkle.png */,
 				EA5416A31C51D18600E4FFA7 /* UnfoldableAttachmentSpecularHighlight.png */,
+				EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */,
 				EA78CFB51C3D0ED20092F84D /* tmpPNG */,
 			);
 			name = Resource;
@@ -495,6 +498,7 @@
 				EA5416721C51C8A200E4FFA7 /* Settings@3x.png in Resources */,
 				EA78CFDF1C3D44A30092F84D /* MessageView.xib in Resources */,
 				EA5416491C50F27F00E4FFA7 /* fav14@2x.jpg in Resources */,
+				EA5416A61C520C5900E4FFA7 /* NewsTopShadow@2x.png in Resources */,
 				EA5416981C51CBCA00E4FFA7 /* Like@2x.png in Resources */,
 				EA78CFC31C3D0FA70092F84D /* SectionCoverTrending@2x.jpg in Resources */,
 				EA78CFD71C3D41000092F84D /* FriendRequests@3x.png in Resources */,
