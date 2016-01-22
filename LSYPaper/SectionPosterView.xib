@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fav17.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kgM-ps-7hb">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kgM-ps-7hb">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="314"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="314" id="uTi-Eh-gRB"/>
@@ -73,7 +73,4 @@
             <point key="canvasLocation" x="236" y="235"/>
         </view>
     </objects>
-    <resources>
-        <image name="fav17.jpg" width="320" height="320"/>
-    </resources>
 </document>

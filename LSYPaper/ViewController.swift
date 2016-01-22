@@ -94,8 +94,8 @@ class ViewController: UIViewController {
     }
     
     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
-        let velocity = recognizer.velocityInView(view)
         if recognizer.state == UIGestureRecognizerState.Began {
+            let velocity = recognizer.velocityInView(view)
             if fabs(velocity.x) <= fabs(velocity.y) {
                 collectionView.pagingEnabled = false
                 locationInView = recognizer.locationInView(collectionView)

@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -63,34 +62,65 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thevergeAvatar.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YYL-Iu-IQc">
                         <rect key="frame" x="20" y="20" width="60" height="60"/>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-mW-ztz">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFC-fv-c7v">
+                        <rect key="frame" x="0.0" y="612" width="375" height="55"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-qw-JbM">
+                                <rect key="frame" x="20" y="0.0" width="335" height="1"/>
+                                <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90z-gJ-6GE">
+                                <rect key="frame" x="20" y="0.0" width="48" height="55"/>
+                                <state key="normal" title="Button" image="Like.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zR-EL-zJa">
+                                <rect key="frame" x="68" y="0.0" width="44" height="55"/>
+                                <state key="normal" title="Button" image="Comment.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bn-uJ-EdZ">
+                                <rect key="frame" x="112" y="-1" width="48" height="55"/>
+                                <state key="normal" title="Button" image="Share.png"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10.2K Likes  88 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-mb-5Yz">
+                                <rect key="frame" x="215" y="13" width="139.5" height="13.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Write a comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rke-sx-Jv9">
+                                <rect key="frame" x="265" y="26" width="89.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-mW-ztz">
                         <rect key="frame" x="20" y="262" width="335" height="335"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallMusk.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-bk-pTn">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fav18.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-bk-pTn">
                                 <rect key="frame" x="0.0" y="0.0" width="335" height="167.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="eCl-bk-pTn" secondAttribute="height" multiplier="2:1" id="kfY-UJ-sej"/>
-                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theverge.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yf-Ab-GXe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NewsTopShadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="PEO-va-6d0">
+                                <rect key="frame" x="0.0" y="0.0" width="335" height="5"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="theverge.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yf-Ab-GXe">
                                 <rect key="frame" x="0.0" y="167" width="75" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="cQV-du-mLS"/>
-                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elon Musk predicts a Tesla will be able to drive iteself across the country in 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-bj-qnp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Elon Musk predicts a Tesla will be able to drive iteself across the country in 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-bj-qnp">
                                 <rect key="frame" x="10" y="200" width="295" height="62.5"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DANTE D'ORAZIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-r5-b4u">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DANTE D'ORAZIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-r5-b4u">
                                 <rect key="frame" x="251" y="172" width="79" height="12"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="10"/>
                                 <color key="textColor" red="0.92941176469999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfG-2t-Tix">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfG-2t-Tix">
                                 <rect key="frame" x="10" y="272" width="295" height="48"/>
                                 <string key="text">Do you think Tesla's new Summon self-parking feature is neat?Well,CEO Elon Musk says that's just the beginning. On a call with reporters today,Musk reiterated his prediction that...</string>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
@@ -99,109 +129,24 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="eCl-bk-pTn" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" id="4cz-fJ-doL"/>
-                            <constraint firstItem="oLE-bj-qnp" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" constant="10" id="6zf-X8-E2i"/>
-                            <constraint firstItem="0yf-Ab-GXe" firstAttribute="top" secondItem="eCl-bk-pTn" secondAttribute="bottom" id="ASw-aV-f88"/>
-                            <constraint firstItem="LfG-2t-Tix" firstAttribute="top" secondItem="oLE-bj-qnp" secondAttribute="bottom" constant="10" id="BwT-6f-rhv"/>
-                            <constraint firstAttribute="trailing" secondItem="QL4-r5-b4u" secondAttribute="trailing" constant="5" id="DKY-Mb-SEh"/>
-                            <constraint firstItem="LfG-2t-Tix" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" constant="10" id="FGE-su-PhL"/>
-                            <constraint firstItem="0yf-Ab-GXe" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" id="HXk-r4-aoY"/>
-                            <constraint firstAttribute="trailing" secondItem="LfG-2t-Tix" secondAttribute="trailing" constant="30" id="QA0-h4-OqR"/>
-                            <constraint firstItem="oLE-bj-qnp" firstAttribute="top" secondItem="0yf-Ab-GXe" secondAttribute="bottom" constant="10" id="RgP-7S-nl6"/>
-                            <constraint firstItem="eCl-bk-pTn" firstAttribute="top" secondItem="dzr-mW-ztz" secondAttribute="top" id="hjQ-so-40y"/>
-                            <constraint firstAttribute="trailing" secondItem="eCl-bk-pTn" secondAttribute="trailing" id="rt9-Y2-g36"/>
-                            <constraint firstItem="QL4-r5-b4u" firstAttribute="centerY" secondItem="0yf-Ab-GXe" secondAttribute="centerY" id="vk1-R7-ucD"/>
-                            <constraint firstAttribute="width" secondItem="dzr-mW-ztz" secondAttribute="height" multiplier="1:1" id="wvc-n4-jOA"/>
-                            <constraint firstAttribute="trailing" secondItem="oLE-bj-qnp" secondAttribute="trailing" constant="30" id="xYG-9z-C4b"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFC-fv-c7v">
-                        <rect key="frame" x="0.0" y="612" width="375" height="55"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-qw-JbM">
-                                <rect key="frame" x="20" y="0.0" width="335" height="1"/>
-                                <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="9De-8a-ME1"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90z-gJ-6GE">
-                                <rect key="frame" x="20" y="0.0" width="48" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="2PS-BA-oB1"/>
-                                    <constraint firstAttribute="width" constant="48" id="6gB-dK-l5Q"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="Like.png"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zR-EL-zJa">
-                                <rect key="frame" x="68" y="0.0" width="44" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="883-9y-VGN"/>
-                                    <constraint firstAttribute="height" constant="55" id="AhL-ZC-fox"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="Comment.png"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bn-uJ-EdZ">
-                                <rect key="frame" x="112" y="-1" width="48" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="HKe-G0-Vn1"/>
-                                    <constraint firstAttribute="width" constant="48" id="XzG-Lo-Fct"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="Share.png"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.2K Likes 88 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-mb-5Yz">
-                                <rect key="frame" x="218" y="13" width="136.5" height="13.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rke-sx-Jv9">
-                                <rect key="frame" x="265.5" y="26.5" width="89.5" height="13.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="90z-gJ-6GE" firstAttribute="leading" secondItem="IFC-fv-c7v" secondAttribute="leading" constant="20" id="0zp-Jy-45T"/>
-                            <constraint firstAttribute="trailing" secondItem="nbr-qw-JbM" secondAttribute="trailing" constant="20" id="5tm-dV-qxd"/>
-                            <constraint firstItem="4zR-EL-zJa" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" id="6LV-hD-A7V"/>
-                            <constraint firstAttribute="trailing" secondItem="2Mv-mb-5Yz" secondAttribute="trailing" constant="20" id="8uU-2z-hQI"/>
-                            <constraint firstItem="90z-gJ-6GE" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" id="Foh-A0-xxO"/>
-                            <constraint firstItem="2Mv-mb-5Yz" firstAttribute="top" secondItem="nbr-qw-JbM" secondAttribute="bottom" constant="12" id="GKM-FR-SXY"/>
-                            <constraint firstItem="0Bn-uJ-EdZ" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" constant="-1" id="STC-ce-Ahl"/>
-                            <constraint firstItem="0Bn-uJ-EdZ" firstAttribute="leading" secondItem="4zR-EL-zJa" secondAttribute="trailing" id="ciR-qE-G2S"/>
-                            <constraint firstAttribute="height" constant="55" id="eQC-jM-yIq"/>
-                            <constraint firstItem="nbr-qw-JbM" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" id="hLf-C8-lDB"/>
-                            <constraint firstAttribute="trailing" secondItem="rke-sx-Jv9" secondAttribute="trailing" constant="20" id="jVL-fJ-t1A"/>
-                            <constraint firstItem="nbr-qw-JbM" firstAttribute="leading" secondItem="IFC-fv-c7v" secondAttribute="leading" constant="20" id="neY-CA-7ni"/>
-                            <constraint firstItem="rke-sx-Jv9" firstAttribute="top" secondItem="2Mv-mb-5Yz" secondAttribute="bottom" id="pe3-2N-iCG"/>
-                            <constraint firstItem="4zR-EL-zJa" firstAttribute="leading" secondItem="90z-gJ-6GE" secondAttribute="trailing" id="yfD-ft-i6Y"/>
-                        </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="dzr-mW-ztz" secondAttribute="trailing" constant="20" id="1NS-cc-eht"/>
-                <constraint firstItem="IFC-fv-c7v" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FeT-YJ-cum"/>
-                <constraint firstItem="dzr-mW-ztz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="PTw-Yi-nhc"/>
-                <constraint firstItem="IFC-fv-c7v" firstAttribute="top" secondItem="dzr-mW-ztz" secondAttribute="bottom" constant="15" id="TIt-mB-yD5"/>
-                <constraint firstAttribute="trailing" secondItem="IFC-fv-c7v" secondAttribute="trailing" id="dWl-dc-liZ"/>
-                <constraint firstAttribute="bottom" secondItem="dzr-mW-ztz" secondAttribute="bottom" constant="70" id="qa0-OF-AQw"/>
-            </constraints>
             <size key="customSize" width="426" height="434"/>
+            <connections>
+                <outlet property="newsView" destination="dzr-mW-ztz" id="gYT-yN-tNh"/>
+            </connections>
             <point key="canvasLocation" x="630.5" y="368.5"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="Comment.png" width="29" height="30"/>
         <image name="Like.png" width="32" height="30"/>
+        <image name="NewsTopShadow.png" width="335" height="5"/>
         <image name="Share.png" width="34" height="30"/>
-        <image name="smallMusk.jpg" width="235" height="122"/>
+        <image name="fav18.jpg" width="320" height="320"/>
         <image name="theverge.png" width="75" height="23"/>
         <image name="thevergeAvatar.jpg" width="160" height="160"/>
     </resources>
