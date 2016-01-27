@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NewsDetailCell: UICollectionViewCell {
+class BigNewsDetailCell: UICollectionViewCell {
     
-    @IBOutlet weak var newsView: UIView!
+    @IBOutlet weak var testLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.masksToBounds = true
