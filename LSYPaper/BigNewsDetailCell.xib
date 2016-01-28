@@ -231,6 +231,7 @@
             </constraints>
             <size key="customSize" width="426" height="434"/>
             <connections>
+                <outlet property="newsView" destination="dzr-mW-ztz" id="zgk-WN-Asw"/>
                 <outlet property="testLabel" destination="cdC-g1-neX" id="V8E-8Z-oz4"/>
             </connections>
             <point key="canvasLocation" x="630.5" y="368.5"/>

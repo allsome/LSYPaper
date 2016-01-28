@@ -23,39 +23,39 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Verge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5k1-ze-mKg">
-                        <rect key="frame" x="9" y="42" width="38" height="8.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="7"/>
+                        <rect key="frame" x="9" y="42" width="52" height="12"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3U-Hb-ais">
-                        <rect key="frame" x="9" y="50" width="151" height="29"/>
+                        <rect key="frame" x="9" y="54" width="151" height="39.5"/>
                         <attributedString key="attributedText">
                             <fragment content="Elon Musk">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="7" name="HelveticaNeue-Bold"/>
+                                    <font key="NSFont" size="10" name="HelveticaNeue-Bold"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                             <fragment content=" says a ">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="7" name="HelveticaNeue"/>
+                                    <font key="NSFont" size="10" name="HelveticaNeue"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                             <fragment content="Tesla Motors">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="7" name="HelveticaNeue-Bold"/>
+                                    <font key="NSFont" size="10" name="HelveticaNeue-Bold"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                             <fragment content=" vehicle will soon be able to drive itself on &quot;virtually all roads.&quot;">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="7" name="HelveticaNeue"/>
+                                    <font key="NSFont" size="10" name="HelveticaNeue"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -90,17 +90,26 @@
                                     <constraint firstAttribute="width" secondItem="IrA-Wb-yTY" secondAttribute="height" multiplier="2:1" id="JZR-V7-SIQ"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewsTopShadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="xBh-3e-WcC">
+                                <rect key="frame" x="0.0" y="0.0" width="152" height="3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="n66-pY-mEx"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YmN-MK-Uuy" firstAttribute="centerY" secondItem="Aou-oP-dx9" secondAttribute="centerY" id="0lP-wc-ehk"/>
                             <constraint firstItem="IrA-Wb-yTY" firstAttribute="leading" secondItem="yxC-wf-YkW" secondAttribute="leading" id="59K-Mt-9Ny"/>
                             <constraint firstAttribute="trailing" secondItem="YmN-MK-Uuy" secondAttribute="trailing" constant="2" id="9OH-OT-5Zp"/>
+                            <constraint firstItem="xBh-3e-WcC" firstAttribute="top" secondItem="yxC-wf-YkW" secondAttribute="top" id="9kY-0p-OvG"/>
                             <constraint firstAttribute="trailing" secondItem="MIQ-1b-ObG" secondAttribute="trailing" constant="9" id="E1A-JW-tmb"/>
                             <constraint firstItem="MIQ-1b-ObG" firstAttribute="leading" secondItem="yxC-wf-YkW" secondAttribute="leading" constant="3" id="Jdn-cT-9AT"/>
                             <constraint firstItem="IrA-Wb-yTY" firstAttribute="top" secondItem="yxC-wf-YkW" secondAttribute="top" id="eoM-I0-g0e"/>
+                            <constraint firstItem="xBh-3e-WcC" firstAttribute="leading" secondItem="yxC-wf-YkW" secondAttribute="leading" id="evs-Da-UKR"/>
                             <constraint firstItem="Aou-oP-dx9" firstAttribute="leading" secondItem="yxC-wf-YkW" secondAttribute="leading" id="fq5-TJ-Yr5"/>
                             <constraint firstItem="Aou-oP-dx9" firstAttribute="top" secondItem="IrA-Wb-yTY" secondAttribute="bottom" id="i74-YU-yXZ"/>
+                            <constraint firstAttribute="trailing" secondItem="xBh-3e-WcC" secondAttribute="trailing" id="lVh-Ws-7Ec"/>
                             <constraint firstAttribute="trailing" secondItem="IrA-Wb-yTY" secondAttribute="trailing" id="lkp-TK-DAz"/>
                             <constraint firstItem="MIQ-1b-ObG" firstAttribute="top" secondItem="Aou-oP-dx9" secondAttribute="bottom" constant="8" id="oKO-LR-ZvI"/>
                             <constraint firstAttribute="width" secondItem="yxC-wf-YkW" secondAttribute="height" multiplier="1:1" id="y2t-BO-gxs"/>
@@ -140,12 +149,14 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="newsView" destination="yxC-wf-YkW" id="kKM-9b-IOt"/>
                 <outlet property="testLabel" destination="tKh-Cq-nl6" id="vpN-oY-C6G"/>
             </connections>
             <point key="canvasLocation" x="1005" y="-85.5"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="NewsTopShadow.png" width="335" height="5"/>
         <image name="smallMusk.jpg" width="235" height="122"/>
         <image name="theverge.png" width="75" height="23"/>
         <image name="thevergeAvatar.jpg" width="160" height="160"/>

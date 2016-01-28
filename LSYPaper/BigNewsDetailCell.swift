@@ -10,15 +10,16 @@ import UIKit
 
 class BigNewsDetailCell: UICollectionViewCell {
     
+    @IBOutlet weak var newsView: UIView!
     @IBOutlet weak var testLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.masksToBounds = true
         layer.cornerRadius = cellGap
-//        newsView.layer.shadowColor = UIColor.blackColor().CGColor
-//        newsView.layer.shadowOffset = CGSizeMake(0, 2)
-//        newsView.layer.shadowOpacity = 0.5
-//        newsView.layer.shadowRadius = 1.0
+        newsView.layer.shadowColor = UIColor.blackColor().CGColor
+        newsView.layer.shadowOffset = CGSizeMake(0, 2)
+        newsView.layer.shadowOpacity = 0.5
+        newsView.layer.shadowRadius = 1.0
     }
 
 }
