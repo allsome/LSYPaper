@@ -16,46 +16,46 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thevergeAvatar.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7u3-DK-1ms">
-                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                        <rect key="frame" x="9" y="9" width="26" height="26"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="A7c-o1-NRa"/>
-                            <constraint firstAttribute="width" constant="40" id="LPo-e1-d3l"/>
+                            <constraint firstAttribute="height" constant="26" id="A7c-o1-NRa"/>
+                            <constraint firstAttribute="width" constant="26" id="LPo-e1-d3l"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Verge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5k1-ze-mKg">
-                        <rect key="frame" x="10" y="57" width="47.5" height="11"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                        <rect key="frame" x="9" y="42" width="38" height="8.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="7"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3U-Hb-ais">
-                        <rect key="frame" x="10" y="73" width="150" height="39.5"/>
+                        <rect key="frame" x="9" y="50" width="151" height="29"/>
                         <attributedString key="attributedText">
                             <fragment content="Elon Musk">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="10" name="HelveticaNeue-Bold"/>
+                                    <font key="NSFont" size="7" name="HelveticaNeue-Bold"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                             <fragment content=" says a ">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="10" name="HelveticaNeue"/>
+                                    <font key="NSFont" size="7" name="HelveticaNeue"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                             <fragment content="Tesla Motors">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="10" name="HelveticaNeue-Bold"/>
+                                    <font key="NSFont" size="7" name="HelveticaNeue-Bold"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                             <fragment content=" vehicle will soon be able to drive itself on &quot;virtually all roads.&quot;">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="10" name="HelveticaNeue"/>
+                                    <font key="NSFont" size="7" name="HelveticaNeue"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -63,29 +63,29 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxC-wf-YkW">
-                        <rect key="frame" x="10" y="139" width="150" height="150"/>
+                        <rect key="frame" x="9" y="138" width="152" height="152"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theverge.png" translatesAutoresizingMaskIntoConstraints="NO" id="Aou-oP-dx9">
-                                <rect key="frame" x="0.0" y="75" width="35" height="11"/>
+                                <rect key="frame" x="0.0" y="76" width="35" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="11" id="bF5-bi-Icv"/>
                                     <constraint firstAttribute="width" constant="35" id="l7S-8X-Ia1"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DANTE D'ORAZIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmN-MK-Uuy">
-                                <rect key="frame" x="100" y="77" width="47.5" height="7.5"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="6"/>
+                                <rect key="frame" x="110" y="79" width="39.5" height="6"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="5"/>
                                 <color key="textColor" red="0.92941176469999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elon Musk predicts a Tesla will be able to drive iteself across the country in 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIQ-1b-ObG">
-                                <rect key="frame" x="3" y="94" width="138" height="51"/>
+                                <rect key="frame" x="3" y="95" width="140" height="51"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallMusk.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="IrA-Wb-yTY">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="75"/>
+                                <rect key="frame" x="0.0" y="0.0" width="152" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IrA-Wb-yTY" secondAttribute="height" multiplier="2:1" id="JZR-V7-SIQ"/>
                                 </constraints>
@@ -107,7 +107,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKh-Cq-nl6">
-                        <rect key="frame" x="23.5" y="121" width="123.5" height="57.5"/>
+                        <rect key="frame" x="23" y="121" width="123.5" height="57.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
                         <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -123,12 +123,12 @@
                 <constraint firstItem="tKh-Cq-nl6" firstAttribute="centerY" secondItem="eec-kv-94x" secondAttribute="centerY" id="9Up-gs-2HP"/>
                 <constraint firstItem="G3U-Hb-ais" firstAttribute="leading" secondItem="5k1-ze-mKg" secondAttribute="leading" id="JYt-rk-781"/>
                 <constraint firstItem="tKh-Cq-nl6" firstAttribute="centerX" secondItem="eec-kv-94x" secondAttribute="centerX" id="MTK-y7-dMy"/>
-                <constraint firstAttribute="trailing" secondItem="yxC-wf-YkW" secondAttribute="trailing" constant="10" id="OSh-5J-PCV"/>
-                <constraint firstItem="7u3-DK-1ms" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="10" id="PBC-6J-852"/>
-                <constraint firstItem="yxC-wf-YkW" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="10" id="hgN-vq-90o"/>
-                <constraint firstItem="7u3-DK-1ms" firstAttribute="top" secondItem="eec-kv-94x" secondAttribute="top" constant="10" id="hta-Ri-NOG"/>
-                <constraint firstItem="G3U-Hb-ais" firstAttribute="top" secondItem="5k1-ze-mKg" secondAttribute="bottom" constant="5" id="oO6-u4-h02"/>
-                <constraint firstAttribute="bottom" secondItem="yxC-wf-YkW" secondAttribute="bottom" constant="10" id="rJ5-ry-x7U"/>
+                <constraint firstAttribute="trailing" secondItem="yxC-wf-YkW" secondAttribute="trailing" constant="9" id="OSh-5J-PCV"/>
+                <constraint firstItem="7u3-DK-1ms" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="9" id="PBC-6J-852"/>
+                <constraint firstItem="yxC-wf-YkW" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="9" id="hgN-vq-90o"/>
+                <constraint firstItem="7u3-DK-1ms" firstAttribute="top" secondItem="eec-kv-94x" secondAttribute="top" constant="9" id="hta-Ri-NOG"/>
+                <constraint firstItem="G3U-Hb-ais" firstAttribute="top" secondItem="5k1-ze-mKg" secondAttribute="bottom" id="oO6-u4-h02"/>
+                <constraint firstAttribute="bottom" secondItem="yxC-wf-YkW" secondAttribute="bottom" constant="9" id="rJ5-ry-x7U"/>
                 <constraint firstAttribute="trailing" secondItem="G3U-Hb-ais" secondAttribute="trailing" constant="10" id="tGm-4b-WwQ"/>
                 <constraint firstItem="5k1-ze-mKg" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="15" id="xdr-Xr-EnM"/>
             </constraints>

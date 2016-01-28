@@ -14,7 +14,7 @@ private let fullScreenCellReuseIdentifier = "BigNewsDetailCell"
 
 private let fullScreenGap:CGFloat = cellGap * SCREEN_WIDTH / normalCellWidth
 
-private let tinyCollectFrame = CGRectMake(-(SCREEN_WIDTH * 3 / minCellRatio - SCREEN_WIDTH) / 2, POSTER_HEIGHT, SCREEN_WIDTH * 3 / minCellRatio, CELL_NORMAL_HEIGHT)
+private let tinyCollectFrame = CGRectMake(-SCREEN_WIDTH * 2, POSTER_HEIGHT, SCREEN_WIDTH * 5, CELL_NORMAL_HEIGHT)
 private let fullScreenCollectFrame = CGRectMake(-SCREEN_WIDTH * 2, 0, SCREEN_WIDTH * 5, SCREEN_HEIGHT)
 
 private let hideStartRatio:CGFloat = 4 / 7
@@ -37,12 +37,20 @@ class ViewController: UIViewController {
         return tinyCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
     }
     
+    private var tinyCollectSideInset:CGFloat {
+        return (tinyCollectionView.frame.width - SCREEN_WIDTH) / 2
+    }
+    
+    private var fullScreenCollectSideInset:CGFloat {
+        return (fullScreenCollectionView.frame.width - SCREEN_WIDTH) / 2
+    }
+    
     private var tinyCollectionViewLayout:UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(normalCellWidth, CELL_NORMAL_HEIGHT)
         layout.minimumLineSpacing = cellGap
-        layout.sectionInset = UIEdgeInsetsMake(0, (tinyCollectionView.frame.width - SCREEN_WIDTH) / 2 + cellGap, 0, (tinyCollectionView.frame.width - SCREEN_WIDTH) / 2 + cellGap)
+        layout.sectionInset = UIEdgeInsetsMake(0, tinyCollectSideInset + cellGap, 0, tinyCollectSideInset + cellGap)
         return layout
     }
     private var fullScreenCollectionViewLayout:UICollectionViewFlowLayout {
@@ -50,7 +58,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         layout.itemSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)
         layout.minimumLineSpacing = fullScreenGap
-        layout.sectionInset = UIEdgeInsetsMake(0, (fullScreenCollectionView.frame.width - SCREEN_WIDTH) / 2 + fullScreenGap, 0, (fullScreenCollectionView.frame.width - SCREEN_WIDTH) / 2 + fullScreenGap)
+        layout.sectionInset = UIEdgeInsetsMake(0, fullScreenCollectSideInset + fullScreenGap, 0, fullScreenCollectSideInset + fullScreenGap)
         return layout
     }
     
@@ -93,11 +101,14 @@ class ViewController: UIViewController {
             let velocity = recognizer.velocityInView(view)
             if fabs(velocity.x) <= fabs(velocity.y) {
                 locationInView = recognizer.locationInView(view)
-                locationRatio = locationInView.x / (collectLayout.minimumLineSpacing + collectLayout.itemSize.width)
+                locationRatio = (recognizer.locationInView(tinyCollectionView).x - tinyCollectSideInset) / (collectLayout.minimumLineSpacing + collectLayout.itemSize.width)
                 isPanVertical = true
                 isFromFullScreen = false
                 tinyCollectionView.panGestureRecognizer.enabled = false
                 contentOffset = tinyCollectionView.contentOffset
+                fullScreenCollectionView.contentOffset = CGPointMake(locationRatio * (fullScreenCollectionViewLayout.minimumLineSpacing + fullScreenCollectionViewLayout.itemSize.width) - locationInView.x, 0)
+                // following code do not belong here
+                fullScreenCollectionView.transform = CGAffineTransformIdentity
                 setAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1), view: tinyCollectionView)
                 setAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1), view: fullScreenCollectionView)
             }
@@ -118,13 +129,15 @@ class ViewController: UIViewController {
                     scale = 1
                 }
                 let alpha = newCellHeight / SCREEN_HEIGHT / (hideStartRatio - hideOverRatio) - (hideOverRatio / (hideStartRatio - hideOverRatio))
-                print(alpha)
-                tinyCollectionView.alpha = alpha
+                for cell in tinyCollectionView.visibleCells() {
+                    cell.contentView.alpha = alpha
+                }
                 fullScreenCollectionView.alpha = 1 - alpha
                 blackView.alpha = -20 * scale + 20
                 pageControl.transform = CGAffineTransformMakeScale(scale, scale)
                 let tinyRatio = newCellHeight / CELL_NORMAL_HEIGHT
                 let fullRatio = newCellHeight / SCREEN_HEIGHT
+                print(CELL_NORMAL_HEIGHT)
                 tinyCollectionView.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(tinyRatio, tinyRatio),CGAffineTransformMakeTranslation(translationInView.x, 0))
                 fullScreenCollectionView.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(fullRatio, fullRatio),CGAffineTransformMakeTranslation(translationInView.x, 0))
             }
