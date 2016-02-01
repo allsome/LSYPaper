@@ -115,12 +115,13 @@
                             <constraint firstAttribute="width" secondItem="yxC-wf-YkW" secondAttribute="height" multiplier="1:1" id="y2t-BO-gxs"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKh-Cq-nl6">
-                        <rect key="frame" x="23" y="121" width="123.5" height="57.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
-                        <color key="textColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQQ-55-Ymd" userLabel="bottomView">
+                        <rect key="frame" x="0.0" y="299" width="170" height="0.0"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="Cfe-nW-pPu"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -129,11 +130,13 @@
                 <constraint firstItem="G3U-Hb-ais" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="15" id="3Xo-al-BJa"/>
                 <constraint firstItem="5k1-ze-mKg" firstAttribute="top" secondItem="7u3-DK-1ms" secondAttribute="bottom" constant="7" id="5E5-Ss-OMU"/>
                 <constraint firstItem="5k1-ze-mKg" firstAttribute="leading" secondItem="7u3-DK-1ms" secondAttribute="leading" id="7x8-V3-sD7"/>
-                <constraint firstItem="tKh-Cq-nl6" firstAttribute="centerY" secondItem="eec-kv-94x" secondAttribute="centerY" id="9Up-gs-2HP"/>
+                <constraint firstItem="iQQ-55-Ymd" firstAttribute="top" secondItem="yxC-wf-YkW" secondAttribute="bottom" constant="9" id="Csl-o5-FiC"/>
+                <constraint firstAttribute="trailing" secondItem="iQQ-55-Ymd" secondAttribute="trailing" id="EyP-Ld-hEh"/>
                 <constraint firstItem="G3U-Hb-ais" firstAttribute="leading" secondItem="5k1-ze-mKg" secondAttribute="leading" id="JYt-rk-781"/>
-                <constraint firstItem="tKh-Cq-nl6" firstAttribute="centerX" secondItem="eec-kv-94x" secondAttribute="centerX" id="MTK-y7-dMy"/>
                 <constraint firstAttribute="trailing" secondItem="yxC-wf-YkW" secondAttribute="trailing" constant="9" id="OSh-5J-PCV"/>
                 <constraint firstItem="7u3-DK-1ms" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="9" id="PBC-6J-852"/>
+                <constraint firstItem="iQQ-55-Ymd" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" id="RGr-4d-9Dg"/>
+                <constraint firstAttribute="bottom" secondItem="iQQ-55-Ymd" secondAttribute="bottom" id="WGj-Oh-dbn"/>
                 <constraint firstItem="yxC-wf-YkW" firstAttribute="leading" secondItem="eec-kv-94x" secondAttribute="leading" constant="9" id="hgN-vq-90o"/>
                 <constraint firstItem="7u3-DK-1ms" firstAttribute="top" secondItem="eec-kv-94x" secondAttribute="top" constant="9" id="hta-Ri-NOG"/>
                 <constraint firstItem="G3U-Hb-ais" firstAttribute="top" secondItem="5k1-ze-mKg" secondAttribute="bottom" id="oO6-u4-h02"/>
@@ -146,13 +149,15 @@
                 <mask key="constraints">
                     <exclude reference="xdr-Xr-EnM"/>
                     <exclude reference="3Xo-al-BJa"/>
+                    <exclude reference="rJ5-ry-x7U"/>
                 </mask>
             </variation>
             <connections>
+                <outlet property="bottomViewHeightConstraint" destination="Cfe-nW-pPu" id="Vje-lL-Xqn"/>
+                <outlet property="nameLabel" destination="YmN-MK-Uuy" id="rbf-It-bdE"/>
                 <outlet property="newsView" destination="yxC-wf-YkW" id="kKM-9b-IOt"/>
-                <outlet property="testLabel" destination="tKh-Cq-nl6" id="vpN-oY-C6G"/>
             </connections>
-            <point key="canvasLocation" x="1005" y="-85.5"/>
+            <point key="canvasLocation" x="957" y="-69.5"/>
         </collectionViewCell>
     </objects>
     <resources>

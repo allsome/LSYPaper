@@ -8,10 +8,13 @@
 
 import UIKit
 
+public let tinyBottomViewDefaultHeight:CGFloat = TINY_RATIO * bottomViewDefaultHeight
+
 class TinyNewsDetailCell: UICollectionViewCell {
 
+    @IBOutlet weak var bottomViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
-    @IBOutlet weak var testLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.masksToBounds = true
