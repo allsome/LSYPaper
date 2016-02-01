@@ -113,19 +113,22 @@ class ViewController: UIViewController {
                     isFromFullScreen = false
                     currentContentOffset = tinyCollectionView.contentOffset
                     fullScreenCollectionView.contentOffset = CGPointMake(locationRatio * (fullScreenCollectionViewLayout.minimumLineSpacing + fullScreenCollectionViewLayout.itemSize.width) - locationInView.x, 0)
+                    setAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1), view: tinyCollectionView)
+                    setAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1), view: fullScreenCollectionView)
                 }else if recognizer == fullScreenPanCollect {
                     currentContentOffset = fullScreenCollectionView.contentOffset
                     fullScreenCollectionView.pagingEnabled = false
                     fullScreenCollectionView.frame = fullScreenCollectFrame
-                    fullScreenCollectionView.contentOffset = currentContentOffset
-                    fullScreenCollectLayout.sectionInset.left = fullScreenCollectSideInset + fullScreenGap
-                    fullScreenCollectLayout.sectionInset.right = fullScreenCollectSideInset + fullScreenGap
+                    fullScreenCollectionView.contentOffset = CGPointMake(fullScreenGap + currentContentOffset.x, currentContentOffset.y)
+                    fullScreenCollectLayout.sectionInset.left = fullScreenCollectionViewLayout.sectionInset.left
+                    fullScreenCollectLayout.sectionInset.right = fullScreenCollectionViewLayout.sectionInset.right
                     locationRatio = (recognizer.locationInView(fullScreenCollectionView).x - fullScreenCollectSideInset) / (fullScreenCollectLayout.minimumLineSpacing + fullScreenCollectLayout.itemSize.width)
                     isFromFullScreen = true
+                    setAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1), view: tinyCollectionView)
+                    setAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1), view: fullScreenCollectionView)
                     tinyCollectionView.contentOffset = CGPointMake(locationRatio * (tinyCollectionViewLayout.minimumLineSpacing + tinyCollectionViewLayout.itemSize.width) - locationInView.x, 0)
                 }
-                setAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1), view: tinyCollectionView)
-                setAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1), view: fullScreenCollectionView)
+
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
             if isPanVertical {
@@ -184,8 +187,7 @@ class ViewController: UIViewController {
                 UIView.animateWithDuration(duration, delay: 0.0, options: option, animations: { () -> Void in
                     self.fullScreenCollectionView.transform = CGAffineTransformIdentity
                     if isFullScreen {
-                        self.fullScreenCollectionView.pagingEnabled = true
-                        self.fullScreenCollectionView.setContentOffset(CGPointMake((CGFloat(Int(self.locationRatio)) * (SCREEN_WIDTH + fullScreenGap)), 0), animated: false)
+                        self.fullScreenCollectionView.setContentOffset(CGPointMake((CGFloat(Int(self.locationRatio)) * (SCREEN_WIDTH + fullScreenGap) + fullScreenGap), 0), animated: false)
                     }else {
                         let gapNum:CGFloat = self.translationInView.x * 50 / SCREEN_WIDTH
                         var pointX = self.tinyCollectionView.contentOffset.x - self.translationInView.x + gapNum
@@ -202,6 +204,8 @@ class ViewController: UIViewController {
                             self.fullScreenCollectionView.frame = fullScreenPageEnableCollectFrame
                             self.fullScreenCollectLayout.sectionInset.left = fullScreenGap / 2
                             self.fullScreenCollectLayout.sectionInset.right = fullScreenGap / 2
+                            self.fullScreenCollectionView.setContentOffset(CGPointMake((CGFloat(Int(self.locationRatio)) * (SCREEN_WIDTH + fullScreenGap)), 0), animated: false)
+                            self.fullScreenCollectionView.pagingEnabled = true
                         }
                         self.isPanVertical = false
                         self.hasReachNormalHeightFromFullScreen = false
