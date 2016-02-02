@@ -101,12 +101,12 @@ class ViewController: UIViewController {
         return true
     }
     
-    func handleTapCollectPanGesture(recognizer:UIPanGestureRecognizer) {
+    func handleCollectTapGesture(recognizer:UIPanGestureRecognizer) {
         tinyCollectionView.alpha = 0.0
         locationInView = recognizer.locationInView(view)
         locationRatio = (recognizer.locationInView(tinyCollectionView).x - tinyCollectSideInset) / (collectLayout.minimumLineSpacing + collectLayout.itemSize.width)
         fullScreenCollectionView.contentOffset = CGPointMake(locationRatio * (fullScreenCollectionViewLayout.minimumLineSpacing + fullScreenCollectionViewLayout.itemSize.width) - locationInView.x, 0)
-        setAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1), view: fullScreenCollectionView)
+        fullScreenCollectionView.safeSetAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1))
         fullScreenCollectionView.transform = CGAffineTransformMakeScale(CELL_NORMAL_HEIGHT / SCREEN_HEIGHT, CELL_NORMAL_HEIGHT / SCREEN_HEIGHT)
         fullScreenCollectionView.alpha = 1.0
         
@@ -115,6 +115,11 @@ class ViewController: UIViewController {
             self.fullScreenCollectionView.setContentOffset(CGPointMake((CGFloat(Int(self.locationRatio)) * (SCREEN_WIDTH + fullScreenGap) + fullScreenGap), 0), animated: false)
             self.pageControl.transform = CGAffineTransformMakeScale(minScale, minScale)
             self.blackView.alpha = 1.0
+            for cell in self.fullScreenCollectionView.visibleCells() {
+                let bigCell = cell as! BigNewsDetailCell
+                bigCell.bottomViewHeightConstraint.constant = bottomViewDefaultHeight
+                bigCell.layoutIfNeeded()
+            }
             }) { (stop:Bool) -> Void in
                 self.fullScreenCollectionView.frame = fullScreenPageEnableCollectFrame
                 self.fullScreenCollectLayout.sectionInset.left = fullScreenGap / 2
@@ -124,7 +129,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func handlePanCollectPanGesture(recognizer:UIPanGestureRecognizer) {
+    func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Began {
             let velocity = recognizer.velocityInView(view)
             if fabs(velocity.x) <= fabs(velocity.y) {
@@ -137,8 +142,8 @@ class ViewController: UIViewController {
                     isFromFullScreen = false
                     currentContentOffset = tinyCollectionView.contentOffset
                     fullScreenCollectionView.contentOffset = CGPointMake(locationRatio * (fullScreenCollectionViewLayout.minimumLineSpacing + fullScreenCollectionViewLayout.itemSize.width) - locationInView.x, 0)
-                    setAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1), view: tinyCollectionView)
-                    setAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1), view: fullScreenCollectionView)
+                    tinyCollectionView.safeSetAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1))
+                    fullScreenCollectionView.safeSetAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1))
                 }else if recognizer == fullScreenPanCollect {
                     currentContentOffset = fullScreenCollectionView.contentOffset
                     fullScreenCollectionView.pagingEnabled = false
@@ -148,8 +153,8 @@ class ViewController: UIViewController {
                     fullScreenCollectLayout.sectionInset.right = fullScreenCollectionViewLayout.sectionInset.right
                     locationRatio = (recognizer.locationInView(fullScreenCollectionView).x - fullScreenCollectSideInset) / (fullScreenCollectLayout.minimumLineSpacing + fullScreenCollectLayout.itemSize.width)
                     isFromFullScreen = true
-                    setAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1), view: tinyCollectionView)
-                    setAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1), view: fullScreenCollectionView)
+                    tinyCollectionView.safeSetAnchorPoint(CGPointMake((locationInView.x - tinyCollectionView.frame.origin.x) / tinyCollectionView.frame.width, 1))
+                    fullScreenCollectionView.safeSetAnchorPoint(CGPointMake((locationInView.x - fullScreenCollectionView.frame.origin.x) / fullScreenCollectionView.frame.width, 1))
                     tinyCollectionView.contentOffset = CGPointMake(locationRatio * (tinyCollectionViewLayout.minimumLineSpacing + tinyCollectionViewLayout.itemSize.width) - locationInView.x, 0)
                 }
 
@@ -377,11 +382,11 @@ private extension ViewController {
         tinyCollectionView.delegate = self
         var nib = UINib(nibName: tinyCellReuseIdentifier, bundle: nil)
         tinyCollectionView.registerNib(nib, forCellWithReuseIdentifier: tinyCellReuseIdentifier)
-        tinyPanCollect = UIPanGestureRecognizer(target: self, action: "handlePanCollectPanGesture:")
+        tinyPanCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
         tinyPanCollect.delegate = self
         tinyPanCollect.maximumNumberOfTouches = 1
         tinyCollectionView.addGestureRecognizer(tinyPanCollect)
-        tinyTapCollect = UITapGestureRecognizer(target: self, action: "handleTapCollectPanGesture:")
+        tinyTapCollect = UITapGestureRecognizer(target: self, action: "handleCollectTapGesture:")
         tinyCollectionView.addGestureRecognizer(tinyTapCollect)
         tinyCollectionView.collectionViewLayout = tinyCollectionViewLayout
         view.addSubview(tinyCollectionView)
@@ -391,19 +396,13 @@ private extension ViewController {
         fullScreenCollectionView.delegate = self
         nib = UINib(nibName: fullScreenCellReuseIdentifier, bundle: nil)
         fullScreenCollectionView.registerNib(nib, forCellWithReuseIdentifier: fullScreenCellReuseIdentifier)
-        fullScreenPanCollect = UIPanGestureRecognizer(target: self, action: "handlePanCollectPanGesture:")
+        fullScreenPanCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
         fullScreenPanCollect.delegate = self
         fullScreenPanCollect.maximumNumberOfTouches = 1
         fullScreenCollectionView.addGestureRecognizer(fullScreenPanCollect)
         fullScreenCollectionView.collectionViewLayout = fullScreenCollectionViewLayout
         fullScreenCollectionView.alpha = 0.0;
         view.addSubview(fullScreenCollectionView)
-    }
-    
-    func setAnchorPoint(anchorPoint:CGPoint,view:UIView) {
-        let oldFrame = view.frame
-        view.layer.anchorPoint = anchorPoint
-        view.frame = oldFrame
     }
 }
 
@@ -431,11 +430,9 @@ extension ViewController:UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if collectionView == tinyCollectionView {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(tinyCellReuseIdentifier, forIndexPath: indexPath) as! TinyNewsDetailCell
-            cell.nameLabel.text = String(indexPath.item)
             return cell
         }else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(fullScreenCellReuseIdentifier, forIndexPath: indexPath) as! BigNewsDetailCell
-            cell.nameLabel.text = String(indexPath.item)
             return cell
         }
     }

@@ -16,6 +16,12 @@ public extension UIView {
         maskLayer.path = maskPath.CGPath
         self.layer.mask = maskLayer
     }
+    
+    public func safeSetAnchorPoint(anchorPoint:CGPoint) {
+        let oldFrame = self.frame
+        self.layer.anchorPoint = anchorPoint
+        self.frame = oldFrame
+    }
 }
 
 public extension UIColor {
