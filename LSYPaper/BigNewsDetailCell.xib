@@ -66,6 +66,13 @@
                                     <constraint firstAttribute="width" constant="60" id="vF9-0L-wW0"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Cs-mJ-C56" userLabel="bottomView">
+                                <rect key="frame" x="20" y="312" width="335" height="335"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5Cs-mJ-C56" secondAttribute="height" multiplier="1:1" id="s7j-yz-hb6"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-mW-ztz">
                                 <rect key="frame" x="20" y="312" width="335" height="335"/>
                                 <subviews>
@@ -129,17 +136,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5Cs-mJ-C56" secondAttribute="trailing" constant="20" id="32q-ql-Lsg"/>
                             <constraint firstItem="Nz5-cR-uHZ" firstAttribute="top" secondItem="ixx-0t-ArS" secondAttribute="bottom" constant="8" id="3LN-44-JNt"/>
                             <constraint firstAttribute="trailing" secondItem="ixx-0t-ArS" secondAttribute="trailing" constant="20" id="6Fm-Ee-fMT"/>
                             <constraint firstItem="Nz5-cR-uHZ" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="B1Y-g8-hAZ"/>
                             <constraint firstAttribute="trailing" secondItem="dzr-mW-ztz" secondAttribute="trailing" constant="20" id="GwJ-p3-mS2"/>
                             <constraint firstItem="ixx-0t-ArS" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="IYe-bf-yo7"/>
+                            <constraint firstItem="5Cs-mJ-C56" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="J0G-Cw-0lo"/>
                             <constraint firstItem="dzr-mW-ztz" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="JJC-7D-W2N"/>
                             <constraint firstItem="YYL-Iu-IQc" firstAttribute="top" secondItem="kCX-R2-CTU" secondAttribute="top" constant="20" id="Kw6-j3-btS"/>
                             <constraint firstAttribute="bottom" secondItem="dzr-mW-ztz" secondAttribute="bottom" constant="20" id="Rvy-iB-A6P"/>
                             <constraint firstItem="YYL-Iu-IQc" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="SfK-ZQ-shQ"/>
                             <constraint firstItem="RJX-hl-Byb" firstAttribute="top" secondItem="YYL-Iu-IQc" secondAttribute="bottom" constant="15" id="TyG-c6-O9E"/>
                             <constraint firstItem="RJX-hl-Byb" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="axB-q3-plm"/>
+                            <constraint firstAttribute="bottom" secondItem="5Cs-mJ-C56" secondAttribute="bottom" constant="20" id="bH8-Nf-mmf"/>
                             <constraint firstItem="ixx-0t-ArS" firstAttribute="top" secondItem="RJX-hl-Byb" secondAttribute="bottom" constant="2" id="eD8-zJ-vh5"/>
                         </constraints>
                     </view>
@@ -226,8 +236,10 @@
             <size key="customSize" width="426" height="434"/>
             <connections>
                 <outlet property="bottomViewHeightConstraint" destination="ecG-A2-dk7" id="qnb-yq-vIq"/>
+                <outlet property="layerView" destination="5Cs-mJ-C56" id="O98-fj-YlS"/>
                 <outlet property="nameLabel" destination="QL4-r5-b4u" id="lUf-5z-hd3"/>
                 <outlet property="newsView" destination="dzr-mW-ztz" id="zgk-WN-Asw"/>
+                <outlet property="newsViewBottomConstraint" destination="Rvy-iB-A6P" id="JrB-tS-qaj"/>
             </connections>
             <point key="canvasLocation" x="630.5" y="368.5"/>
         </collectionViewCell>

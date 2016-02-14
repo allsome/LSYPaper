@@ -9,13 +9,17 @@
 import UIKit
 
 public let bottomViewDefaultHeight:CGFloat = 55
-
+private let newsViewWidth:CGFloat = (SCREEN_WIDTH - 40) / 2
 class BigNewsDetailCell: UICollectionViewCell {
     
+    @IBOutlet weak private var newsViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var layerView: UIView!
     @IBOutlet weak var bottomViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
     private var panNewsView:UIPanGestureRecognizer = UIPanGestureRecognizer()
+    private var topLayer:CALayer = CALayer()
+    private var bottomLayer:CALayer = CALayer()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,7 +36,24 @@ class BigNewsDetailCell: UICollectionViewCell {
     }
     
     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
-        print(recognizer.locationInView(self))
+        if recognizer.state == UIGestureRecognizerState.Began {
+            newsView.layer.anchorPoint = CGPointMake(0.5, 0)
+            newsViewBottomConstraint.constant = newsViewWidth + 20
+        }else if recognizer.state == UIGestureRecognizerState.Changed {
+            let translation = recognizer.translationInView(self)
+            var transform3D = CATransform3DIdentity;
+            transform3D.m34 = -1 / 3000.0;
+            let angle = -translation.y / 400.0 * CGFloat(M_PI)
+//            if translation.y <= -100 {
+//                imageView.alpha = 0.0
+//            }else {
+//                imageView.alpha = 1.0
+//            }
+            print(angle)
+            newsView.layer.transform = CATransform3DRotate(transform3D, angle, 1, 0, 0)
+//            tmpTransform3D.m34 = -1 / 1000.0;
+//            topWebView.layer.transform = CATransform3DRotate(tmpTransform3D, -angle, 1, 0, 0)
+        }
     }
 }
 
