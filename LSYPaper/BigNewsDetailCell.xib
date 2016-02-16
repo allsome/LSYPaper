@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixx-0t-ArS">
-                                <rect key="frame" x="20" y="116" width="335" height="60.5"/>
+                                <rect key="frame" x="25" y="116" width="325" height="60.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Elon Musk">
                                         <attributes>
@@ -54,81 +54,119 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16 HRS · PUBLIC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nz5-cR-uHZ">
-                                <rect key="frame" x="20" y="185" width="81" height="12"/>
+                                <rect key="frame" x="25" y="185" width="81" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thevergeAvatar.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YYL-Iu-IQc">
-                                <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <rect key="frame" x="25" y="20" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="USf-V1-R4F"/>
                                     <constraint firstAttribute="width" constant="60" id="vF9-0L-wW0"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Cs-mJ-C56" userLabel="bottomView">
-                                <rect key="frame" x="20" y="312" width="335" height="335"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Cs-mJ-C56" userLabel="layerView">
+                                <rect key="frame" x="25" y="322" width="325" height="325"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5Cs-mJ-C56" secondAttribute="height" multiplier="1:1" id="s7j-yz-hb6"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-mW-ztz">
-                                <rect key="frame" x="20" y="312" width="335" height="335"/>
+                                <rect key="frame" x="25" y="322" width="325" height="325"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallMusk.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-bk-pTn">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="167"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="162"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eCl-bk-pTn" secondAttribute="height" multiplier="335:167" id="PQv-h8-nhk"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewsTopShadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="PEO-va-6d0">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="sL7-gI-uoy"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theverge.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yf-Ab-GXe">
-                                        <rect key="frame" x="0.0" y="167" width="75" height="23"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dek-g6-hgQ">
+                                        <rect key="frame" x="0.0" y="162" width="325" height="163"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theverge.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yf-Ab-GXe">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="0yf-Ab-GXe" secondAttribute="height" multiplier="75:23" id="kKZ-aZ-UoE"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elon Musk predicts a Tesla will be able to drive iteself across the country in 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-bj-qnp">
+                                                <rect key="frame" x="10" y="33" width="295" height="62.5"/>
+                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="18"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfG-2t-Tix">
+                                                <rect key="frame" x="10" y="104.5" width="295" height="48"/>
+                                                <string key="text">Do you think Tesla's new Summon self-parking feature is neat?Well,CEO Elon Musk says that's just the beginning. On a call with reporters today,Musk reiterated his prediction that...</string>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DANTE D'ORAZIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-r5-b4u">
+                                                <rect key="frame" x="242" y="6" width="79" height="12"/>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="10"/>
+                                                <color key="textColor" red="0.92941176469999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="23" id="o0K-IC-wL7"/>
+                                            <constraint firstItem="LfG-2t-Tix" firstAttribute="top" secondItem="oLE-bj-qnp" secondAttribute="bottom" constant="9" id="97Q-Xa-KQu"/>
+                                            <constraint firstAttribute="trailing" secondItem="QL4-r5-b4u" secondAttribute="trailing" constant="4" id="Bvc-1S-rb9"/>
+                                            <constraint firstItem="0yf-Ab-GXe" firstAttribute="top" secondItem="Dek-g6-hgQ" secondAttribute="top" id="EpM-ua-bor"/>
+                                            <constraint firstAttribute="trailing" secondItem="oLE-bj-qnp" secondAttribute="trailing" constant="20" id="FoJ-pR-bw5"/>
+                                            <constraint firstItem="QL4-r5-b4u" firstAttribute="centerY" secondItem="0yf-Ab-GXe" secondAttribute="centerY" id="V4d-es-shO"/>
+                                            <constraint firstItem="oLE-bj-qnp" firstAttribute="leading" secondItem="Dek-g6-hgQ" secondAttribute="leading" constant="10" id="dn9-Jn-QxA"/>
+                                            <constraint firstItem="0yf-Ab-GXe" firstAttribute="leading" secondItem="Dek-g6-hgQ" secondAttribute="leading" id="i0Z-EK-ng8"/>
+                                            <constraint firstAttribute="trailing" secondItem="LfG-2t-Tix" secondAttribute="trailing" constant="20" id="orl-8X-c7y"/>
+                                            <constraint firstItem="oLE-bj-qnp" firstAttribute="top" secondItem="0yf-Ab-GXe" secondAttribute="bottom" constant="10" id="p9t-0g-dtd"/>
+                                            <constraint firstItem="LfG-2t-Tix" firstAttribute="leading" secondItem="Dek-g6-hgQ" secondAttribute="leading" constant="10" id="rsI-Mq-J4Q"/>
                                         </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Elon Musk predicts a Tesla will be able to drive iteself across the country in 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-bj-qnp">
-                                        <rect key="frame" x="10" y="200" width="295" height="63"/>
-                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="18"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfG-2t-Tix">
-                                        <rect key="frame" x="10" y="272" width="295" height="48"/>
-                                        <string key="text">Do you think Tesla's new Summon self-parking feature is neat?Well,CEO Elon Musk says that's just the beginning. On a call with reporters today,Musk reiterated his prediction that...</string>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DANTE D'ORAZIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-r5-b4u">
-                                        <rect key="frame" x="248" y="173" width="79" height="12"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="10"/>
-                                        <color key="textColor" red="0.92941176469999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="Dek-g6-hgQ" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" id="1oA-QD-9Dd"/>
                                     <constraint firstItem="eCl-bk-pTn" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" id="88b-6g-sud"/>
                                     <constraint firstAttribute="trailing" secondItem="eCl-bk-pTn" secondAttribute="trailing" id="AoD-uG-jFo"/>
-                                    <constraint firstItem="0yf-Ab-GXe" firstAttribute="top" secondItem="eCl-bk-pTn" secondAttribute="bottom" id="DQ6-zf-jI0"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dek-g6-hgQ" secondAttribute="trailing" id="FaX-eg-MW1"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dek-g6-hgQ" secondAttribute="bottom" id="Odd-01-jXl"/>
                                     <constraint firstItem="eCl-bk-pTn" firstAttribute="top" secondItem="dzr-mW-ztz" secondAttribute="top" id="Qid-NK-5kk"/>
                                     <constraint firstAttribute="width" secondItem="dzr-mW-ztz" secondAttribute="height" multiplier="1:1" id="XAe-Lu-NGY"/>
-                                    <constraint firstItem="0yf-Ab-GXe" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" id="XUz-YP-xf3"/>
                                     <constraint firstItem="PEO-va-6d0" firstAttribute="top" secondItem="dzr-mW-ztz" secondAttribute="top" id="cyf-tr-b3Y"/>
                                     <constraint firstItem="PEO-va-6d0" firstAttribute="leading" secondItem="dzr-mW-ztz" secondAttribute="leading" id="hZq-M2-sFt"/>
                                     <constraint firstAttribute="trailing" secondItem="PEO-va-6d0" secondAttribute="trailing" id="q2s-Fa-1X3"/>
+                                    <constraint firstItem="Dek-g6-hgQ" firstAttribute="top" secondItem="eCl-bk-pTn" secondAttribute="bottom" id="vyB-9k-Gay"/>
+                                </constraints>
+                            </view>
+                            <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRD-yF-2ya">
+                                <rect key="frame" x="25" y="322" width="325" height="325"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shining.png" translatesAutoresizingMaskIntoConstraints="NO" id="doY-Cg-jQL" userLabel="shiningImage">
+                                        <rect key="frame" x="0.0" y="-296" width="325" height="296"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="doY-Cg-jQL" secondAttribute="height" multiplier="325:296" id="NJX-je-BQU"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="doY-Cg-jQL" firstAttribute="top" secondItem="PRD-yF-2ya" secondAttribute="top" constant="-296" id="KJJ-gI-w7P"/>
+                                    <constraint firstAttribute="trailing" secondItem="doY-Cg-jQL" secondAttribute="trailing" id="oRY-6X-OLN"/>
+                                    <constraint firstAttribute="width" secondItem="PRD-yF-2ya" secondAttribute="height" multiplier="1:1" id="wBH-ZN-q3I"/>
+                                    <constraint firstItem="doY-Cg-jQL" firstAttribute="leading" secondItem="PRD-yF-2ya" secondAttribute="leading" id="xe5-bM-Ez1"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Verge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJX-hl-Byb">
-                                <rect key="frame" x="20" y="95" width="79" height="19.5"/>
+                                <rect key="frame" x="25" y="95" width="79" height="19.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -136,21 +174,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5Cs-mJ-C56" secondAttribute="trailing" constant="20" id="32q-ql-Lsg"/>
+                            <constraint firstAttribute="trailing" secondItem="5Cs-mJ-C56" secondAttribute="trailing" constant="25" id="32q-ql-Lsg"/>
                             <constraint firstItem="Nz5-cR-uHZ" firstAttribute="top" secondItem="ixx-0t-ArS" secondAttribute="bottom" constant="8" id="3LN-44-JNt"/>
-                            <constraint firstAttribute="trailing" secondItem="ixx-0t-ArS" secondAttribute="trailing" constant="20" id="6Fm-Ee-fMT"/>
-                            <constraint firstItem="Nz5-cR-uHZ" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="B1Y-g8-hAZ"/>
-                            <constraint firstAttribute="trailing" secondItem="dzr-mW-ztz" secondAttribute="trailing" constant="20" id="GwJ-p3-mS2"/>
-                            <constraint firstItem="ixx-0t-ArS" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="IYe-bf-yo7"/>
-                            <constraint firstItem="5Cs-mJ-C56" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="J0G-Cw-0lo"/>
-                            <constraint firstItem="dzr-mW-ztz" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="JJC-7D-W2N"/>
+                            <constraint firstAttribute="trailing" secondItem="ixx-0t-ArS" secondAttribute="trailing" constant="25" id="6Fm-Ee-fMT"/>
+                            <constraint firstItem="Nz5-cR-uHZ" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="B1Y-g8-hAZ"/>
+                            <constraint firstAttribute="trailing" secondItem="dzr-mW-ztz" secondAttribute="trailing" constant="25" id="GwJ-p3-mS2"/>
+                            <constraint firstItem="ixx-0t-ArS" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="IYe-bf-yo7"/>
+                            <constraint firstItem="5Cs-mJ-C56" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="J0G-Cw-0lo"/>
+                            <constraint firstItem="dzr-mW-ztz" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="JJC-7D-W2N"/>
                             <constraint firstItem="YYL-Iu-IQc" firstAttribute="top" secondItem="kCX-R2-CTU" secondAttribute="top" constant="20" id="Kw6-j3-btS"/>
                             <constraint firstAttribute="bottom" secondItem="dzr-mW-ztz" secondAttribute="bottom" constant="20" id="Rvy-iB-A6P"/>
-                            <constraint firstItem="YYL-Iu-IQc" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="SfK-ZQ-shQ"/>
+                            <constraint firstItem="PRD-yF-2ya" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="SGn-3c-4Xu"/>
+                            <constraint firstAttribute="trailing" secondItem="PRD-yF-2ya" secondAttribute="trailing" constant="25" id="SMk-dd-aHY"/>
+                            <constraint firstItem="YYL-Iu-IQc" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="SfK-ZQ-shQ"/>
                             <constraint firstItem="RJX-hl-Byb" firstAttribute="top" secondItem="YYL-Iu-IQc" secondAttribute="bottom" constant="15" id="TyG-c6-O9E"/>
-                            <constraint firstItem="RJX-hl-Byb" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="20" id="axB-q3-plm"/>
+                            <constraint firstItem="RJX-hl-Byb" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="axB-q3-plm"/>
                             <constraint firstAttribute="bottom" secondItem="5Cs-mJ-C56" secondAttribute="bottom" constant="20" id="bH8-Nf-mmf"/>
                             <constraint firstItem="ixx-0t-ArS" firstAttribute="top" secondItem="RJX-hl-Byb" secondAttribute="bottom" constant="2" id="eD8-zJ-vh5"/>
+                            <constraint firstAttribute="bottom" secondItem="PRD-yF-2ya" secondAttribute="bottom" constant="20" id="mSC-Ds-y4R"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFC-fv-c7v" userLabel="BottomView">
@@ -240,6 +281,10 @@
                 <outlet property="nameLabel" destination="QL4-r5-b4u" id="lUf-5z-hd3"/>
                 <outlet property="newsView" destination="dzr-mW-ztz" id="zgk-WN-Asw"/>
                 <outlet property="newsViewBottomConstraint" destination="Rvy-iB-A6P" id="JrB-tS-qaj"/>
+                <outlet property="shadowView" destination="Dek-g6-hgQ" id="CD3-f5-41I"/>
+                <outlet property="shiningImage" destination="doY-Cg-jQL" id="Tog-tV-ZBQ"/>
+                <outlet property="shiningView" destination="PRD-yF-2ya" id="rAU-JH-5B8"/>
+                <outlet property="shiningViewBottimConstraint" destination="mSC-Ds-y4R" id="BT0-ns-0OD"/>
             </connections>
             <point key="canvasLocation" x="630.5" y="368.5"/>
         </collectionViewCell>
@@ -249,6 +294,7 @@
         <image name="Like.png" width="32" height="30"/>
         <image name="NewsTopShadow.png" width="335" height="5"/>
         <image name="Share.png" width="34" height="30"/>
+        <image name="shining.png" width="324" height="296"/>
         <image name="smallMusk.jpg" width="235" height="122"/>
         <image name="theverge.png" width="75" height="23"/>
         <image name="thevergeAvatar.jpg" width="160" height="160"/>
