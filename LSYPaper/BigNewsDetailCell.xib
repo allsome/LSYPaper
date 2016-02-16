@@ -322,6 +322,7 @@
                 <outlet property="shiningViewBottomConstraint" destination="Vjn-hX-Tfo" id="5IA-dR-gUo"/>
                 <outlet property="totalView" destination="VdS-ru-N12" id="Mmz-Mj-xay"/>
                 <outlet property="upperLayerView" destination="ea5-LQ-KCs" id="X8Q-vq-fJw"/>
+                <outlet property="upperLayerViewBottomConstraint" destination="HOi-sh-yID" id="Ymi-mB-QS4"/>
             </connections>
             <point key="canvasLocation" x="630.5" y="368.5"/>
         </collectionViewCell>
