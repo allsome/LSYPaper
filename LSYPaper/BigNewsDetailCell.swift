@@ -14,16 +14,21 @@ private let newsViewWidth:CGFloat = (SCREEN_WIDTH - 50) / 2
 private let shiningImageHeight:CGFloat = (SCREEN_WIDTH - 50) * 296 / 325
 private let newsViewY:CGFloat = SCREEN_HEIGHT - 20 - bottomViewDefaultHeight - newsViewWidth * 2
 private let endAngle:CGFloat = CGFloat(M_PI) / 2.0
-private let startAngle:CGFloat = CGFloat(M_PI) / 7.0
+private let startAngle:CGFloat = CGFloat(M_PI) / 3.0
 private let animateDuration:Double = 0.25
+private let minScale:CGFloat = 0.97
+
 class BigNewsDetailCell: UICollectionViewCell {
     
-    @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var shiningView: UIView!
-    @IBOutlet weak var shiningImage: UIImageView!
-    @IBOutlet weak var shiningViewBottimConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var newsViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var layerView: UIView!
+    @IBOutlet weak var totalView: UIView!
+    @IBOutlet weak var shiningViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var newsViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var coreViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var shadowView: UIView!
+    @IBOutlet weak private var shiningView: UIView!
+    @IBOutlet weak private var shiningImage: UIImageView!
+    @IBOutlet weak private var baseLayerView: UIView!
+    @IBOutlet weak private var upperLayerView: UIView!
     @IBOutlet weak var bottomViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
@@ -31,15 +36,19 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var topLayer:CALayer = CALayer()
     private var bottomLayer:CALayer = CALayer()
     private var locationInSelf:CGPoint = CGPointZero
+    private var translationInSelf:CGPoint = CGPointZero
     private var transform3D:CATransform3D = CATransform3DIdentity
+    private var transformConcat:CATransform3D {
+        return CATransform3DConcat(CATransform3DRotate(transform3D, transform3DAngle, 1, 0, 0), CATransform3DMakeTranslation(translationInSelf.x, 0, 0))
+    }
     private var transform3DAngle:CGFloat {
         return acos((locationInSelf.y - newsViewY) / (newsViewWidth * 2))
             + asin((locationInSelf.y - newsViewY) / transform3Dm34D)
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.masksToBounds = true
-        layer.cornerRadius = cellGap
+        totalView.layer.masksToBounds = true
+        totalView.layer.cornerRadius = cellGap*2
         shadowView.layer.shadowColor = UIColor.blackColor().CGColor
         shadowView.layer.shadowOffset = CGSizeMake(0, 2)
         shadowView.layer.shadowOpacity = 0.5
@@ -54,26 +63,30 @@ class BigNewsDetailCell: UICollectionViewCell {
     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Began {
             newsView.layer.anchorPoint = CGPointMake(0.5, 0)
-            newsViewBottomConstraint.constant = newsViewWidth + 20
+            newsViewBottomConstraint.constant = newsViewWidth
             shiningView.layer.anchorPoint = CGPointMake(0.5, 0)
-            shiningViewBottimConstraint.constant = newsViewWidth + 20
+            shiningViewBottomConstraint.constant = newsViewWidth
             locationInSelf = recognizer.locationInView(self)
+            translationInSelf = recognizer.translationInView(self)
             UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-                self.newsView.layer.transform = CATransform3DRotate(self.transform3D, self.transform3DAngle, 1, 0, 0)
-                self.shiningView.layer.transform = CATransform3DRotate(self.transform3D, self.transform3DAngle, 1, 0, 0)
-                self.shiningImage.transform = CGAffineTransformMakeTranslation(0, (shiningImageHeight + newsViewWidth * 2 - startAngle) * self.transform3DAngle / (endAngle - startAngle))
+                self.newsView.layer.transform = self.transformConcat
+                self.shiningView.layer.transform = self.transformConcat
+                self.shiningImage.transform = CGAffineTransformMakeTranslation(0, shiningImageHeight + newsViewWidth * 2 * (self.transform3DAngle - startAngle) / (endAngle - startAngle))
+                self.totalView.transform = CGAffineTransformMakeScale(minScale, minScale)
                 }, completion: { (stop:Bool) -> Void in
             })
         }else if recognizer.state == UIGestureRecognizerState.Changed {
             locationInSelf = recognizer.locationInView(self)
-            self.newsView.layer.transform = CATransform3DRotate(self.transform3D, self.transform3DAngle, 1, 0, 0)
-            self.shiningView.layer.transform = CATransform3DRotate(self.transform3D, self.transform3DAngle, 1, 0, 0)
-            self.shiningImage.transform = CGAffineTransformMakeTranslation(0, (shiningImageHeight + newsViewWidth * 2) * (self.transform3DAngle - startAngle) / (endAngle - startAngle))
+            translationInSelf = recognizer.translationInView(self)
+            self.newsView.layer.transform = self.transformConcat
+            self.shiningView.layer.transform = self.transformConcat
+            self.shiningImage.transform = CGAffineTransformMakeTranslation(0, shiningImageHeight + newsViewWidth * 2 * (self.transform3DAngle - startAngle) / (endAngle - startAngle))
         }else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended){
             UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
                 self.newsView.layer.transform = CATransform3DIdentity
                 self.shiningView.layer.transform = CATransform3DIdentity
                 self.shiningImage.transform = CGAffineTransformIdentity
+                self.totalView.transform = CGAffineTransformIdentity
                 },completion: { (stop:Bool) -> Void in
             })
         }

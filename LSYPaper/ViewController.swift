@@ -118,6 +118,7 @@ class ViewController: UIViewController {
             for cell in self.fullScreenCollectionView.visibleCells() {
                 let bigCell = cell as! BigNewsDetailCell
                 bigCell.bottomViewHeightConstraint.constant = bottomViewDefaultHeight
+                bigCell.coreViewBottomConstraint.constant = 20 + bottomViewDefaultHeight
                 bigCell.layoutIfNeeded()
             }
             }) { (stop:Bool) -> Void in
@@ -197,6 +198,7 @@ class ViewController: UIViewController {
                 for cell in fullScreenCollectionView.visibleCells() {
                     let bigCell = cell as! BigNewsDetailCell
                     bigCell.bottomViewHeightConstraint.constant = 1 - alpha >= 1 ? bottomViewDefaultHeight : bottomViewDefaultHeight * (1 - alpha)
+                    bigCell.coreViewBottomConstraint.constant = 1 - alpha >= 1 ? (20 + bottomViewDefaultHeight) : 20 + bottomViewDefaultHeight * (1 - alpha)
                 }
                 fullScreenCollectionView.alpha = 1 - alpha
                 blackView.alpha = -20 * scale + 20
@@ -231,6 +233,8 @@ class ViewController: UIViewController {
                     for cell in self.fullScreenCollectionView.visibleCells() {
                         let bigCell = cell as! BigNewsDetailCell
                         bigCell.bottomViewHeightConstraint.constant = bottomViewDefaultHeight * alpha
+                        bigCell.coreViewBottomConstraint.constant = 20 + (bottomViewDefaultHeight) * alpha
+
                         bigCell.layoutIfNeeded()
                     }
                     for cell in self.tinyCollectionView.visibleCells() {
