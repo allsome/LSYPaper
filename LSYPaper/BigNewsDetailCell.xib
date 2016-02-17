@@ -178,13 +178,6 @@
                                     <constraint firstAttribute="width" secondItem="5Cs-mJ-C56" secondAttribute="height" multiplier="1:1" id="wIP-9v-Cna"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea5-LQ-KCs" userLabel="upperLayerView">
-                                <rect key="frame" x="0.0" y="0.0" width="325" height="325"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ea5-LQ-KCs" secondAttribute="height" multiplier="1:1" id="gn5-6c-ItJ"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzr-mW-ztz">
                                 <rect key="frame" x="0.0" y="0.0" width="325" height="325"/>
                                 <subviews>
@@ -281,11 +274,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="5Cs-mJ-C56" secondAttribute="bottom" id="25U-C9-tlU"/>
-                            <constraint firstAttribute="trailing" secondItem="ea5-LQ-KCs" secondAttribute="trailing" id="CG6-YK-EWI"/>
                             <constraint firstAttribute="width" secondItem="Dgc-dO-Mta" secondAttribute="height" multiplier="1:1" id="CUR-1g-IWb"/>
-                            <constraint firstAttribute="bottom" secondItem="ea5-LQ-KCs" secondAttribute="bottom" id="HOi-sh-yID"/>
                             <constraint firstItem="5Cs-mJ-C56" firstAttribute="leading" secondItem="Dgc-dO-Mta" secondAttribute="leading" id="JOd-Ji-lao"/>
-                            <constraint firstItem="ea5-LQ-KCs" firstAttribute="leading" secondItem="Dgc-dO-Mta" secondAttribute="leading" id="NQm-Be-c91"/>
                             <constraint firstAttribute="trailing" secondItem="dzr-mW-ztz" secondAttribute="trailing" id="S9Z-S6-3b4"/>
                             <constraint firstAttribute="bottom" secondItem="PRD-yF-2ya" secondAttribute="bottom" id="Vjn-hX-Tfo"/>
                             <constraint firstAttribute="bottom" secondItem="dzr-mW-ztz" secondAttribute="bottom" id="dIy-UX-Dwf"/>
@@ -321,8 +311,6 @@
                 <outlet property="shiningView" destination="PRD-yF-2ya" id="rAU-JH-5B8"/>
                 <outlet property="shiningViewBottomConstraint" destination="Vjn-hX-Tfo" id="5IA-dR-gUo"/>
                 <outlet property="totalView" destination="VdS-ru-N12" id="Mmz-Mj-xay"/>
-                <outlet property="upperLayerView" destination="ea5-LQ-KCs" id="X8Q-vq-fJw"/>
-                <outlet property="upperLayerViewBottomConstraint" destination="HOi-sh-yID" id="Ymi-mB-QS4"/>
             </connections>
             <point key="canvasLocation" x="630.5" y="368.5"/>
         </collectionViewCell>
