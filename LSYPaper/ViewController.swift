@@ -437,6 +437,9 @@ extension ViewController:UICollectionViewDataSource {
             return cell
         }else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(fullScreenCellReuseIdentifier, forIndexPath: indexPath) as! BigNewsDetailCell
+            cell.unfoldWebViewOption = {() in
+                self.fullScreenCollectionView.panGestureRecognizer.enabled = false
+            }
             return cell
         }
     }
