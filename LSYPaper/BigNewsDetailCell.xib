@@ -265,6 +265,10 @@
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRD-yF-2ya">
                                 <rect key="frame" x="0.0" y="0.0" width="325" height="325"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZl-ma-iRy">
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="325"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shining.png" translatesAutoresizingMaskIntoConstraints="NO" id="doY-Cg-jQL" userLabel="shiningImage">
                                         <rect key="frame" x="0.0" y="-296" width="325" height="296"/>
                                         <constraints>
@@ -274,9 +278,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fZl-ma-iRy" secondAttribute="trailing" id="1PK-Yq-mvd"/>
                                     <constraint firstAttribute="width" secondItem="PRD-yF-2ya" secondAttribute="height" multiplier="1:1" id="39c-sS-Rmw"/>
                                     <constraint firstItem="doY-Cg-jQL" firstAttribute="top" secondItem="PRD-yF-2ya" secondAttribute="top" constant="-296" id="KJJ-gI-w7P"/>
+                                    <constraint firstAttribute="bottom" secondItem="fZl-ma-iRy" secondAttribute="bottom" id="MZD-0U-6pq"/>
+                                    <constraint firstItem="fZl-ma-iRy" firstAttribute="top" secondItem="doY-Cg-jQL" secondAttribute="bottom" id="cuq-sm-Fb9"/>
                                     <constraint firstAttribute="trailing" secondItem="doY-Cg-jQL" secondAttribute="trailing" id="oRY-6X-OLN"/>
+                                    <constraint firstItem="fZl-ma-iRy" firstAttribute="leading" secondItem="PRD-yF-2ya" secondAttribute="leading" id="uC0-n2-nYA"/>
                                     <constraint firstItem="doY-Cg-jQL" firstAttribute="leading" secondItem="PRD-yF-2ya" secondAttribute="leading" id="xe5-bM-Ez1"/>
                                 </constraints>
                             </view>
@@ -298,6 +306,9 @@
                     <webView alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaF-o1-cxB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="667" id="vWS-0N-Vdf"/>
+                        </constraints>
                     </webView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -317,6 +328,11 @@
                 <constraint firstItem="VdS-ru-N12" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rNK-bC-Sex"/>
             </constraints>
             <size key="customSize" width="426" height="434"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="VBn-aU-ZwK"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="baseLayerView" destination="5Cs-mJ-C56" id="gzY-Tq-TzS"/>
                 <outlet property="bottomViewHeightConstraint" destination="ecG-A2-dk7" id="qnb-yq-vIq"/>
@@ -325,12 +341,14 @@
                 <outlet property="newsView" destination="dzr-mW-ztz" id="zgk-WN-Asw"/>
                 <outlet property="newsViewBottomConstraint" destination="dIy-UX-Dwf" id="CK5-wf-7Ny"/>
                 <outlet property="realBaseView" destination="n3i-jn-spQ" id="uFI-QP-g30"/>
+                <outlet property="realShiningView" destination="fZl-ma-iRy" id="1to-9Y-W8V"/>
                 <outlet property="shadowView" destination="Dek-g6-hgQ" id="CD3-f5-41I"/>
                 <outlet property="shiningImage" destination="doY-Cg-jQL" id="Tog-tV-ZBQ"/>
                 <outlet property="shiningView" destination="PRD-yF-2ya" id="rAU-JH-5B8"/>
                 <outlet property="shiningViewBottomConstraint" destination="Vjn-hX-Tfo" id="5IA-dR-gUo"/>
                 <outlet property="totalView" destination="VdS-ru-N12" id="Mmz-Mj-xay"/>
                 <outlet property="webView" destination="WaF-o1-cxB" id="sAI-Lb-eXQ"/>
+                <outlet property="webViewHeightConstraint" destination="vWS-0N-Vdf" id="uCF-iY-2m5"/>
             </connections>
             <point key="canvasLocation" x="630.5" y="368.5"/>
         </collectionViewCell>
