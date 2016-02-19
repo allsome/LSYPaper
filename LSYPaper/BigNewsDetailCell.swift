@@ -39,6 +39,8 @@ class BigNewsDetailCell: UICollectionViewCell {
     @IBOutlet weak var webView: UIWebView!
     
     private var panNewsView:UIPanGestureRecognizer = UIPanGestureRecognizer()
+    private var panWebView:UIPanGestureRecognizer = UIPanGestureRecognizer()
+
     private var topLayer:CALayer = CALayer()
     private var bottomLayer:CALayer = CALayer()
     private var locationInSelf:CGPoint = CGPointZero
@@ -57,7 +59,7 @@ class BigNewsDetailCell: UICollectionViewCell {
             + asin((locationInSelf.y - newsViewY) / transform3Dm34D)
     }
     private var webViewRequest:NSURLRequest {
-        return NSURLRequest(URL: NSURL(string: "https://github.com/allsome")!)
+        return NSURLRequest(URL: NSURL(string: "https://baidu.com")!)
     }
     var unfoldWebViewOption:(() -> Void)?
     var foldWebViewOption:(() -> Void)?
@@ -87,6 +89,19 @@ class BigNewsDetailCell: UICollectionViewCell {
         transform3D.m34 = -1 / transform3Dm34D
         webViewHeightConstraint.constant = SCREEN_WIDTH * 2
         webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, SCREEN_WIDTH * 2 - SCREEN_HEIGHT, 0)
+        let webViewPan = UIPanGestureRecognizer(target: self, action: "handleWebPanGesture:")
+        webViewPan.delegate = self
+        webView.addGestureRecognizer(webViewPan)
+        panWebView = webViewPan
+    }
+    
+    func handleWebPanGesture(recognizer:UIPanGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizerState.Began {
+            webView.scrollView.panGestureRecognizer.enabled = false
+        }else if recognizer.state == UIGestureRecognizerState.Changed && webView.scrollView.panGestureRecognizer.enabled == false {
+        }else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended) && webView.scrollView.panGestureRecognizer.enabled == false{
+            webView.scrollView.panGestureRecognizer.enabled = true
+        }
     }
     
     func handleNewsPanGesture(recognizer:UIPanGestureRecognizer) {
@@ -197,9 +212,24 @@ class BigNewsDetailCell: UICollectionViewCell {
 }
 
 extension BigNewsDetailCell:UIGestureRecognizerDelegate {
-    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer == panNewsView && (panNewsView.velocityInView(self).y >= 0) || fabs(panNewsView.velocityInView(self).x) >= fabs(panNewsView.velocityInView(self).y) {
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panWebView && otherGestureRecognizer == webView.scrollView.panGestureRecognizer {
+            if (webView.scrollView.contentOffset.y <= 0 && webView.scrollView.panGestureRecognizer.velocityInView(self).y >= 0) || webView.scrollView.panGestureRecognizer.locationInView(self).y <= 100 {
+                return true
+            }else {
+                return false
+            }
+        } else {
             return false
+        }
+    }
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panNewsView {
+            if (panNewsView.velocityInView(self).y >= 0) || fabs(panNewsView.velocityInView(self).x) >= fabs(panNewsView.velocityInView(self).y) {
+                return false
+            }else {
+                return true
+            }
         }else {
             return true
         }
