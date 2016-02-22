@@ -17,6 +17,9 @@ private let endAngle:CGFloat = CGFloat(M_PI) / 2.5
 private let startAngle:CGFloat = CGFloat(M_PI) / 3.3
 private let animateDuration:Double = 0.25
 private let minScale:CGFloat = 0.97
+private let maxFoldAngle:CGFloat = 1.0
+private let minFoldAngle:CGFloat = 0.75
+
 private let baseShadowRedius:CGFloat = 50.0
 private let realShiningBGColor:UIColor = UIColor(red: 210.0 / 255.0, green: 210.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
 class BigNewsDetailCell: UICollectionViewCell {
@@ -50,6 +53,14 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var transformConcat:CATransform3D {
         return CATransform3DConcat(CATransform3DRotate(transform3D, transform3DAngle, 1, 0, 0), CATransform3DMakeTranslation(translationInSelf.x, 0, 0))
     }
+    private var foldScale:CGFloat {
+        let a = (SCREEN_WIDTH / (newsViewWidth * 2) - 1) / ((maxFoldAngle - minFoldAngle) * CGFloat(M_PI))
+        let b = 1 - (SCREEN_WIDTH / (newsViewWidth * 2) - 1) * minFoldAngle / (maxFoldAngle - minFoldAngle)
+        return a * transform3DAngleFold + b <= 1 ? 1 : a * transform3DAngleFold + b
+    }
+    private var transformConcatFold:CATransform3D {
+        return CATransform3DConcat(CATransform3DConcat(CATransform3DRotate(transform3D, transform3DAngleFold, 1, 0, 0), CATransform3DMakeTranslation(translationInSelf.x, (SCREEN_WIDTH - newsViewY), 0)), CATransform3DMakeScale(foldScale, foldScale, 1))
+    }
     private var transformEndedConcat:CATransform3D {
         return CATransform3DConcat(CATransform3DConcat(CATransform3DRotate(transform3D, CGFloat(M_PI), 1, 0, 0), CATransform3DMakeTranslation(0, (SCREEN_WIDTH - newsViewY) - 20, 0)), CATransform3DMakeScale(SCREEN_WIDTH / (newsViewWidth * 2), SCREEN_WIDTH / (newsViewWidth * 2), 1))
     }
@@ -57,6 +68,10 @@ class BigNewsDetailCell: UICollectionViewCell {
         let cosUpper = locationInSelf.y - newsViewY >= (newsViewWidth * 2) ? (newsViewWidth * 2) : locationInSelf.y - newsViewY
         return acos(cosUpper / (newsViewWidth * 2))
             + asin((locationInSelf.y - newsViewY) / transform3Dm34D)
+    }
+    private var transform3DAngleFold:CGFloat {
+        let cosUpper = locationInSelf.y - SCREEN_WIDTH
+        return acos(cosUpper / SCREEN_WIDTH)
     }
     private var webViewRequest:NSURLRequest {
         return NSURLRequest(URL: NSURL(string: "https://baidu.com")!)
@@ -96,23 +111,39 @@ class BigNewsDetailCell: UICollectionViewCell {
     }
     
     func handleWebPanGesture(recognizer:UIPanGestureRecognizer) {
+        locationInSelf = recognizer.locationInView(self)
+        translationInSelf = recognizer.translationInView(self)
         if recognizer.state == UIGestureRecognizerState.Began {
             webView.scrollView.panGestureRecognizer.enabled = false
+            webView.alpha = 0.0
+            UIView.animateWithDuration(animateDuration * 2 + 0.2, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                self.newsView.layer.transform = self.transformConcatFold
+                self.shiningView.layer.transform = self.transformConcatFold
+                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(self.foldScale, self.foldScale, 1), CATransform3DMakeTranslation(self.translationInSelf.x, SCREEN_WIDTH - newsViewY, 0))
+
+                self.newsView.layer.shadowColor = UIColor.blackColor().CGColor
+                self.realBaseView.alpha = 1.0
+                self.realShiningView.alpha = 1.0
+                }, completion: { (stop:Bool) -> Void in
+            })
         }else if recognizer.state == UIGestureRecognizerState.Changed && webView.scrollView.panGestureRecognizer.enabled == false {
+            self.newsView.layer.transform = self.transformConcatFold
+            self.shiningView.layer.transform = self.transformConcatFold
+            self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(self.foldScale, self.foldScale, 1), CATransform3DMakeTranslation(translationInSelf.x, SCREEN_WIDTH - newsViewY, 0))
         }else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended) && webView.scrollView.panGestureRecognizer.enabled == false{
             webView.scrollView.panGestureRecognizer.enabled = true
         }
     }
     
     func handleNewsPanGesture(recognizer:UIPanGestureRecognizer) {
+        locationInSelf = recognizer.locationInView(self)
         if recognizer.state == UIGestureRecognizerState.Began {
             newsView.layer.anchorPoint = CGPointMake(0.5, 0)
             newsViewBottomConstraint.constant = newsViewWidth
             shiningView.layer.anchorPoint = CGPointMake(0.5, 0)
             shiningViewBottomConstraint.constant = newsViewWidth
-            locationInSelf = recognizer.locationInView(self)
             translationInSelf = recognizer.translationInView(self)
-            UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+            UIView.animateWithDuration(animateDuration * 2 + 0.2, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
                 self.newsView.layer.transform = self.transformConcat
                 self.shiningView.layer.transform = self.transformConcat
                 self.shiningImage.transform = CGAffineTransformMakeTranslation(0, shiningImageHeight + newsViewWidth * 2 * (self.transform3DAngle - startAngle) / (endAngle - startAngle))
@@ -122,7 +153,6 @@ class BigNewsDetailCell: UICollectionViewCell {
                 }, completion: { (stop:Bool) -> Void in
             })
         }else if recognizer.state == UIGestureRecognizerState.Changed {
-            locationInSelf = recognizer.locationInView(self)
             translationInSelf = recognizer.translationInView(self)
             newsView.layer.transform = transformConcat
             shiningView.layer.transform = transformConcat
