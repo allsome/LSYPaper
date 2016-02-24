@@ -437,6 +437,8 @@ extension ViewController:UICollectionViewDataSource {
             return cell
         }else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(fullScreenCellReuseIdentifier, forIndexPath: indexPath) as! BigNewsDetailCell
+            cell.bottomViewHeightConstraint.constant = bottomViewDefaultHeight * fullScreenCollectionView.alpha
+            cell.coreViewBottomConstraint.constant = 20 + (bottomViewDefaultHeight) * fullScreenCollectionView.alpha
             cell.unfoldWebViewOption = {() in
                 self.fullScreenCollectionView.panGestureRecognizer.enabled = false
             }
