@@ -19,9 +19,12 @@ private let animateDuration:Double = 0.25
 private let minScale:CGFloat = 0.97
 private let maxFoldAngle:CGFloat = 1.0
 private let minFoldAngle:CGFloat = 0.75
-
+private let translationYForView:CGFloat = SCREEN_WIDTH - newsViewY
+private let normalScale:CGFloat = SCREEN_WIDTH / (newsViewWidth * 2)
 private let baseShadowRedius:CGFloat = 50.0
-private let realShiningBGColor:UIColor = UIColor(red: 210.0 / 255.0, green: 210.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
+private let realShiningBGColor:UIColor = UIColor(white: 0.0, alpha: 0.5)
+
+//UIColor(red: 210.0 / 255.0, green: 210.0 / 255.0, blue: 210.0 / 255.0, alpha: 1.0)
 class BigNewsDetailCell: UICollectionViewCell {
     
     @IBOutlet weak var upperScreenShot: UIImageView!
@@ -58,16 +61,16 @@ class BigNewsDetailCell: UICollectionViewCell {
         return CATransform3DConcat(CATransform3DRotate(transform3D, transform3DAngle, 1, 0, 0), CATransform3DMakeTranslation(translationInSelf.x, 0, 0))
     }
     private var foldScale:CGFloat {
-        let a = (SCREEN_WIDTH / (newsViewWidth * 2) - 1) / ((maxFoldAngle - minFoldAngle) * CGFloat(M_PI))
-        let b = 1 - (SCREEN_WIDTH / (newsViewWidth * 2) - 1) * minFoldAngle / (maxFoldAngle - minFoldAngle)
+        let a = (normalScale - 1) / ((maxFoldAngle - minFoldAngle) * CGFloat(M_PI))
+        let b = 1 - (normalScale - 1) * minFoldAngle / (maxFoldAngle - minFoldAngle)
         return a * transform3DAngleFold + b <= 1 ? 1 : a * transform3DAngleFold + b
     }
     private var transformConcatFold:CATransform3D {
-        return CATransform3DConcat(CATransform3DConcat(CATransform3DRotate(transform3D, transform3DAngleFold, 1, 0, 0), CATransform3DMakeTranslation(translationInSelf.x / foldScale, (SCREEN_WIDTH - newsViewY) / foldScale, 0)), CATransform3DMakeScale(foldScale, foldScale, 1))
+        return CATransform3DConcat(CATransform3DConcat(CATransform3DRotate(transform3D, transform3DAngleFold, 1, 0, 0), CATransform3DMakeTranslation(translationInSelf.x / foldScale, translationYForView / foldScale, 0)), CATransform3DMakeScale(foldScale, foldScale, 1))
     }
     private var transformEndedConcat:CATransform3D {
-        let scale = SCREEN_WIDTH / (newsViewWidth * 2)
-        return CATransform3DConcat(CATransform3DConcat(CATransform3DRotate(transform3D, CGFloat(M_PI), 1, 0, 0), CATransform3DMakeTranslation(0, (SCREEN_WIDTH - newsViewY) / scale, 0)), CATransform3DMakeScale(scale, scale, 1))
+        let scale = normalScale
+        return CATransform3DConcat(CATransform3DConcat(CATransform3DRotate(transform3D, CGFloat(M_PI), 1, 0, 0), CATransform3DMakeTranslation(0, translationYForView / scale, 0)), CATransform3DMakeScale(scale, scale, 1))
     }
     private var transform3DAngle:CGFloat {
         let cosUpper = locationInSelf.y - newsViewY >= (newsViewWidth * 2) ? (newsViewWidth * 2) : locationInSelf.y - newsViewY
@@ -155,7 +158,7 @@ class BigNewsDetailCell: UICollectionViewCell {
             UIView.animateWithDuration((animateDuration * 2 + 0.2) * ratio, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
                 self.newsView.layer.transform = self.transformConcatFold
                 self.shiningView.layer.transform = self.transformConcatFold
-                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(self.foldScale, self.foldScale, 1), CATransform3DMakeTranslation(self.translationInSelf.x, (SCREEN_WIDTH - newsViewY), 0))
+                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(self.foldScale, self.foldScale, 1), CATransform3DMakeTranslation(self.translationInSelf.x, translationYForView, 0))
                 
                 self.newsView.layer.shadowColor = UIColor.blackColor().CGColor
                 self.realBaseView.alpha = 0.5
@@ -166,43 +169,30 @@ class BigNewsDetailCell: UICollectionViewCell {
         }else if recognizer.state == UIGestureRecognizerState.Changed && webView.scrollView.panGestureRecognizer.enabled == false {
             newsView.layer.transform = transformConcatFold
             shiningView.layer.transform = transformConcatFold
-            baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(foldScale, foldScale, 1), CATransform3DMakeTranslation(translationInSelf.x, (SCREEN_WIDTH - newsViewY), 0))
+            baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(foldScale, foldScale, 1), CATransform3DMakeTranslation(translationInSelf.x, translationYForView, 0))
             shiningImage.transform = CGAffineTransformMakeTranslation(0, shiningImageHeight + newsViewWidth * 2 * (transform3DAngleFold - startAngle) / (endAngle - startAngle))
-            if transform3DAngleFold / CGFloat(M_PI) >= 0.5 {
-                upperScreenShot.alpha = 1.0
-                shiningImage.alpha = 0
-                realShiningView.alpha = 0.5
-                shiningView.backgroundColor = UIColor.whiteColor()
-                realShiningView.backgroundColor = realShiningBGColor
-                newsView.layer.shadowColor = UIColor.blackColor().CGColor
-                shadowView.layer.shadowColor = UIColor.clearColor().CGColor
-            }else {
-                upperScreenShot.alpha = 0.0
-                shiningImage.alpha = 1
-                realShiningView.alpha = 0.0
-                shiningView.backgroundColor = UIColor.clearColor()
-                newsView.layer.shadowColor = UIColor.clearColor().CGColor
-                shadowView.layer.shadowColor = UIColor.blackColor().CGColor
-            }
+            gestureStateChangedSetting(transform3DAngleFold)
         }else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended) && webView.scrollView.panGestureRecognizer.enabled == false{
             webView.scrollView.panGestureRecognizer.enabled = true
             velocityInSelf = recognizer.velocityInView(self)
             if self.velocityInSelf.y < 0 {
-                if transform3DAngle / CGFloat(M_PI) < 0.5 {
-                    UIView.animateWithDuration(animateDuration * Double(transform3DAngleFold / CGFloat(M_PI)), delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-                        self.newsView.layer.transform = CATransform3DConcat(CATransform3DRotate(self.transform3D, CGFloat(M_PI_2), 1, 0, 0),CATransform3DMakeTranslation(self.translationInSelf.x, 0, 0))
-                        self.shiningView.layer.transform = CATransform3DConcat(CATransform3DRotate(self.transform3D, CGFloat(M_PI_2), 1, 0, 0),CATransform3DMakeTranslation(self.translationInSelf.x, 0, 0))
+                if transform3DAngleFold / CGFloat(M_PI) < 0.5 {
+                    UIView.animateWithDuration(animateDuration * Double((CGFloat(M_PI) - transform3DAngleFold) / CGFloat(M_PI * 2)), delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+                        self.newsView.layer.transform = CATransform3DConcat(CATransform3DRotate(self.transform3D, CGFloat(M_PI_2), 1, 0, 0),CATransform3DMakeTranslation(self.translationInSelf.x, translationYForView, 0))
+                        self.shiningView.layer.transform = CATransform3DConcat(CATransform3DRotate(self.transform3D, CGFloat(M_PI_2), 1, 0, 0),CATransform3DMakeTranslation(self.translationInSelf.x, translationYForView, 0))
                         }, completion: { (stop:Bool) -> Void in
+                            self.upperScreenShot.alpha = 1.0
                             self.shiningImage.alpha = 0.0
                             self.realShiningView.alpha = 1.0
                             self.shiningView.backgroundColor = UIColor.whiteColor()
                             self.realShiningView.backgroundColor = realShiningBGColor
                             self.newsView.layer.shadowColor = UIColor.blackColor().CGColor
                             self.shadowView.layer.shadowColor = UIColor.clearColor().CGColor
-                            UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+                            self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(self.foldScale, self.foldScale, 1), CATransform3DMakeTranslation(self.translationInSelf.x, translationYForView / ((normalScale)), 0))
+                            UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
                                 self.newsView.layer.transform = self.transformEndedConcat
                                 self.shiningView.layer.transform = self.transformEndedConcat
-                                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(SCREEN_WIDTH / (newsViewWidth * 2), SCREEN_WIDTH / (newsViewWidth * 2), 1), CATransform3DMakeTranslation(0, SCREEN_WIDTH - newsViewY, 0))
+                                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeTranslation(0, translationYForView / ((normalScale)), 0),CATransform3DMakeScale(normalScale, normalScale, 1))
                                 self.realBaseView.alpha = 0.0
                                 self.realShiningView.alpha = 0.0
                                 self.newsView.layer.shadowColor = UIColor.clearColor().CGColor
@@ -217,11 +207,11 @@ class BigNewsDetailCell: UICollectionViewCell {
                             })
                     })
                 }else {
-                    baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(foldScale, foldScale, 1), CATransform3DMakeTranslation(translationInSelf.x, (SCREEN_WIDTH - newsViewY) / ((SCREEN_WIDTH / (newsViewWidth * 2))), 0))
+                    baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(foldScale, foldScale, 1), CATransform3DMakeTranslation(translationInSelf.x, translationYForView / ((normalScale)), 0))
                     UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
                         self.newsView.layer.transform = self.transformEndedConcat
                         self.shiningView.layer.transform = self.transformEndedConcat
-                        self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeTranslation(0, (SCREEN_WIDTH - newsViewY) / ((SCREEN_WIDTH / (newsViewWidth * 2))), 0),CATransform3DMakeScale(SCREEN_WIDTH / (newsViewWidth * 2), SCREEN_WIDTH / (newsViewWidth * 2), 1))
+                        self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeTranslation(0, translationYForView / ((normalScale)), 0),CATransform3DMakeScale(normalScale, normalScale, 1))
                         self.shiningImage.alpha = 0.0
                         self.realBaseView.alpha = 0.0
                         self.realShiningView.alpha = 0.0
@@ -236,11 +226,12 @@ class BigNewsDetailCell: UICollectionViewCell {
                             }
                     })
                 }
+            }else {
+                self.normalLayoutNewsView()
             }
         }
     }
 
-    
     func handleNewsPanGesture(recognizer:UIPanGestureRecognizer) {
         locationInSelf = recognizer.locationInView(self)
         if recognizer.state == UIGestureRecognizerState.Began {
@@ -266,20 +257,7 @@ class BigNewsDetailCell: UICollectionViewCell {
             shiningView.layer.transform = transformConcat
             baseLayerView.layer.transform = CATransform3DMakeTranslation(translationInSelf.x, 0, 0)
             shiningImage.transform = CGAffineTransformMakeTranslation(0, shiningImageHeight + newsViewWidth * 2 * (transform3DAngle - startAngle) / (endAngle - startAngle))
-            if transform3DAngle / CGFloat(M_PI) >= 0.5 {
-                shiningImage.alpha = 0
-                realShiningView.alpha = 1.0
-                shiningView.backgroundColor = UIColor.whiteColor()
-                realShiningView.backgroundColor = realShiningBGColor
-                newsView.layer.shadowColor = UIColor.blackColor().CGColor
-                shadowView.layer.shadowColor = UIColor.clearColor().CGColor
-            }else {
-                shiningImage.alpha = 1
-                realShiningView.alpha = 0.0
-                shiningView.backgroundColor = UIColor.clearColor()
-                newsView.layer.shadowColor = UIColor.clearColor().CGColor
-                shadowView.layer.shadowColor = UIColor.blackColor().CGColor
-            }
+            gestureStateChangedSetting(transform3DAngle)
         }else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended){
             velocityInSelf = recognizer.velocityInView(self)
             if self.velocityInSelf.y <= 0 {
@@ -289,7 +267,8 @@ class BigNewsDetailCell: UICollectionViewCell {
                         self.shiningView.layer.transform = CATransform3DConcat(CATransform3DRotate(self.transform3D, CGFloat(M_PI_2), 1, 0, 0),CATransform3DMakeTranslation(self.translationInSelf.x, 0, 0))
                         }, completion: { (stop:Bool) -> Void in
                             self.shiningImage.alpha = 0.0
-                            self.realShiningView.alpha = 1.0
+                            self.realShiningView.alpha = 0.5
+                            self.upperScreenShot.alpha = 1.0
                             self.shiningView.backgroundColor = UIColor.whiteColor()
                             self.realShiningView.backgroundColor = realShiningBGColor
                             self.newsView.layer.shadowColor = UIColor.blackColor().CGColor
@@ -297,7 +276,7 @@ class BigNewsDetailCell: UICollectionViewCell {
                             UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
                                 self.newsView.layer.transform = self.transformEndedConcat
                                 self.shiningView.layer.transform = self.transformEndedConcat
-                                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(SCREEN_WIDTH / (newsViewWidth * 2), SCREEN_WIDTH / (newsViewWidth * 2), 1), CATransform3DMakeTranslation(0, SCREEN_WIDTH - newsViewY, 0))
+                                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(normalScale, normalScale, 1), CATransform3DMakeTranslation(0, translationYForView, 0))
                                 self.realBaseView.alpha = 0.0
                                 self.realShiningView.alpha = 0.0
                                 self.newsView.layer.shadowColor = UIColor.clearColor().CGColor
@@ -315,7 +294,7 @@ class BigNewsDetailCell: UICollectionViewCell {
                     UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
                         self.newsView.layer.transform = self.transformEndedConcat
                         self.shiningView.layer.transform = self.transformEndedConcat
-                        self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(SCREEN_WIDTH / (newsViewWidth * 2), SCREEN_WIDTH / (newsViewWidth * 2), 1), CATransform3DMakeTranslation(0, SCREEN_WIDTH - newsViewY, 0))
+                        self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(normalScale, normalScale, 1), CATransform3DMakeTranslation(0, translationYForView, 0))
                         self.shiningImage.alpha = 0.0
                         self.realBaseView.alpha = 0.0
                         self.realShiningView.alpha = 0.0
@@ -331,20 +310,47 @@ class BigNewsDetailCell: UICollectionViewCell {
                     })
                 }
             }else {
-                UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
-                    self.newsView.layer.transform = CATransform3DIdentity
-                    self.shiningView.layer.transform = CATransform3DIdentity
-                    self.shiningImage.transform = CGAffineTransformIdentity
-                    self.totalView.transform = CGAffineTransformIdentity
-                    self.baseLayerView.layer.transform = CATransform3DIdentity
-                    self.shiningImage.alpha = 1.0
-                    self.baseLayerView.alpha = 0.0
-                    self.realShiningView.alpha = 0.0
-                    self.shiningView.backgroundColor = UIColor.clearColor()
-                    self.newsView.layer.shadowColor = UIColor.clearColor().CGColor
-                    self.shadowView.layer.shadowColor = UIColor.blackColor().CGColor
-                    },completion: { (stop:Bool) -> Void in})
+               self.normalLayoutNewsView()
             }
+        }
+    }
+    
+    func normalLayoutNewsView() {
+        UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            self.newsView.layer.transform = CATransform3DIdentity
+            self.shiningView.layer.transform = CATransform3DIdentity
+            self.shiningImage.transform = CGAffineTransformIdentity
+            self.totalView.transform = CGAffineTransformIdentity
+            self.baseLayerView.layer.transform = CATransform3DIdentity
+            self.shiningImage.alpha = 1.0
+            self.baseLayerView.alpha = 0.0
+            self.realShiningView.alpha = 0.0
+            self.shiningView.backgroundColor = UIColor.clearColor()
+            self.newsView.layer.shadowColor = UIColor.clearColor().CGColor
+            self.shadowView.layer.shadowColor = UIColor.blackColor().CGColor
+            },completion: { (stop:Bool) -> Void in
+                if (self.foldWebViewOption != nil) {
+                    self.foldWebViewOption!()
+                }
+        })
+    }
+    
+    func gestureStateChangedSetting(targetAngle:CGFloat) {
+        if targetAngle / CGFloat(M_PI) >= 0.5 {
+            upperScreenShot.alpha = 1.0
+            shiningImage.alpha = 0
+            realShiningView.alpha = 0.5
+            shiningView.backgroundColor = UIColor.whiteColor()
+            realShiningView.backgroundColor = realShiningBGColor
+            newsView.layer.shadowColor = UIColor.blackColor().CGColor
+            shadowView.layer.shadowColor = UIColor.clearColor().CGColor
+        }else {
+            upperScreenShot.alpha = 0.0
+            shiningImage.alpha = 1
+            realShiningView.alpha = 0.0
+            shiningView.backgroundColor = UIColor.clearColor()
+            newsView.layer.shadowColor = UIColor.clearColor().CGColor
+            shadowView.layer.shadowColor = UIColor.blackColor().CGColor
         }
     }
 }
@@ -364,6 +370,7 @@ extension BigNewsDetailCell:UIGestureRecognizerDelegate {
     override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == panNewsView {
             if (panNewsView.velocityInView(self).y >= 0) || fabs(panNewsView.velocityInView(self).x) >= fabs(panNewsView.velocityInView(self).y) {
+                print(panNewsView.velocityInView(self))
                 return false
             }else {
                 return true

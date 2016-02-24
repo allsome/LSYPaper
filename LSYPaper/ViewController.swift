@@ -440,6 +440,9 @@ extension ViewController:UICollectionViewDataSource {
             cell.unfoldWebViewOption = {() in
                 self.fullScreenCollectionView.panGestureRecognizer.enabled = false
             }
+            cell.foldWebViewOption = {() in
+                self.fullScreenCollectionView.panGestureRecognizer.enabled = true
+            }
             return cell
         }
     }
