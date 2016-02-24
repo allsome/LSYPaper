@@ -50,7 +50,6 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var topLayer:CALayer = CALayer()
     private var bottomLayer:CALayer = CALayer()
     private var isHasRequest:Bool = false
-    private var isCompletionFold:Bool = false
     private var locationInSelf:CGPoint = CGPointZero
     private var translationInSelf:CGPoint = CGPointZero
     private var velocityInSelf:CGPoint = CGPointZero
@@ -156,14 +155,13 @@ class BigNewsDetailCell: UICollectionViewCell {
             UIView.animateWithDuration((animateDuration * 2 + 0.2) * ratio, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
                 self.newsView.layer.transform = self.transformConcatFold
                 self.shiningView.layer.transform = self.transformConcatFold
-                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(self.foldScale, self.foldScale, 1), CATransform3DMakeTranslation(self.translationInSelf.x / (SCREEN_WIDTH / (newsViewWidth * 2)), (SCREEN_WIDTH - newsViewY) / (SCREEN_WIDTH / (newsViewWidth * 2)), 0))
+                self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(self.foldScale, self.foldScale, 1), CATransform3DMakeTranslation(self.translationInSelf.x, (SCREEN_WIDTH - newsViewY), 0))
                 
                 self.newsView.layer.shadowColor = UIColor.blackColor().CGColor
                 self.realBaseView.alpha = 0.5
                 self.realShiningView.alpha = 0.5
                 self.upperScreenShot.alpha = alpha
                 }, completion: { (stop:Bool) -> Void in
-                    self.isCompletionFold = true
             })
         }else if recognizer.state == UIGestureRecognizerState.Changed && webView.scrollView.panGestureRecognizer.enabled == false {
             newsView.layer.transform = transformConcatFold
@@ -171,9 +169,7 @@ class BigNewsDetailCell: UICollectionViewCell {
             baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(foldScale, foldScale, 1), CATransform3DMakeTranslation(translationInSelf.x, (SCREEN_WIDTH - newsViewY), 0))
             shiningImage.transform = CGAffineTransformMakeTranslation(0, shiningImageHeight + newsViewWidth * 2 * (transform3DAngleFold - startAngle) / (endAngle - startAngle))
             if transform3DAngleFold / CGFloat(M_PI) >= 0.5 {
-                if isCompletionFold == true {
-                    upperScreenShot.alpha = 1.0
-                }
+                upperScreenShot.alpha = 1.0
                 shiningImage.alpha = 0
                 realShiningView.alpha = 0.5
                 shiningView.backgroundColor = UIColor.whiteColor()
@@ -181,9 +177,7 @@ class BigNewsDetailCell: UICollectionViewCell {
                 newsView.layer.shadowColor = UIColor.blackColor().CGColor
                 shadowView.layer.shadowColor = UIColor.clearColor().CGColor
             }else {
-                if isCompletionFold == true {
-                    upperScreenShot.alpha = 0.0
-                }
+                upperScreenShot.alpha = 0.0
                 shiningImage.alpha = 1
                 realShiningView.alpha = 0.0
                 shiningView.backgroundColor = UIColor.clearColor()
@@ -192,7 +186,6 @@ class BigNewsDetailCell: UICollectionViewCell {
             }
         }else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended) && webView.scrollView.panGestureRecognizer.enabled == false{
             webView.scrollView.panGestureRecognizer.enabled = true
-            isCompletionFold = false
             velocityInSelf = recognizer.velocityInView(self)
             if self.velocityInSelf.y < 0 {
                 if transform3DAngle / CGFloat(M_PI) < 0.5 {
@@ -224,10 +217,11 @@ class BigNewsDetailCell: UICollectionViewCell {
                             })
                     })
                 }else {
-                    UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+                    baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeScale(foldScale, foldScale, 1), CATransform3DMakeTranslation(translationInSelf.x, (SCREEN_WIDTH - newsViewY) / ((SCREEN_WIDTH / (newsViewWidth * 2))), 0))
+                    UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
                         self.newsView.layer.transform = self.transformEndedConcat
                         self.shiningView.layer.transform = self.transformEndedConcat
-                        self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeTranslation(0, (SCREEN_WIDTH - newsViewY) / (SCREEN_WIDTH / (newsViewWidth * 2)), 0),CATransform3DMakeScale(SCREEN_WIDTH / (newsViewWidth * 2), SCREEN_WIDTH / (newsViewWidth * 2), 1))
+                        self.baseLayerView.layer.transform = CATransform3DConcat(CATransform3DMakeTranslation(0, (SCREEN_WIDTH - newsViewY) / ((SCREEN_WIDTH / (newsViewWidth * 2))), 0),CATransform3DMakeScale(SCREEN_WIDTH / (newsViewWidth * 2), SCREEN_WIDTH / (newsViewWidth * 2), 1))
                         self.shiningImage.alpha = 0.0
                         self.realBaseView.alpha = 0.0
                         self.realShiningView.alpha = 0.0
