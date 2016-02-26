@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 public let bottomViewDefaultHeight:CGFloat = 55
 private let transform3Dm34D:CGFloat = 1900.0
@@ -22,10 +23,13 @@ private let minFoldAngle:CGFloat = 0.75
 private let translationYForView:CGFloat = SCREEN_WIDTH - newsViewY
 private let normalScale:CGFloat = SCREEN_WIDTH / (newsViewWidth * 2)
 private let baseShadowRedius:CGFloat = 50.0
+private let emitterWidth:CGFloat = 35.0
+
 private let realShiningBGColor:UIColor = UIColor(white: 0.0, alpha: 0.4)
 
 class BigNewsDetailCell: UICollectionViewCell {
     
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var upperScreenShot: UIImageView!
     @IBOutlet weak var baseScreenShot: UIImageView!
     @IBOutlet weak var baseLayerViewBottomConstraint: NSLayoutConstraint!
@@ -52,6 +56,8 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var topLayer:CALayer = CALayer()
     private var bottomLayer:CALayer = CALayer()
     private var isHasRequest:Bool = false
+    private var isLike:Bool = false
+    
     private var locationInSelf:CGPoint = CGPointZero
     private var translationInSelf:CGPoint = CGPointZero
     private var velocityInSelf:CGPoint = CGPointZero
@@ -83,6 +89,18 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var webViewRequest:NSURLRequest {
         return NSURLRequest(URL: NSURL(string: "https://baidu.com")!)
     }
+    
+    private var soundID:SystemSoundID {
+        var soundID:SystemSoundID = 0
+        let path = NSBundle.mainBundle().pathForResource("Pop", ofType: "wav")
+        let baseURL = NSURL(fileURLWithPath: path!)
+        AudioServicesCreateSystemSoundID(baseURL, &soundID)
+        return soundID
+    }
+    @IBOutlet weak var likeView: UIView!
+    private var explosionLayer:CAEmitterLayer = CAEmitterLayer()
+    private var chargeLayer:CAEmitterLayer = CAEmitterLayer()
+    
     var unfoldWebViewOption:(() -> Void)?
     var foldWebViewOption:(() -> Void)?
 
@@ -118,32 +136,59 @@ class BigNewsDetailCell: UICollectionViewCell {
         webViewPan.delegate = self
         webView.addGestureRecognizer(webViewPan)
         panWebView = webViewPan
-    }
-    
-    func loadWebViewRequest() {
-        if self.isHasRequest == false {
-            self.webView.loadRequest(self.webViewRequest)
-            self.isHasRequest = true
-        }
-    }
-    
-    func getWebViewScreenShot() -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(webView.frame.size, false, 1.0)
-        webView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-
-    func getSubImageFrom(originImage:UIImage,frame:CGRect) -> UIImage {
-        let imageRef = originImage.CGImage
-        let subImageRef = CGImageCreateWithImageInRect(imageRef, frame)
-        UIGraphicsBeginImageContext(frame.size)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextDrawImage(context, frame, subImageRef)
-        let subImage = UIImage(CGImage: subImageRef!)
-        UIGraphicsEndImageContext();
-        return subImage;
+        
+        let explosionCell = CAEmitterCell()
+        explosionCell.name = "explosion"
+        explosionCell.alphaRange = 0.2
+        explosionCell.alphaSpeed = -1.0
+        explosionCell.lifetime = 0.5
+        explosionCell.lifetimeRange = 0.0
+        explosionCell.birthRate = 0
+        explosionCell.velocity = 44.00
+        explosionCell.velocityRange = 7.00
+        explosionCell.contents = UIImage(named: "Sparkle")?.CGImage
+        explosionCell.scale = 0.05
+        explosionCell.scaleRange = 0.02
+        
+        let explosionLayer = CAEmitterLayer()
+        explosionLayer.name = "emitterLayer"
+        explosionLayer.emitterShape = kCAEmitterLayerCircle
+        explosionLayer.emitterMode = kCAEmitterLayerOutline
+        explosionLayer.emitterSize = CGSizeMake(emitterWidth, 0)
+        let center = CGPointMake(CGRectGetMidX(likeView.bounds), CGRectGetMidY(likeView.bounds))
+        
+        explosionLayer.emitterPosition = center
+        explosionLayer.emitterCells = [explosionCell]
+        explosionLayer.masksToBounds = false
+        
+        likeView.layer.addSublayer(explosionLayer)
+        self.explosionLayer = explosionLayer
+        
+        let chargeCell = CAEmitterCell()
+        chargeCell.name = "charge"
+        chargeCell.alphaRange = 0.20
+        chargeCell.alphaSpeed = -1.0
+        
+        chargeCell.lifetime = 0.3
+        chargeCell.lifetimeRange = 0.1
+        chargeCell.birthRate = 0
+        chargeCell.velocity = -60.0
+        chargeCell.velocityRange = 0.00
+        chargeCell.contents = UIImage(named: "Sparkle")?.CGImage
+        chargeCell.scale = 0.05
+        chargeCell.scaleRange = 0.02
+        
+        let chargeLayer = CAEmitterLayer()
+        chargeLayer.name = "emitterLayer"
+        chargeLayer.emitterShape = kCAEmitterLayerCircle
+        chargeLayer.emitterMode = kCAEmitterLayerOutline
+        chargeLayer.emitterSize = CGSizeMake(emitterWidth - 10, 0)
+        
+        chargeLayer.emitterPosition = center
+        chargeLayer.emitterCells = [chargeCell]
+        chargeLayer.masksToBounds = false
+        likeView.layer.addSublayer(chargeLayer)
+        self.chargeLayer = chargeLayer
     }
     
     func handleNewsTapGesture(recognizer:UITapGestureRecognizer) {
@@ -291,7 +336,52 @@ class BigNewsDetailCell: UICollectionViewCell {
         }
     }
     
-    func anchorPointSetting() {
+}
+
+private extension BigNewsDetailCell {
+    @IBAction func likeOrNot(sender: AnyObject) {
+        if isLike == false {
+            addKeyFrameAnimation(1.3, durationArray: [0.05,0.1,0.23,0.195,0.155,0.12], delayArray: [0.0,0.0,0.1,0.0,0.0,0.0], scaleArray: [0.75,1.8,0.8,1.0,0.95,1.0],isPlaySound: true)
+            chargeLayer.setValue(100, forKeyPath: "emitterCells.charge.birthRate")
+            delay((0.05 + 0.1 + 0.23) * 1.3, closure: { () -> Void in
+                self.chargeLayer.setValue(0, forKeyPath: "emitterCells.charge.birthRate")
+                self.explosionLayer.setValue(1000, forKeyPath: "emitterCells.explosion.birthRate")
+                self.delay(0.1, closure: { () -> Void in
+                    self.explosionLayer.setValue(0, forKeyPath: "emitterCells.explosion.birthRate")
+                })
+                AudioServicesPlaySystemSound(self.soundID)
+            })
+            likeButton.setImage(UIImage(named: "Like-Blue"), forState: UIControlState.Normal)
+        }else {
+            addKeyFrameAnimation(0.9, durationArray: [0.20,0.275,0.275,0.25], delayArray: [0.0,0.0,0.0,0.0], scaleArray: [0.7,1.0,0.95,1.0],isPlaySound: false)
+            likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
+        }
+        isLike = !isLike
+    }
+    
+    private func addKeyFrameAnimation(duration:NSTimeInterval,durationArray:[Double],delayArray:[Double],scaleArray:[CGFloat],isPlaySound:Bool) {
+        UIView.animateKeyframesWithDuration(duration, delay: 0.0, options: UIViewKeyframeAnimationOptions.CalculationModeLinear, animations: { () -> Void in
+            var startTime:Double = 0
+            for index in 0..<durationArray.count {
+                let relativeDuration = durationArray[index]
+                let scale = scaleArray[index]
+                let delay = delayArray[index]
+                UIView.addKeyframeWithRelativeStartTime(startTime + delay, relativeDuration: relativeDuration, animations: { () -> Void in
+                    self.likeButton.transform = CGAffineTransformMakeScale(scale, scale)
+                })
+                startTime += relativeDuration
+            }
+            }, completion: { (stop:Bool) -> Void in
+        })
+    }
+    
+    private func loadWebViewRequest() {
+        if self.isHasRequest == false {
+            self.webView.loadRequest(self.webViewRequest)
+            self.isHasRequest = true
+        }
+    }
+    private func anchorPointSetting() {
         newsView.layer.anchorPoint = CGPointMake(0.5, 0)
         newsViewBottomConstraint.constant = newsViewWidth
         shiningView.layer.anchorPoint = CGPointMake(0.5, 0)
@@ -299,8 +389,26 @@ class BigNewsDetailCell: UICollectionViewCell {
         baseLayerView.layer.anchorPoint = CGPointMake(0.5, 0)
         baseLayerViewBottomConstraint.constant = newsViewWidth
     }
+    private func getWebViewScreenShot() -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(webView.frame.size, false, 1.0)
+        webView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
     
-    func tapNewsView() {
+    private func getSubImageFrom(originImage:UIImage,frame:CGRect) -> UIImage {
+        let imageRef = originImage.CGImage
+        let subImageRef = CGImageCreateWithImageInRect(imageRef, frame)
+        UIGraphicsBeginImageContext(frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextDrawImage(context, frame, subImageRef)
+        let subImage = UIImage(CGImage: subImageRef!)
+        UIGraphicsEndImageContext();
+        return subImage;
+    }
+    
+    private func tapNewsView() {
         UIView.animateWithDuration(animateDuration * Double((CGFloat(M_PI) - transform3DAngleFold) / CGFloat(M_PI * 2)), delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             self.newsView.layer.transform = CATransform3DConcat(CATransform3DRotate(self.transform3D, CGFloat(M_PI_2), 1, 0, 0),CATransform3DMakeTranslation(self.translationInSelf.x, 0, 0))
             self.shiningView.layer.transform = CATransform3DConcat(CATransform3DRotate(self.transform3D, CGFloat(M_PI_2), 1, 0, 0),CATransform3DMakeTranslation(self.translationInSelf.x, 0, 0))
@@ -330,7 +438,7 @@ class BigNewsDetailCell: UICollectionViewCell {
         })
     }
     
-    func normalLayoutNewsView() {
+    private func normalLayoutNewsView() {
         UIView.animateWithDuration(animateDuration, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             self.newsView.layer.transform = CATransform3DIdentity
             self.shiningView.layer.transform = CATransform3DIdentity
@@ -350,7 +458,7 @@ class BigNewsDetailCell: UICollectionViewCell {
         })
     }
     
-    func gestureStateChangedSetting(targetAngle:CGFloat) {
+    private func gestureStateChangedSetting(targetAngle:CGFloat) {
         if targetAngle / CGFloat(M_PI) >= 0.5 {
             upperScreenShot.alpha = 1.0
             shiningImage.alpha = 0

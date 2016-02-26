@@ -99,13 +99,25 @@
                                             <constraint firstAttribute="height" constant="1" id="tyb-8s-GhN"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBw-p2-RQp">
+                                        <rect key="frame" x="13" y="-1" width="48" height="55"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="AHB-Ff-Zsx"/>
+                                            <constraint firstAttribute="height" constant="55" id="mPN-Va-a8L"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90z-gJ-6GE">
                                         <rect key="frame" x="20" y="0.0" width="48" height="55"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="osR-P4-hsi"/>
                                             <constraint firstAttribute="width" constant="48" id="yjQ-ma-x8H"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="Like.png"/>
+                                        <state key="normal" image="Like.png"/>
+                                        <connections>
+                                            <action selector="likeOrNot:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8nM-yz-aDr"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zR-EL-zJa">
                                         <rect key="frame" x="68" y="0.0" width="44" height="55"/>
@@ -141,6 +153,7 @@
                                     <constraint firstItem="90z-gJ-6GE" firstAttribute="leading" secondItem="IFC-fv-c7v" secondAttribute="leading" constant="20" id="5vz-UX-VxS"/>
                                     <constraint firstAttribute="trailing" secondItem="nbr-qw-JbM" secondAttribute="trailing" constant="20" id="8lo-wM-hsW"/>
                                     <constraint firstAttribute="trailing" secondItem="2Mv-mb-5Yz" secondAttribute="trailing" constant="20.5" id="8uk-OX-PoV"/>
+                                    <constraint firstItem="ZBw-p2-RQp" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" constant="-1" id="CMs-aB-iwy"/>
                                     <constraint firstItem="4zR-EL-zJa" firstAttribute="leading" secondItem="90z-gJ-6GE" secondAttribute="trailing" id="ELF-T3-pjO"/>
                                     <constraint firstItem="4zR-EL-zJa" firstAttribute="leading" secondItem="90z-gJ-6GE" secondAttribute="trailing" id="GMc-1r-6HP"/>
                                     <constraint firstAttribute="trailing" secondItem="rke-sx-Jv9" secondAttribute="trailing" constant="20.5" id="Jee-aA-lWl"/>
@@ -151,6 +164,7 @@
                                     <constraint firstItem="2Mv-mb-5Yz" firstAttribute="top" secondItem="nbr-qw-JbM" secondAttribute="bottom" constant="12" id="eIm-hP-Sge"/>
                                     <constraint firstAttribute="height" id="ecG-A2-dk7"/>
                                     <constraint firstItem="nbr-qw-JbM" firstAttribute="leading" secondItem="IFC-fv-c7v" secondAttribute="leading" constant="20" id="fhq-ip-WIh"/>
+                                    <constraint firstItem="ZBw-p2-RQp" firstAttribute="leading" secondItem="IFC-fv-c7v" secondAttribute="leading" constant="13" id="fkl-7p-e70"/>
                                     <constraint firstItem="nbr-qw-JbM" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" id="sfI-U0-TIQ"/>
                                     <constraint firstItem="0Bn-uJ-EdZ" firstAttribute="leading" secondItem="4zR-EL-zJa" secondAttribute="trailing" id="t0j-m7-O1I"/>
                                     <constraint firstItem="4zR-EL-zJa" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" id="zVH-A6-ekc"/>
@@ -353,6 +367,8 @@
                 <outlet property="baseScreenShot" destination="ihh-El-yjP" id="aIs-37-X2Z"/>
                 <outlet property="bottomViewHeightConstraint" destination="ecG-A2-dk7" id="qnb-yq-vIq"/>
                 <outlet property="coreViewBottomConstraint" destination="9DT-Vg-G7c" id="Det-12-Mn1"/>
+                <outlet property="likeButton" destination="90z-gJ-6GE" id="gzf-nQ-8b9"/>
+                <outlet property="likeView" destination="ZBw-p2-RQp" id="Sfu-Lb-hsx"/>
                 <outlet property="nameLabel" destination="QL4-r5-b4u" id="lUf-5z-hd3"/>
                 <outlet property="newsView" destination="dzr-mW-ztz" id="zgk-WN-Asw"/>
                 <outlet property="newsViewBottomConstraint" destination="dIy-UX-Dwf" id="CK5-wf-7Ny"/>
