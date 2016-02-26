@@ -36,8 +36,6 @@
 		EA5416971C51CBCA00E4FFA7 /* Like-Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416861C51CBCA00E4FFA7 /* Like-Blue@3x.png */; };
 		EA5416981C51CBCA00E4FFA7 /* Like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416871C51CBCA00E4FFA7 /* Like@2x.png */; };
 		EA5416991C51CBCA00E4FFA7 /* Like@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416881C51CBCA00E4FFA7 /* Like@3x.png */; };
-		EA54169A1C51CBCA00E4FFA7 /* LikePhoto-Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416891C51CBCA00E4FFA7 /* LikePhoto-Blue@2x.png */; };
-		EA54169B1C51CBCA00E4FFA7 /* LikePhoto-Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA54168A1C51CBCA00E4FFA7 /* LikePhoto-Blue@3x.png */; };
 		EA54169C1C51CBCA00E4FFA7 /* LikePhoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA54168B1C51CBCA00E4FFA7 /* LikePhoto@2x.png */; };
 		EA54169D1C51CBCA00E4FFA7 /* LikePhoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA54168C1C51CBCA00E4FFA7 /* LikePhoto@3x.png */; };
 		EA54169E1C51CBCA00E4FFA7 /* Share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA54168D1C51CBCA00E4FFA7 /* Share@2x.png */; };
@@ -46,6 +44,7 @@
 		EA5416A11C51CBCA00E4FFA7 /* SharePhoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416901C51CBCA00E4FFA7 /* SharePhoto@3x.png */; };
 		EA5416A21C51CBCA00E4FFA7 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416911C51CBCA00E4FFA7 /* Sparkle.png */; };
 		EA5416A61C520C5900E4FFA7 /* NewsTopShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */; };
+		EA65E9591C808E4D0081EA5F /* Pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9581C808E4D0081EA5F /* Pop.wav */; };
 		EA78CF651C3809FD0092F84D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF641C3809FD0092F84D /* AppDelegate.swift */; };
 		EA78CF671C3809FD0092F84D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF661C3809FD0092F84D /* ViewController.swift */; };
 		EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA78CF681C3809FD0092F84D /* Main.storyboard */; };
@@ -127,8 +126,6 @@
 		EA5416861C51CBCA00E4FFA7 /* Like-Blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Like-Blue@3x.png"; sourceTree = "<group>"; };
 		EA5416871C51CBCA00E4FFA7 /* Like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Like@2x.png"; sourceTree = "<group>"; };
 		EA5416881C51CBCA00E4FFA7 /* Like@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Like@3x.png"; sourceTree = "<group>"; };
-		EA5416891C51CBCA00E4FFA7 /* LikePhoto-Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikePhoto-Blue@2x.png"; sourceTree = "<group>"; };
-		EA54168A1C51CBCA00E4FFA7 /* LikePhoto-Blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikePhoto-Blue@3x.png"; sourceTree = "<group>"; };
 		EA54168B1C51CBCA00E4FFA7 /* LikePhoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikePhoto@2x.png"; sourceTree = "<group>"; };
 		EA54168C1C51CBCA00E4FFA7 /* LikePhoto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LikePhoto@3x.png"; sourceTree = "<group>"; };
 		EA54168D1C51CBCA00E4FFA7 /* Share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Share@2x.png"; sourceTree = "<group>"; };
@@ -137,6 +134,7 @@
 		EA5416901C51CBCA00E4FFA7 /* SharePhoto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SharePhoto@3x.png"; sourceTree = "<group>"; };
 		EA5416911C51CBCA00E4FFA7 /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewsTopShadow@2x.png"; sourceTree = "<group>"; };
+		EA65E9581C808E4D0081EA5F /* Pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pop.wav; sourceTree = "<group>"; };
 		EA78CF611C3809FD0092F84D /* LSYPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSYPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA78CF641C3809FD0092F84D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA78CF661C3809FD0092F84D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -364,8 +362,6 @@
 				EA5416861C51CBCA00E4FFA7 /* Like-Blue@3x.png */,
 				EA5416871C51CBCA00E4FFA7 /* Like@2x.png */,
 				EA5416881C51CBCA00E4FFA7 /* Like@3x.png */,
-				EA5416891C51CBCA00E4FFA7 /* LikePhoto-Blue@2x.png */,
-				EA54168A1C51CBCA00E4FFA7 /* LikePhoto-Blue@3x.png */,
 				EA54168B1C51CBCA00E4FFA7 /* LikePhoto@2x.png */,
 				EA54168C1C51CBCA00E4FFA7 /* LikePhoto@3x.png */,
 				EA54168D1C51CBCA00E4FFA7 /* Share@2x.png */,
@@ -375,6 +371,7 @@
 				EA5416911C51CBCA00E4FFA7 /* Sparkle.png */,
 				EAD45B011C731F4900518BD4 /* shining@2x.png */,
 				EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */,
+				EA65E9581C808E4D0081EA5F /* Pop.wav */,
 				EA78CFB51C3D0ED20092F84D /* tmpPNG */,
 			);
 			name = Resource;
@@ -493,6 +490,7 @@
 				EA5416A01C51CBCA00E4FFA7 /* SharePhoto@2x.png in Resources */,
 				EA54166F1C51C8A200E4FFA7 /* FeedStore@2x.png in Resources */,
 				EA78CFC51C3D10160092F84D /* SectionCoverFamily@2x.jpg in Resources */,
+				EA65E9591C808E4D0081EA5F /* Pop.wav in Resources */,
 				EA5416661C51366800E4FFA7 /* theguardianNameLogo@2x.png in Resources */,
 				EA5416701C51C8A200E4FFA7 /* FeedStore@3x.png in Resources */,
 				EA78CFDA1C3D41000092F84D /* Notifications@2x.png in Resources */,
@@ -522,7 +520,6 @@
 				EA78CFB21C3D07530092F84D /* Default-iOS7@2x.png in Resources */,
 				EA78CFE71C3D79170092F84D /* SectionCoverStyles@2x.jpg in Resources */,
 				EA5416441C50F27F00E4FFA7 /* fav9@2x.jpg in Resources */,
-				EA54169A1C51CBCA00E4FFA7 /* LikePhoto-Blue@2x.png in Resources */,
 				EA78CFB01C3D07530092F84D /* Default-iOS7-667h@2x.png in Resources */,
 				EA78D0051C43CF370092F84D /* smallMusk@2x.jpg in Resources */,
 				EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */,
@@ -538,7 +535,6 @@
 				EA5416A11C51CBCA00E4FFA7 /* SharePhoto@3x.png in Resources */,
 				EA5416461C50F27F00E4FFA7 /* fav11@2x.jpg in Resources */,
 				EA78CFD91C3D41000092F84D /* Messages@3x.png in Resources */,
-				EA54169B1C51CBCA00E4FFA7 /* LikePhoto-Blue@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
