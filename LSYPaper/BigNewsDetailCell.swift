@@ -49,6 +49,11 @@ class BigNewsDetailCell: UICollectionViewCell {
     @IBOutlet weak var newsView: UIView!
     
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var summaryLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var bottomView: UIView!
     
     private var panNewsView:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var panWebView:UIPanGestureRecognizer = UIPanGestureRecognizer()
@@ -57,7 +62,29 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var bottomLayer:CALayer = CALayer()
     private var isHasRequest:Bool = false
     private var isLike:Bool = false
-    
+    private var isShare:Bool = false
+    private var isDarkMode:Bool = false {
+        didSet {
+            if isDarkMode == true {
+                if isLike == false {
+                    likeButton.setImage(UIImage(named: "LikePhoto"), forState: UIControlState.Normal)
+                }
+                commentButton.setImage(UIImage(named: "CommentPhoto"), forState: UIControlState.Normal)
+                shareButton.setImage(UIImage(named: "SharePhoto"), forState: UIControlState.Normal)
+                summaryLabel.textColor = UIColor.whiteColor()
+                commentLabel.textColor = UIColor.whiteColor()
+            }else {
+                if isLike == false {
+                    likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
+                }
+                commentButton.setImage(UIImage(named: "Comment"), forState: UIControlState.Normal)
+                shareButton.setImage(UIImage(named: "Share"), forState: UIControlState.Normal)
+                summaryLabel.textColor = UIColor.lightGrayColor()
+                commentLabel.textColor = UIColor.lightGrayColor()
+            }
+        }
+    }
+
     private var locationInSelf:CGPoint = CGPointZero
     private var translationInSelf:CGPoint = CGPointZero
     private var velocityInSelf:CGPoint = CGPointZero
@@ -137,6 +164,7 @@ class BigNewsDetailCell: UICollectionViewCell {
         webView.addGestureRecognizer(webViewPan)
         panWebView = webViewPan
         
+        // heavily refer to MCFireworksView by Matthew Cheok
         let explosionCell = CAEmitterCell()
         explosionCell.name = "explosion"
         explosionCell.alphaRange = 0.2
@@ -339,9 +367,24 @@ class BigNewsDetailCell: UICollectionViewCell {
 }
 
 private extension BigNewsDetailCell {
+    
+    @IBAction func showShareOrNot(sender: AnyObject) {
+        if isShare == false {
+            isDarkMode = true
+            self.contentView.bringSubviewToFront(self.totalView)
+            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 55 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share, inView: self.totalView, frontView: self.bottomView)
+        }else {
+            isDarkMode = false
+            LSYPaperPopView.hidePaperPopView(self.totalView)
+            self.contentView.sendSubviewToBack(self.totalView)
+        }
+        shareButton.addSpringAnimation()
+        isShare = !isShare
+    }
+    
     @IBAction func likeOrNot(sender: AnyObject) {
         if isLike == false {
-            addKeyFrameAnimation(1.3, durationArray: [0.05,0.1,0.23,0.195,0.155,0.12], delayArray: [0.0,0.0,0.1,0.0,0.0,0.0], scaleArray: [0.75,1.8,0.8,1.0,0.95,1.0],isPlaySound: true)
+            likeButton.addSpringAnimation(1.3, durationArray: [0.05,0.1,0.23,0.195,0.155,0.12], delayArray: [0.0,0.0,0.1,0.0,0.0,0.0], scaleArray: [0.75,1.8,0.8,1.0,0.95,1.0])
             chargeLayer.setValue(100, forKeyPath: "emitterCells.charge.birthRate")
             delay((0.05 + 0.1 + 0.23) * 1.3, closure: { () -> Void in
                 self.chargeLayer.setValue(0, forKeyPath: "emitterCells.charge.birthRate")
@@ -352,27 +395,16 @@ private extension BigNewsDetailCell {
                 AudioServicesPlaySystemSound(self.soundID)
             })
             likeButton.setImage(UIImage(named: "Like-Blue"), forState: UIControlState.Normal)
+            self.commentLabel.text = "Awesome!"
+            self.commentLabel.addFadeAnimation()
         }else {
-            addKeyFrameAnimation(0.9, durationArray: [0.20,0.275,0.275,0.25], delayArray: [0.0,0.0,0.0,0.0], scaleArray: [0.7,1.0,0.95,1.0],isPlaySound: false)
-            likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
+            likeButton.addSpringAnimation()
+            let image = isDarkMode == false ? UIImage(named: "Like") : UIImage(named: "LikePhoto")
+            likeButton.setImage(image, forState: UIControlState.Normal)
+            self.commentLabel.text = "Write a comment"
+            self.commentLabel.addFadeAnimation()
         }
         isLike = !isLike
-    }
-    
-    private func addKeyFrameAnimation(duration:NSTimeInterval,durationArray:[Double],delayArray:[Double],scaleArray:[CGFloat],isPlaySound:Bool) {
-        UIView.animateKeyframesWithDuration(duration, delay: 0.0, options: UIViewKeyframeAnimationOptions.CalculationModeLinear, animations: { () -> Void in
-            var startTime:Double = 0
-            for index in 0..<durationArray.count {
-                let relativeDuration = durationArray[index]
-                let scale = scaleArray[index]
-                let delay = delayArray[index]
-                UIView.addKeyframeWithRelativeStartTime(startTime + delay, relativeDuration: relativeDuration, animations: { () -> Void in
-                    self.likeButton.transform = CGAffineTransformMakeScale(scale, scale)
-                })
-                startTime += relativeDuration
-            }
-            }, completion: { (stop:Bool) -> Void in
-        })
     }
     
     private func loadWebViewRequest() {

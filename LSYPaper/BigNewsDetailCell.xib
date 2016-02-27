@@ -125,7 +125,7 @@
                                             <constraint firstAttribute="width" constant="44" id="M4l-vg-N7x"/>
                                             <constraint firstAttribute="height" constant="55" id="ag6-v2-3DQ"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="Comment.png"/>
+                                        <state key="normal" image="Comment.png"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bn-uJ-EdZ">
                                         <rect key="frame" x="112" y="-1" width="48" height="55"/>
@@ -133,7 +133,10 @@
                                             <constraint firstAttribute="width" constant="48" id="Dv1-LY-pzy"/>
                                             <constraint firstAttribute="height" constant="55" id="lKt-jk-ceh"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="Share.png"/>
+                                        <state key="normal" image="Share.png"/>
+                                        <connections>
+                                            <action selector="showShareOrNot:" destination="gTV-IL-0wX" eventType="touchUpInside" id="oEX-L6-cSE"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.2K Likes  88 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-mb-5Yz">
                                         <rect key="frame" x="215" y="13" width="139.5" height="13.5"/>
@@ -148,7 +151,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="90z-gJ-6GE" firstAttribute="leading" secondItem="IFC-fv-c7v" secondAttribute="leading" constant="20" id="5vz-UX-VxS"/>
                                     <constraint firstAttribute="trailing" secondItem="nbr-qw-JbM" secondAttribute="trailing" constant="20" id="8lo-wM-hsW"/>
@@ -365,7 +368,10 @@
                 <outlet property="baseLayerView" destination="5Cs-mJ-C56" id="gzY-Tq-TzS"/>
                 <outlet property="baseLayerViewBottomConstraint" destination="25U-C9-tlU" id="uDJ-hA-2az"/>
                 <outlet property="baseScreenShot" destination="ihh-El-yjP" id="aIs-37-X2Z"/>
+                <outlet property="bottomView" destination="IFC-fv-c7v" id="dpJ-kD-5Rn"/>
                 <outlet property="bottomViewHeightConstraint" destination="ecG-A2-dk7" id="qnb-yq-vIq"/>
+                <outlet property="commentButton" destination="4zR-EL-zJa" id="ZhR-7U-fWl"/>
+                <outlet property="commentLabel" destination="rke-sx-Jv9" id="QSG-yh-Ku4"/>
                 <outlet property="coreViewBottomConstraint" destination="9DT-Vg-G7c" id="Det-12-Mn1"/>
                 <outlet property="likeButton" destination="90z-gJ-6GE" id="gzf-nQ-8b9"/>
                 <outlet property="likeView" destination="ZBw-p2-RQp" id="Sfu-Lb-hsx"/>
@@ -375,9 +381,11 @@
                 <outlet property="realBaseView" destination="n3i-jn-spQ" id="uFI-QP-g30"/>
                 <outlet property="realShiningView" destination="fZl-ma-iRy" id="1to-9Y-W8V"/>
                 <outlet property="shadowView" destination="Dek-g6-hgQ" id="CD3-f5-41I"/>
+                <outlet property="shareButton" destination="0Bn-uJ-EdZ" id="KZ5-Dz-OnQ"/>
                 <outlet property="shiningImage" destination="doY-Cg-jQL" id="Tog-tV-ZBQ"/>
                 <outlet property="shiningView" destination="PRD-yF-2ya" id="rAU-JH-5B8"/>
                 <outlet property="shiningViewBottomConstraint" destination="Vjn-hX-Tfo" id="5IA-dR-gUo"/>
+                <outlet property="summaryLabel" destination="2Mv-mb-5Yz" id="lVZ-O0-4yH"/>
                 <outlet property="totalView" destination="VdS-ru-N12" id="Mmz-Mj-xay"/>
                 <outlet property="upperScreenShot" destination="Sko-X1-vng" id="wJo-z2-Sjh"/>
                 <outlet property="webView" destination="WaF-o1-cxB" id="sAI-Lb-eXQ"/>
