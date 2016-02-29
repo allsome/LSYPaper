@@ -365,7 +365,7 @@ private extension ViewController {
         }
         self.pageControl = pageControl
         view.addSubview(pageControl)
-        view.setSpecialCorner([UIRectCorner.TopLeft,UIRectCorner.TopRight])
+//        view.setSpecialCorner([UIRectCorner.TopLeft,UIRectCorner.TopRight])
     }
     
     private func setMessageView() {

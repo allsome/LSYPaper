@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCX-R2-CTU" userLabel="BigCell">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixx-0t-ArS">
                                         <rect key="frame" x="25" y="116" width="325" height="60.5"/>
@@ -88,6 +88,25 @@
                                     <constraint firstItem="RJX-hl-Byb" firstAttribute="leading" secondItem="kCX-R2-CTU" secondAttribute="leading" constant="25" id="axB-q3-plm"/>
                                     <constraint firstItem="ixx-0t-ArS" firstAttribute="top" secondItem="RJX-hl-Byb" secondAttribute="bottom" constant="2" id="eD8-zJ-vh5"/>
                                 </constraints>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8k8-OT-6Zx" userLabel="alphaView">
+                                <rect key="frame" x="25" y="322" width="325" height="325"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8k8-OT-6Zx" secondAttribute="height" multiplier="1:1" id="aZs-GD-nGI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juj-Fg-IPn">
+                                <rect key="frame" x="0.0" y="322" width="24" height="325"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohj-Z6-1HM">
+                                <rect key="frame" x="351" y="322" width="24" height="325"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlZ-b8-F5p">
+                                <rect key="frame" x="0.0" y="650" width="375" height="17"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFC-fv-c7v" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
@@ -178,12 +197,33 @@
                         <constraints>
                             <constraint firstItem="kCX-R2-CTU" firstAttribute="leading" secondItem="VdS-ru-N12" secondAttribute="leading" id="13W-kd-b1O"/>
                             <constraint firstItem="kCX-R2-CTU" firstAttribute="top" secondItem="VdS-ru-N12" secondAttribute="top" id="8q8-Hc-SoV"/>
+                            <constraint firstItem="Ohj-Z6-1HM" firstAttribute="leading" secondItem="8k8-OT-6Zx" secondAttribute="trailing" constant="1" id="Aw5-jp-b5q"/>
+                            <constraint firstItem="8k8-OT-6Zx" firstAttribute="leading" secondItem="VdS-ru-N12" secondAttribute="leading" constant="25" id="Ck0-t4-Wkc"/>
+                            <constraint firstItem="IFC-fv-c7v" firstAttribute="top" secondItem="juj-Fg-IPn" secondAttribute="bottom" constant="20" id="FjA-mT-i1Z"/>
                             <constraint firstItem="IFC-fv-c7v" firstAttribute="leading" secondItem="VdS-ru-N12" secondAttribute="leading" id="HUW-sL-1Kl"/>
                             <constraint firstAttribute="bottom" secondItem="IFC-fv-c7v" secondAttribute="bottom" id="Pdm-el-irc"/>
                             <constraint firstAttribute="bottom" secondItem="kCX-R2-CTU" secondAttribute="bottom" id="ReK-c6-2is"/>
+                            <constraint firstItem="jlZ-b8-F5p" firstAttribute="leading" secondItem="VdS-ru-N12" secondAttribute="leading" id="U6N-yf-2su"/>
+                            <constraint firstItem="IFC-fv-c7v" firstAttribute="top" secondItem="8k8-OT-6Zx" secondAttribute="bottom" constant="20" id="VE6-cW-CVV"/>
+                            <constraint firstItem="Ohj-Z6-1HM" firstAttribute="top" secondItem="kCX-R2-CTU" secondAttribute="bottom" id="VEj-q6-Clz"/>
+                            <constraint firstAttribute="trailing" secondItem="8k8-OT-6Zx" secondAttribute="trailing" constant="25" id="XLu-Qg-oVg"/>
+                            <constraint firstAttribute="trailing" secondItem="Ohj-Z6-1HM" secondAttribute="trailing" id="eJs-zf-AdV"/>
+                            <constraint firstItem="juj-Fg-IPn" firstAttribute="top" secondItem="kCX-R2-CTU" secondAttribute="bottom" id="fi8-V4-eqJ"/>
+                            <constraint firstItem="IFC-fv-c7v" firstAttribute="top" secondItem="Ohj-Z6-1HM" secondAttribute="bottom" constant="20" id="gHO-sv-oEG"/>
                             <constraint firstAttribute="trailing" secondItem="kCX-R2-CTU" secondAttribute="trailing" id="gmM-bD-tz0"/>
+                            <constraint firstItem="jlZ-b8-F5p" firstAttribute="top" secondItem="Ohj-Z6-1HM" secondAttribute="bottom" constant="3" id="iMA-QT-GeH"/>
+                            <constraint firstItem="juj-Fg-IPn" firstAttribute="leading" secondItem="VdS-ru-N12" secondAttribute="leading" id="n2Y-7q-K2H"/>
                             <constraint firstAttribute="trailing" secondItem="IFC-fv-c7v" secondAttribute="trailing" id="nUR-TC-sHh"/>
+                            <constraint firstItem="8k8-OT-6Zx" firstAttribute="leading" secondItem="juj-Fg-IPn" secondAttribute="trailing" constant="1" id="qXQ-5l-Q5B"/>
+                            <constraint firstItem="IFC-fv-c7v" firstAttribute="top" secondItem="jlZ-b8-F5p" secondAttribute="bottom" id="qsh-7v-6CI"/>
+                            <constraint firstAttribute="trailing" secondItem="jlZ-b8-F5p" secondAttribute="trailing" id="tWZ-C9-EsG"/>
+                            <constraint firstItem="8k8-OT-6Zx" firstAttribute="top" secondItem="kCX-R2-CTU" secondAttribute="bottom" id="txC-Zd-UYw"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ReK-c6-2is"/>
+                            </mask>
+                        </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgc-dO-Mta" userLabel="coreView">
                         <rect key="frame" x="25" y="322" width="325" height="325"/>
@@ -365,6 +405,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="alphaView" destination="8k8-OT-6Zx" id="ss7-tw-tYp"/>
                 <outlet property="baseLayerView" destination="5Cs-mJ-C56" id="gzY-Tq-TzS"/>
                 <outlet property="baseLayerViewBottomConstraint" destination="25U-C9-tlU" id="uDJ-hA-2az"/>
                 <outlet property="baseScreenShot" destination="ihh-El-yjP" id="aIs-37-X2Z"/>
@@ -372,6 +413,7 @@
                 <outlet property="bottomViewHeightConstraint" destination="ecG-A2-dk7" id="qnb-yq-vIq"/>
                 <outlet property="commentButton" destination="4zR-EL-zJa" id="ZhR-7U-fWl"/>
                 <outlet property="commentLabel" destination="rke-sx-Jv9" id="QSG-yh-Ku4"/>
+                <outlet property="coreView" destination="Dgc-dO-Mta" id="6GD-EO-A0m"/>
                 <outlet property="coreViewBottomConstraint" destination="9DT-Vg-G7c" id="Det-12-Mn1"/>
                 <outlet property="likeButton" destination="90z-gJ-6GE" id="gzf-nQ-8b9"/>
                 <outlet property="likeView" destination="ZBw-p2-RQp" id="Sfu-Lb-hsx"/>

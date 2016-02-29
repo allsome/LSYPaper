@@ -17,7 +17,6 @@ class LSYPaperPopView: UIView {
     
     private var targetFrame:CGRect = CGRectZero
     private var backgroundView:UIView = UIView()
-    
     override func layoutSubviews() {
         frame = targetFrame
     }
@@ -45,7 +44,7 @@ class LSYPaperPopView: UIView {
         }
     }
     
-    class func hidePaperPopView(fromView:UIView) {
+    class func hidePaperPopView(fromView:UIView,completion: (() -> Void)?) {
         let subViewsEnum = fromView.subviews.reverse()
         var popView = LSYPaperPopView()
         for subView in subViewsEnum {
@@ -59,6 +58,9 @@ class LSYPaperPopView: UIView {
             }) { (stop:Bool) -> Void in
                 popView.removeFromSuperview()
                 popView.backgroundView.removeFromSuperview()
+                if completion != nil {
+                    completion!()
+                }
         }
     }
 

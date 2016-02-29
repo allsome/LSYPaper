@@ -125,6 +125,9 @@ class BigNewsDetailCell: UICollectionViewCell {
         return soundID
     }
     @IBOutlet weak var likeView: UIView!
+    @IBOutlet weak var alphaView: UIView!
+    @IBOutlet weak var coreView: UIView!
+    
     private var explosionLayer:CAEmitterLayer = CAEmitterLayer()
     private var chargeLayer:CAEmitterLayer = CAEmitterLayer()
     
@@ -134,6 +137,9 @@ class BigNewsDetailCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        layer.masksToBounds = true
+        layer.cornerRadius = CORNER_REDIUS
+        
         totalView.layer.masksToBounds = true
         totalView.layer.cornerRadius = cellGap * 2
         shadowView.layer.shadowColor = UIColor.blackColor().CGColor
@@ -371,12 +377,13 @@ private extension BigNewsDetailCell {
     @IBAction func showShareOrNot(sender: AnyObject) {
         if isShare == false {
             isDarkMode = true
-            self.contentView.bringSubviewToFront(self.totalView)
-            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 55 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share, inView: self.totalView, frontView: self.bottomView)
+            sendCoreViewToBack()
+            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 55 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
         }else {
             isDarkMode = false
-            LSYPaperPopView.hidePaperPopView(self.totalView)
-            self.contentView.sendSubviewToBack(self.totalView)
+            LSYPaperPopView.hidePaperPopView(totalView, completion: { () -> Void in
+                self.bringCoreViewToFront()
+            })
         }
         shareButton.addSpringAnimation()
         isShare = !isShare
@@ -405,6 +412,19 @@ private extension BigNewsDetailCell {
             self.commentLabel.addFadeAnimation()
         }
         isLike = !isLike
+    }
+    
+    private func bringCoreViewToFront() {
+        totalView.backgroundColor = UIColor.whiteColor()
+        contentView.backgroundColor = UIColor.clearColor()
+        contentView.bringSubviewToFront(coreView)
+        contentView.bringSubviewToFront(webView)
+    }
+    
+    private func sendCoreViewToBack() {
+        totalView.backgroundColor = UIColor.clearColor()
+        contentView.backgroundColor = UIColor.whiteColor()
+        contentView.sendSubviewToBack(coreView)
     }
     
     private func loadWebViewRequest() {
