@@ -16,7 +16,11 @@ public extension NSObject {
 
 public extension UIView {
     public func setSpecialCorner(cornerOption:UIRectCorner) {
-        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(CORNER_REDIUS, CORNER_REDIUS))
+        self.setSpecialCornerWith(frame: self.bounds, cornerOption: cornerOption)
+    }
+    
+    public func setSpecialCornerWith(frame frame:CGRect,cornerOption:UIRectCorner) {
+        let maskPath = UIBezierPath(roundedRect: frame, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(CORNER_REDIUS, CORNER_REDIUS))
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.CGPath

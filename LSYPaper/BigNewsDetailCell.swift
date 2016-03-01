@@ -63,6 +63,8 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var isHasRequest:Bool = false
     private var isLike:Bool = false
     private var isShare:Bool = false
+    private var isComment:Bool = false
+
     private var isDarkMode:Bool = false {
         didSet {
             if isDarkMode == true {
@@ -374,11 +376,28 @@ class BigNewsDetailCell: UICollectionViewCell {
 
 private extension BigNewsDetailCell {
     
+    @IBAction func showCommentOrNot(sender: UIButton) {
+        if isComment == false {
+            isDarkMode = true
+            sendCoreViewToBack()
+            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 448 - 37, SCREEN_WIDTH, 448), viewMode: LSYPaperPopViewMode.Comment,inView: totalView, frontView: bottomView)
+        }else {
+            isDarkMode = false
+            LSYPaperPopView.hidePaperPopView(totalView, completion: { () -> Void in
+                self.bringCoreViewToFront()
+            })
+        }
+        if sender.tag != 1 {
+            commentButton.addSpringAnimation()
+        }
+        isComment = !isComment
+    }
+    
     @IBAction func showShareOrNot(sender: AnyObject) {
         if isShare == false {
             isDarkMode = true
             sendCoreViewToBack()
-            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 55 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
+            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 54 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
         }else {
             isDarkMode = false
             LSYPaperPopView.hidePaperPopView(totalView, completion: { () -> Void in
