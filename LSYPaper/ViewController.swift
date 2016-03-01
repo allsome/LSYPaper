@@ -130,7 +130,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
+     func handleCollectPanGesture(recognizer:UIPanGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Began {
             let velocity = recognizer.velocityInView(view)
             if fabs(velocity.x) <= fabs(velocity.y) {
@@ -159,6 +159,13 @@ class ViewController: UIViewController {
                     tinyCollectionView.contentOffset = CGPointMake(locationRatio * (tinyCollectionViewLayout.minimumLineSpacing + tinyCollectionViewLayout.itemSize.width) - locationInView.x, 0)
                 }
 
+            }
+            if recognizer == fullScreenPanCollect {
+                let index:Int = Int((recognizer.locationInView(fullScreenCollectionView).x - fullScreenCollectSideInset - fullScreenGap) / SCREEN_WIDTH)
+                let currentCell = fullScreenCollectionView.cellForItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0)) as! BigNewsDetailCell
+                if currentCell.isDarkMode == true {
+                    currentCell.revokePopView()
+                }
             }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
             if isPanVertical {

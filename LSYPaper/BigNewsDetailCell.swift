@@ -57,6 +57,7 @@ class BigNewsDetailCell: UICollectionViewCell {
     
     private var panNewsView:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var panWebView:UIPanGestureRecognizer = UIPanGestureRecognizer()
+    private var tapSelf:UITapGestureRecognizer = UITapGestureRecognizer()
 
     private var topLayer:CALayer = CALayer()
     private var bottomLayer:CALayer = CALayer()
@@ -81,9 +82,10 @@ class BigNewsDetailCell: UICollectionViewCell {
         }
     }
 
-    private var isDarkMode:Bool = false {
+    var isDarkMode:Bool = false {
         didSet {
             if isDarkMode == true {
+                tapSelf.enabled = true
                 sendCoreViewToBack()
                 LSYPaperPopView.showBackgroundView(totalView)
                 if isLike == false {
@@ -94,6 +96,7 @@ class BigNewsDetailCell: UICollectionViewCell {
                 summaryLabel.textColor = UIColor.whiteColor()
                 commentLabel.textColor = UIColor.whiteColor()
             }else {
+                tapSelf.enabled = false
                 LSYPaperPopView.hideBackgroundView(totalView, completion: { () -> Void in
                     self.bringCoreViewToFront()
                 })
@@ -192,7 +195,10 @@ class BigNewsDetailCell: UICollectionViewCell {
         webViewPan.delegate = self
         webView.addGestureRecognizer(webViewPan)
         panWebView = webViewPan
-        
+        let tapContent = UITapGestureRecognizer(target: self, action: "handleContentTapGesture:")
+        contentView.addGestureRecognizer(tapContent)
+        tapContent.enabled = false
+        tapSelf = tapContent
         // heavily refer to MCFireworksView by Matthew Cheok
         let explosionCell = CAEmitterCell()
         explosionCell.name = "explosion"
@@ -246,6 +252,10 @@ class BigNewsDetailCell: UICollectionViewCell {
         chargeLayer.masksToBounds = false
         likeView.layer.addSublayer(chargeLayer)
         self.chargeLayer = chargeLayer
+    }
+    
+    func handleContentTapGesture(recognizer:UITapGestureRecognizer) {
+        revokePopView()
     }
     
     func handleNewsTapGesture(recognizer:UITapGestureRecognizer) {
@@ -393,9 +403,18 @@ class BigNewsDetailCell: UICollectionViewCell {
         }
     }
     
+    func revokePopView() {
+        isDarkMode = false
+        if isShare == true {
+            isShare = false
+        }else {
+            isComment = false
+        }
+    }
 }
 
 private extension BigNewsDetailCell {
+
     
     @IBAction func showCommentOrNot(sender: UIButton) {
         if isComment == false {
