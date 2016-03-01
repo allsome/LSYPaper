@@ -62,12 +62,30 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var bottomLayer:CALayer = CALayer()
     private var isHasRequest:Bool = false
     private var isLike:Bool = false
-    private var isShare:Bool = false
-    private var isComment:Bool = false
+    private var isShare:Bool = false {
+        didSet {
+            if isShare == true {
+                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 54 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
+            }else {
+                LSYPaperPopView.hidePopView(totalView)
+            }
+        }
+    }
+    private var isComment:Bool = false {
+        didSet {
+            if isComment == true {
+                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 448 - 37, SCREEN_WIDTH, 448), viewMode: LSYPaperPopViewMode.Comment,inView: totalView, frontView: bottomView)
+            }else {
+                LSYPaperPopView.hidePopView(totalView)
+            }
+        }
+    }
 
     private var isDarkMode:Bool = false {
         didSet {
             if isDarkMode == true {
+                sendCoreViewToBack()
+                LSYPaperPopView.showBackgroundView(totalView)
                 if isLike == false {
                     likeButton.setImage(UIImage(named: "LikePhoto"), forState: UIControlState.Normal)
                 }
@@ -76,6 +94,9 @@ class BigNewsDetailCell: UICollectionViewCell {
                 summaryLabel.textColor = UIColor.whiteColor()
                 commentLabel.textColor = UIColor.whiteColor()
             }else {
+                LSYPaperPopView.hideBackgroundView(totalView, completion: { () -> Void in
+                    self.bringCoreViewToFront()
+                })
                 if isLike == false {
                     likeButton.setImage(UIImage(named: "Like"), forState: UIControlState.Normal)
                 }
@@ -378,14 +399,13 @@ private extension BigNewsDetailCell {
     
     @IBAction func showCommentOrNot(sender: UIButton) {
         if isComment == false {
-            isDarkMode = true
-            sendCoreViewToBack()
-            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 448 - 37, SCREEN_WIDTH, 448), viewMode: LSYPaperPopViewMode.Comment,inView: totalView, frontView: bottomView)
+            if isDarkMode == false {
+                isDarkMode = true
+            }else {
+                isShare = false
+            }
         }else {
             isDarkMode = false
-            LSYPaperPopView.hidePaperPopView(totalView, completion: { () -> Void in
-                self.bringCoreViewToFront()
-            })
         }
         if sender.tag != 1 {
             commentButton.addSpringAnimation()
@@ -395,14 +415,13 @@ private extension BigNewsDetailCell {
     
     @IBAction func showShareOrNot(sender: AnyObject) {
         if isShare == false {
-            isDarkMode = true
-            sendCoreViewToBack()
-            LSYPaperPopView.showPaperPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 54 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
+            if isDarkMode == false {
+                isDarkMode = true
+            }else {
+                isComment = false
+            }
         }else {
             isDarkMode = false
-            LSYPaperPopView.hidePaperPopView(totalView, completion: { () -> Void in
-                self.bringCoreViewToFront()
-            })
         }
         shareButton.addSpringAnimation()
         isShare = !isShare

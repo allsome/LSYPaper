@@ -13,10 +13,12 @@ enum LSYPaperPopViewMode : Int {
     case Comment
 }
 
+private let backgroundViewTag:Int = -250
+private let animationDuration:NSTimeInterval = 0.6
+
 class LSYPaperPopView: UIView {
     
     private var targetFrame:CGRect = CGRectZero
-    private var backgroundView:UIView = UIView()
     @IBOutlet weak var cornerView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
@@ -26,7 +28,7 @@ class LSYPaperPopView: UIView {
         frame = targetFrame
     }
     
-    class func showPaperPopViewWith(frame:CGRect,viewMode:LSYPaperPopViewMode,inView:UIView,frontView:UIView) {
+    class func showPopViewWith(frame:CGRect,viewMode:LSYPaperPopViewMode,inView:UIView,frontView:UIView) {
         var name:String = ""
         if viewMode == LSYPaperPopViewMode.Share {
             name = "LSYPaperPopView"
@@ -51,26 +53,44 @@ class LSYPaperPopView: UIView {
         PopView.cornerView.layer.shadowOffset = CGSizeMake(0, 4)
         PopView.cornerView.layer.shadowOpacity = 0.3
         PopView.cornerView.layer.shadowRadius = 4.0
-        
-        let backgroundView = UIView(frame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
-        backgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
-        backgroundView.alpha = 0.0
-        backgroundView.userInteractionEnabled = false
-        PopView.backgroundView = backgroundView
         PopView.transform = CGAffineTransformMakeScale(0, 0)
         
-        inView.addSubview(PopView.backgroundView)
         inView.bringSubviewToFront(frontView)
         inView.addSubview(PopView)
 
-        UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.9, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-            PopView.backgroundView.alpha = 1.0
+        UIView.animateWithDuration(animationDuration, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.9, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
             PopView.transform = CGAffineTransformMakeScale(1, 1)
             }) { (stop:Bool) -> Void in
         }
     }
     
-    class func hidePaperPopView(fromView:UIView,completion: (() -> Void)?) {
+    class func showBackgroundView(inView:UIView) {
+        let backgroundView = UIView(frame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
+        backgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+        backgroundView.alpha = 0.0
+        backgroundView.userInteractionEnabled = false
+        backgroundView.tag = backgroundViewTag
+        
+        inView.addSubview(backgroundView)
+
+        UIView.animateWithDuration(animationDuration / 2) { () -> Void in
+            backgroundView.alpha = 1.0
+        }
+    }
+    
+    class func hideBackgroundView(fromView:UIView,completion: (() -> Void)?) {
+        let backgroundView = LSYPaperPopView.getBackgroundFrom(fromView)
+        UIView.animateWithDuration(0.20, animations: { () -> Void in
+            backgroundView.alpha = 0.0
+            }) { (stop:Bool) -> Void in
+                backgroundView.removeFromSuperview()
+                if completion != nil {
+                    completion!()
+                }
+        }
+    }
+    
+    class func hidePopView(fromView:UIView) {
         let subViewsEnum = fromView.subviews.reverse()
         var popView = LSYPaperPopView()
         for subView in subViewsEnum {
@@ -80,14 +100,31 @@ class LSYPaperPopView: UIView {
         }
         UIView.animateWithDuration(0.20, animations: { () -> Void in
             popView.transform = CGAffineTransformMakeScale(0.0001, 0.0001)
-            popView.backgroundView.alpha = 0.0
             }) { (stop:Bool) -> Void in
                 popView.removeFromSuperview()
-                popView.backgroundView.removeFromSuperview()
-                if completion != nil {
-                    completion!()
-                }
         }
     }
-
+    
+    class func getPopViewFrom(fromView:UIView) -> LSYPaperPopView {
+        let subViewsEnum = fromView.subviews.reverse()
+        var popView = LSYPaperPopView()
+        for subView in subViewsEnum {
+            if subView.isKindOfClass(self) {
+                popView = subView as! LSYPaperPopView
+                return popView
+            }
+        }
+        return popView
+    }
+    
+    class func getBackgroundFrom(fromView:UIView) -> UIView {
+        let subViewsEnum = fromView.subviews.reverse()
+        let backgroundView = UIView()
+        for subView in subViewsEnum {
+            if subView.tag == backgroundViewTag {
+                return subView
+            }
+        }
+        return backgroundView
+    }
 }
