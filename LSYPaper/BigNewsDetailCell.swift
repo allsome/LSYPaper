@@ -66,7 +66,7 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var isShare:Bool = false {
         didSet {
             if isShare == true {
-                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 54 - 350, SCREEN_WIDTH, 350), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
+                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 47 - sharePopViewHeight, SCREEN_WIDTH, sharePopViewHeight), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
             }else {
                 LSYPaperPopView.hidePopView(totalView)
             }
@@ -75,7 +75,7 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var isComment:Bool = false {
         didSet {
             if isComment == true {
-                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 448 - 37, SCREEN_WIDTH, 448), viewMode: LSYPaperPopViewMode.Comment,inView: totalView, frontView: bottomView)
+                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - commentPopViewHeight - 47, SCREEN_WIDTH, commentPopViewHeight), viewMode: LSYPaperPopViewMode.Comment,inView: totalView, frontView: bottomView)
             }else {
                 LSYPaperPopView.hidePopView(totalView)
             }

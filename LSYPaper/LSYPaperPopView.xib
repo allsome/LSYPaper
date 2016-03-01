@@ -317,18 +317,18 @@
                         <constraint firstItem="daJ-Us-9nh" firstAttribute="leading" secondItem="TBc-wU-Qa9" secondAttribute="leading" id="zJs-7l-uc0"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FBPopoverController_BottomNubArrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="oS7-d5-93B">
-                    <rect key="frame" x="115" y="357" width="30" height="18"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Triangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="oS7-d5-93B">
+                    <rect key="frame" x="120" y="357" width="15" height="8"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="18" id="Ogp-ZN-794"/>
-                        <constraint firstAttribute="width" constant="30" id="XOt-0y-c1Y"/>
+                        <constraint firstAttribute="height" constant="8" id="Ogp-ZN-794"/>
+                        <constraint firstAttribute="width" constant="15" id="XOt-0y-c1Y"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="oS7-d5-93B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="115" id="15B-KQ-IEn"/>
+                <constraint firstItem="oS7-d5-93B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="120" id="15B-KQ-IEn"/>
                 <constraint firstItem="oS7-d5-93B" firstAttribute="top" secondItem="TBc-wU-Qa9" secondAttribute="bottom" id="1iQ-7C-hj9"/>
                 <constraint firstItem="TBc-wU-Qa9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XWy-Y9-abg"/>
                 <constraint firstAttribute="trailing" secondItem="TBc-wU-Qa9" secondAttribute="trailing" id="mqE-IB-LA5"/>
@@ -340,6 +340,8 @@
                 <outlet property="bottomView" destination="lyo-Cw-cOq" id="d4i-vJ-lSp"/>
                 <outlet property="cornerView" destination="TBc-wU-Qa9" id="A12-RT-C6F"/>
                 <outlet property="topView" destination="by9-Bo-KWd" id="aCu-A8-k08"/>
+                <outlet property="triangleImage" destination="oS7-d5-93B" id="9rZ-Et-wUC"/>
+                <outlet property="triangleImageTopConstraint" destination="1iQ-7C-hj9" id="Lmp-gz-fHD"/>
             </connections>
             <point key="canvasLocation" x="375" y="163.5"/>
         </view>
@@ -352,6 +354,6 @@
         <image name="ActionSheetIconReshare.png" width="31" height="31"/>
         <image name="ActionSheetIconSavePhoto.png" width="31" height="31"/>
         <image name="ActionSheetIconTextMessage.png" width="31" height="31"/>
-        <image name="FBPopoverController_BottomNubArrow.png" width="30" height="18"/>
+        <image name="Triangle.png" width="15" height="7"/>
     </resources>
 </document>
