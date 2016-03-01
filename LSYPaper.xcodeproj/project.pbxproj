@@ -74,8 +74,6 @@
 		EA65E9931C81855D0081EA5F /* TapDragHandle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9831C81855D0081EA5F /* TapDragHandle@2x.png */; };
 		EA65E9941C81855D0081EA5F /* TapDragHandle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9841C81855D0081EA5F /* TapDragHandle@3x.png */; };
 		EA65E99A1C8186B40081EA5F /* LSYPaperPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9991C8186B40081EA5F /* LSYPaperPopView.xib */; };
-		EA65E9A61C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9A41C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@2x.png */; };
-		EA65E9A71C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9A51C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@3x.png */; };
 		EA65E9AA1C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9A81C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@2x.png */; };
 		EA65E9AB1C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9A91C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@3x.png */; };
 		EA65E9AE1C849EC40081EA5F /* FBPopoverController_BottomRightCorner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9AC1C849EC40081EA5F /* FBPopoverController_BottomRightCorner@2x.png */; };
@@ -85,6 +83,7 @@
 		EA65E9B71C859C710081EA5F /* Artist2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9B31C859C710081EA5F /* Artist2@2x.png */; };
 		EA65E9B81C859C710081EA5F /* Artist3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9B41C859C710081EA5F /* Artist3@2x.png */; };
 		EA65E9B91C859C710081EA5F /* Artist4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9B51C859C710081EA5F /* Artist4@2x.png */; };
+		EA65E9C11C8617AD0081EA5F /* Triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9C01C8617AD0081EA5F /* Triangle@2x.png */; };
 		EA78CF651C3809FD0092F84D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF641C3809FD0092F84D /* AppDelegate.swift */; };
 		EA78CF671C3809FD0092F84D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA78CF661C3809FD0092F84D /* ViewController.swift */; };
 		EA78CF6A1C3809FD0092F84D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA78CF681C3809FD0092F84D /* Main.storyboard */; };
@@ -204,8 +203,6 @@
 		EA65E9831C81855D0081EA5F /* TapDragHandle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TapDragHandle@2x.png"; sourceTree = "<group>"; };
 		EA65E9841C81855D0081EA5F /* TapDragHandle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TapDragHandle@3x.png"; sourceTree = "<group>"; };
 		EA65E9991C8186B40081EA5F /* LSYPaperPopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSYPaperPopView.xib; sourceTree = "<group>"; };
-		EA65E9A41C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBPopoverController_BottomNubArrow@2x.png"; sourceTree = "<group>"; };
-		EA65E9A51C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBPopoverController_BottomNubArrow@3x.png"; sourceTree = "<group>"; };
 		EA65E9A81C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBPopoverController_BottomLeftCorner@2x.png"; sourceTree = "<group>"; };
 		EA65E9A91C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBPopoverController_BottomLeftCorner@3x.png"; sourceTree = "<group>"; };
 		EA65E9AC1C849EC40081EA5F /* FBPopoverController_BottomRightCorner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FBPopoverController_BottomRightCorner@2x.png"; sourceTree = "<group>"; };
@@ -215,6 +212,7 @@
 		EA65E9B31C859C710081EA5F /* Artist2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Artist2@2x.png"; sourceTree = "<group>"; };
 		EA65E9B41C859C710081EA5F /* Artist3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Artist3@2x.png"; sourceTree = "<group>"; };
 		EA65E9B51C859C710081EA5F /* Artist4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Artist4@2x.png"; sourceTree = "<group>"; };
+		EA65E9C01C8617AD0081EA5F /* Triangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Triangle@2x.png"; sourceTree = "<group>"; };
 		EA78CF611C3809FD0092F84D /* LSYPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSYPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA78CF641C3809FD0092F84D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA78CF661C3809FD0092F84D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -433,6 +431,7 @@
 		EA78CFCF1C3D40D20092F84D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				EA65E9C01C8617AD0081EA5F /* Triangle@2x.png */,
 				EA65E9B21C859C710081EA5F /* Artist1@2x.png */,
 				EA65E9B31C859C710081EA5F /* Artist2@2x.png */,
 				EA65E9B41C859C710081EA5F /* Artist3@2x.png */,
@@ -441,8 +440,6 @@
 				EA65E9AD1C849EC40081EA5F /* FBPopoverController_BottomRightCorner@3x.png */,
 				EA65E9A81C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@2x.png */,
 				EA65E9A91C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@3x.png */,
-				EA65E9A41C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@2x.png */,
-				EA65E9A51C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@3x.png */,
 				EA65E95F1C8182C90081EA5F /* ActionSheetIconReshare@2x.png */,
 				EA65E9611C8182D30081EA5F /* ActionSheetIconCompose@2x.png */,
 				EA65E9631C8182DE0081EA5F /* ActionSheetIconMessage@2x.png */,
@@ -589,7 +586,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA65E9721C8183780081EA5F /* RoundedRectButton@2x.png in Resources */,
-				EA65E9A61C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@2x.png in Resources */,
 				EA65E9681C8183060081EA5F /* ActionSheetIconEmail@2x.png in Resources */,
 				EA65E9601C8182C90081EA5F /* ActionSheetIconReshare@2x.png in Resources */,
 				EA5416601C51038B00E4FFA7 /* theguardianLogo@2x.png in Resources */,
@@ -654,6 +650,7 @@
 				EA78CF6C1C3809FD0092F84D /* Assets.xcassets in Resources */,
 				EA78CFD81C3D41000092F84D /* Messages@2x.png in Resources */,
 				EA78CFC11C3D0F890092F84D /* SectionCoverTechnology@2x.jpg in Resources */,
+				EA65E9C11C8617AD0081EA5F /* Triangle@2x.png in Resources */,
 				EA65E9701C81835C0081EA5F /* CameraIcon@3x.png in Resources */,
 				EA78CFCE1C3D10690092F84D /* SectionPosterView.xib in Resources */,
 				EA65E9621C8182D30081EA5F /* ActionSheetIconCompose@2x.png in Resources */,
@@ -696,7 +693,6 @@
 				EA5416931C51CBCA00E4FFA7 /* Comment@3x.png in Resources */,
 				EA5416711C51C8A200E4FFA7 /* Settings@2x.png in Resources */,
 				EA5416A11C51CBCA00E4FFA7 /* SharePhoto@3x.png in Resources */,
-				EA65E9A71C849D6F0081EA5F /* FBPopoverController_BottomNubArrow@3x.png in Resources */,
 				EA5416461C50F27F00E4FFA7 /* fav11@2x.jpg in Resources */,
 				EA65E98A1C81855D0081EA5F /* BrowserForward@3x.png in Resources */,
 				EA65E9861C81855D0081EA5F /* BrowserBack@3x.png in Resources */,
