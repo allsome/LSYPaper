@@ -53,6 +53,10 @@ public extension UIView {
         self.addSpringAnimation(0.6, durationArray: [0.20,0.275,0.275,0.25], delayArray: [0.0,0.0,0.0,0.0], scaleArray: [0.7,1.05,0.95,1.0])
     }
     
+    public func addPopSpringAnimation() {
+        self.addSpringAnimation(0.8, durationArray: [0.20,0.275,0.275,0.25], delayArray: [0.0,0.0,0.0,0.0], scaleArray: [1.3,0.9,1.1,1.0])
+    }
+    
     public func addFadeAnimation() {
         let anim = CATransition()
         anim.type = kCATransitionFade

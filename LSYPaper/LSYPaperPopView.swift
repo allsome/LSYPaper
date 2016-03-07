@@ -16,17 +16,22 @@ enum LSYPaperPopViewMode : Int {
 private let backgroundViewTag:Int = -250
 private let animationDuration:NSTimeInterval = 0.6
 private let anchorPointGap:CGFloat = 4
-private let maxShadowLimit:CGFloat = -16
+private let maxShadowLimit:CGFloat = -27
+private let hideShadowReachY:CGFloat = -50
 private let triangleHeight:CGFloat = 8
+private var triangleScale:CGFloat = 0
 let commentPopViewHeight:CGFloat = 438
 let sharePopViewHeight:CGFloat = 357
 
 class LSYPaperPopView: UIView {
     
     private var fatherView:UIView = UIView()
-    private var background:UIView = UIView()
     private var targetFrame:CGRect = CGRectZero
-    
+    private var isReachLimit:Bool = false
+    private var isTranslate:Bool = false
+    private var normalTopConstraint:CGFloat = 0
+    private var revokeOption:(() -> Void)?
+
     @IBOutlet weak var cornerView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
@@ -39,7 +44,7 @@ class LSYPaperPopView: UIView {
         frame = targetFrame
     }
     
-    class func showPopViewWith(frame:CGRect,viewMode:LSYPaperPopViewMode,inView:UIView,frontView:UIView) {
+    class func showPopViewWith(frame:CGRect,viewMode:LSYPaperPopViewMode,inView:UIView,frontView:UIView,revokeOption:(() -> Void)) {
         var name:String = ""
         if viewMode == LSYPaperPopViewMode.Share {
             name = "LSYPaperPopView"
@@ -50,13 +55,16 @@ class LSYPaperPopView: UIView {
         let PopView = objs.last as! LSYPaperPopView
         if viewMode == LSYPaperPopViewMode.Share {
             PopView.layer.anchorPoint = CGPointMake(128 / SCREEN_WIDTH,  (sharePopViewHeight - 8) / sharePopViewHeight)
+            PopView.normalTopConstraint = 0
             PopView.addGesture()
         }else if viewMode == LSYPaperPopViewMode.Comment {
             PopView.layer.anchorPoint = CGPointMake((SCREEN_WIDTH - 88) / SCREEN_WIDTH, (commentPopViewHeight - 8) / commentPopViewHeight)
+            PopView.normalTopConstraint = -1
             PopView.commentLabel.shimmerColor = UIColor(white: 1.0, alpha: 0.7)
             PopView.commentLabel.startAnimate()
             PopView.addGesture()
         }
+        PopView.revokeOption = revokeOption
         PopView.targetFrame = frame
         PopView.frame = frame
         PopView.topView.setSpecialCornerWith(frame: CGRectMake(0, 0, SCREEN_WIDTH, PopView.topView.frame.size.height), cornerOption: [UIRectCorner.TopLeft,UIRectCorner.TopRight])
@@ -87,20 +95,72 @@ class LSYPaperPopView: UIView {
     
     func handlePanGesture(recognizer:UIPanGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Began {
-            triangleImage.layer.anchorPoint = CGPointMake(0.5, 1)
-            triangleImageTopConstraint.constant += anchorPointGap
-            background = LSYPaperPopView.getBackgroundFrom(self.fatherView)
+            if recognizer.velocityInView(self).y > 0 {
+                isTranslate = false
+            }else {
+                isTranslate = true
+                triangleImage.layer.anchorPoint = CGPointMake(0.5, 1)
+                triangleImageTopConstraint.constant = normalTopConstraint + anchorPointGap
+            }
         } else if recognizer.state == UIGestureRecognizerState.Changed {
-            triangleImage.transform = CGAffineTransformMakeScale(1, (triangleHeight - recognizer.translationInView(self).y) / triangleHeight)
-            cornerView.transform = CGAffineTransformMakeTranslation(0, recognizer.translationInView(self).y)
+            if isTranslate == true {
+                if recognizer.translationInView(self).y > maxShadowLimit {
+                    isReachLimit = false
+                    if recognizer.translationInView(self).y <= 0 {
+                        triangleImage.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, (triangleHeight - recognizer.translationInView(self).y) / triangleHeight, 1.01)
+                    }
+                    cornerView.transform = CGAffineTransformMakeTranslation(0, recognizer.translationInView(self).y)
+                }else if recognizer.translationInView(self).y >= hideShadowReachY && recognizer.translationInView(self).y <= maxShadowLimit && isReachLimit == false {
+                    isReachLimit = true
+                    triangleScale = (triangleHeight - recognizer.translationInView(self).y) / triangleHeight
+                    if recognizer.velocityInView(self).y <= 0 {
+                        UIView.animateWithDuration(animationDuration / 3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                            self.triangleImage.layer.transform = CATransform3DTranslate(CATransform3DScale(CATransform3DIdentity, 1, triangleScale, 1.01), 0, (hideShadowReachY - triangleHeight) / triangleScale, 0)
+                            self.cornerView.transform = CGAffineTransformMakeTranslation(0, hideShadowReachY)
+                            }, completion: { (stop:Bool) -> Void in
+                        })
+                    }else {
+                        UIView.animateWithDuration(animationDuration / 3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                            self.triangleImage.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, (triangleHeight - maxShadowLimit) / triangleHeight, 1.01)
+                            self.cornerView.transform = CGAffineTransformMakeTranslation(0, maxShadowLimit)
+                            }, completion: { (stop:Bool) -> Void in
+                        })
+                    }
+                }else if recognizer.translationInView(self).y < hideShadowReachY {
+                    isReachLimit = false
+                    triangleImage.layer.transform = CATransform3DTranslate(CATransform3DScale(CATransform3DIdentity, 1, triangleScale, 1.01), 0, (recognizer.translationInView(self).y - triangleHeight) / triangleScale, 0)
+                    cornerView.transform = CGAffineTransformMakeTranslation(0, recognizer.translationInView(self).y)
+                }
+            }else {
+                let scale:CGFloat = (self.targetFrame.size.height - recognizer.translationInView(self.fatherView).y) / self.targetFrame.size.height
+                self.transform = CGAffineTransformMakeScale(scale, scale)
+            }
         } else if (recognizer.state == UIGestureRecognizerState.Cancelled || recognizer.state == UIGestureRecognizerState.Ended){
-            triangleImage.layer.anchorPoint = CGPointMake(0.5, 0.5)
-            triangleImageTopConstraint.constant -= anchorPointGap
-            UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-                self.cornerView.transform = CGAffineTransformIdentity
-                }, completion: { (stop:Bool) -> Void in
-            })
-        }
+            if isTranslate == true {
+                if recognizer.velocityInView(self).y <= 0 {
+                    if revokeOption != nil {
+                        revokeOption!()
+                    }
+                }else {
+                    UIView.animateWithDuration(animationDuration / 2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                        self.cornerView.transform = CGAffineTransformIdentity
+                        self.triangleImage.layer.transform = CATransform3DIdentity
+                        }, completion: { (stop:Bool) -> Void in
+                    })
+                }
+            }else {
+                if recognizer.velocityInView(self).y >= 0 {
+                    if revokeOption != nil {
+                        revokeOption!()
+                    }
+                }else {
+                    UIView.animateWithDuration(animationDuration / 2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                        self.transform = CGAffineTransformIdentity
+                        }, completion: { (stop:Bool) -> Void in
+                    })
+                }
+            }
+         }
     }
     
     class func showBackgroundView(inView:UIView) {

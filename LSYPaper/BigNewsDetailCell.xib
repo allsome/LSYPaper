@@ -160,14 +160,24 @@
                                             <action selector="showShareOrNot:" destination="gTV-IL-0wX" eventType="touchUpInside" id="oEX-L6-cSE"/>
                                         </connections>
                                     </button>
+                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvO-Bu-3oS">
+                                        <rect key="frame" x="211" y="11" width="150" height="30"/>
+                                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="6K9-2N-cih"/>
+                                            <constraint firstAttribute="height" constant="30" id="nnr-eZ-Lfu"/>
+                                        </constraints>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.2K Likes  88 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-mb-5Yz">
                                         <rect key="frame" x="215" y="13" width="139.5" height="13.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rke-sx-Jv9">
                                         <rect key="frame" x="265" y="26" width="89.5" height="13.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -185,6 +195,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SvO-Bu-3oS" secondAttribute="trailing" constant="14" id="2k6-6d-0YM"/>
+                                    <constraint firstItem="SvO-Bu-3oS" firstAttribute="top" secondItem="IFC-fv-c7v" secondAttribute="top" constant="11" id="4Gm-ef-gb1"/>
                                     <constraint firstItem="90z-gJ-6GE" firstAttribute="leading" secondItem="IFC-fv-c7v" secondAttribute="leading" constant="20" id="5vz-UX-VxS"/>
                                     <constraint firstAttribute="trailing" secondItem="GiX-xx-jZt" secondAttribute="trailing" constant="20.5" id="7AC-ho-RAr"/>
                                     <constraint firstAttribute="trailing" secondItem="2Mv-mb-5Yz" secondAttribute="trailing" constant="20.5" id="8uk-OX-PoV"/>
@@ -432,6 +444,7 @@
                 <outlet property="commentLabel" destination="rke-sx-Jv9" id="QSG-yh-Ku4"/>
                 <outlet property="coreView" destination="Dgc-dO-Mta" id="6GD-EO-A0m"/>
                 <outlet property="coreViewBottomConstraint" destination="9DT-Vg-G7c" id="Det-12-Mn1"/>
+                <outlet property="labelView" destination="SvO-Bu-3oS" id="MuL-n7-EYl"/>
                 <outlet property="likeButton" destination="90z-gJ-6GE" id="gzf-nQ-8b9"/>
                 <outlet property="likeView" destination="ZBw-p2-RQp" id="Sfu-Lb-hsx"/>
                 <outlet property="nameLabel" destination="QL4-r5-b4u" id="lUf-5z-hd3"/>

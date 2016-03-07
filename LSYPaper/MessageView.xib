@@ -12,30 +12,27 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zf3-6t-sBg">
-                    <rect key="frame" x="90" y="0.0" width="45" height="55"/>
+                    <rect key="frame" x="94" y="0.0" width="41" height="55"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="Y4H-XD-N6Y"/>
-                        <constraint firstAttribute="width" constant="45" id="pzJ-px-k0Z"/>
+                        <constraint firstAttribute="width" constant="41" id="pzJ-px-k0Z"/>
                     </constraints>
-                    <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" image="Notifications.png"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpc-b5-15C">
-                    <rect key="frame" x="45" y="0.0" width="45" height="55"/>
+                    <rect key="frame" x="53" y="0.0" width="41" height="55"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="ZrM-CV-Qoa"/>
-                        <constraint firstAttribute="width" constant="45" id="cqg-Wf-X5p"/>
+                        <constraint firstAttribute="width" constant="41" id="cqg-Wf-X5p"/>
                     </constraints>
-                    <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" image="Messages.png"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-YS-NUX">
-                    <rect key="frame" x="0.0" y="0.0" width="45" height="55"/>
+                    <rect key="frame" x="12" y="0.0" width="41" height="55"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="45" id="jD0-xI-qmp"/>
+                        <constraint firstAttribute="width" constant="41" id="jD0-xI-qmp"/>
                         <constraint firstAttribute="height" constant="55" id="zdI-JC-IHy"/>
                     </constraints>
-                    <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" image="FriendRequests.png"/>
                 </button>
             </subviews>

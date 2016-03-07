@@ -54,6 +54,7 @@ class BigNewsDetailCell: UICollectionViewCell {
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var labelView: UIView!
     
     private var panNewsView:UIPanGestureRecognizer = UIPanGestureRecognizer()
     private var panWebView:UIPanGestureRecognizer = UIPanGestureRecognizer()
@@ -66,7 +67,10 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var isShare:Bool = false {
         didSet {
             if isShare == true {
-                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 47 - sharePopViewHeight, SCREEN_WIDTH, sharePopViewHeight), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView)
+                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - 47 - sharePopViewHeight, SCREEN_WIDTH, sharePopViewHeight), viewMode: LSYPaperPopViewMode.Share,inView: totalView, frontView: bottomView, revokeOption: { () -> Void in
+                    self.shareButton.addPopSpringAnimation()
+                    self.revokePopView()
+                })
             }else {
                 LSYPaperPopView.hidePopView(totalView)
             }
@@ -75,7 +79,16 @@ class BigNewsDetailCell: UICollectionViewCell {
     private var isComment:Bool = false {
         didSet {
             if isComment == true {
-                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - commentPopViewHeight - 47, SCREEN_WIDTH, commentPopViewHeight), viewMode: LSYPaperPopViewMode.Comment,inView: totalView, frontView: bottomView)
+                LSYPaperPopView.showPopViewWith(CGRectMake(0, SCREEN_HEIGHT - commentPopViewHeight - 47, SCREEN_WIDTH, commentPopViewHeight), viewMode: LSYPaperPopViewMode.Comment,inView: totalView, frontView: bottomView,revokeOption: { () -> Void in
+                    self.revokePopView()
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.labelView.alpha = 1.0
+                        }, completion: { (stop:Bool) -> Void in
+                            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                                self.labelView.alpha = 0.0
+                            })
+                    })
+                    })
             }else {
                 LSYPaperPopView.hidePopView(totalView)
             }
@@ -166,6 +179,8 @@ class BigNewsDetailCell: UICollectionViewCell {
         layer.masksToBounds = true
         layer.cornerRadius = CORNER_REDIUS
         
+        labelView.layer.masksToBounds = true
+        labelView.layer.cornerRadius = CORNER_REDIUS
         totalView.layer.masksToBounds = true
         totalView.layer.cornerRadius = cellGap * 2
         shadowView.layer.shadowColor = UIColor.blackColor().CGColor
