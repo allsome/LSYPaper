@@ -128,11 +128,13 @@
 		EA78D0051C43CF370092F84D /* smallMusk@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0031C43CF360092F84D /* smallMusk@2x.jpg */; };
 		EA78D0071C43CFE70092F84D /* bigMusk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0061C43CFE70092F84D /* bigMusk.jpg */; };
 		EA78D0111C464A620092F84D /* DefaultBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA78D0101C464A620092F84D /* DefaultBackground@2x.png */; };
+		EAB22EBA1C8E671800BA9B62 /* TriangleUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAB22EB91C8E671800BA9B62 /* TriangleUp@2x.png */; };
 		EAC443501C5610AC00D9980C /* BigNewsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC4434E1C5610AC00D9980C /* BigNewsDetailCell.swift */; };
 		EAC443511C5610AC00D9980C /* BigNewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC4434F1C5610AC00D9980C /* BigNewsDetailCell.xib */; };
 		EAC443541C585A0600D9980C /* TinyNewsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC443521C585A0600D9980C /* TinyNewsDetailCell.swift */; };
 		EAC443551C585A0600D9980C /* TinyNewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC443531C585A0600D9980C /* TinyNewsDetailCell.xib */; };
 		EAD45B021C731F4900518BD4 /* shining@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD45B011C731F4900518BD4 /* shining@2x.png */; };
+		EAF0B3FC1C8DE992001E043B /* LSYPaperPopViewMessage.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF0B3FB1C8DE992001E043B /* LSYPaperPopViewMessage.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -260,11 +262,13 @@
 		EA78D0031C43CF360092F84D /* smallMusk@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "smallMusk@2x.jpg"; sourceTree = "<group>"; };
 		EA78D0061C43CFE70092F84D /* bigMusk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bigMusk.jpg; sourceTree = "<group>"; };
 		EA78D0101C464A620092F84D /* DefaultBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultBackground@2x.png"; sourceTree = "<group>"; };
+		EAB22EB91C8E671800BA9B62 /* TriangleUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TriangleUp@2x.png"; sourceTree = "<group>"; };
 		EAC4434E1C5610AC00D9980C /* BigNewsDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigNewsDetailCell.swift; sourceTree = "<group>"; };
 		EAC4434F1C5610AC00D9980C /* BigNewsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigNewsDetailCell.xib; sourceTree = "<group>"; };
 		EAC443521C585A0600D9980C /* TinyNewsDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinyNewsDetailCell.swift; sourceTree = "<group>"; };
 		EAC443531C585A0600D9980C /* TinyNewsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TinyNewsDetailCell.xib; sourceTree = "<group>"; };
 		EAD45B011C731F4900518BD4 /* shining@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shining@2x.png"; sourceTree = "<group>"; };
+		EAF0B3FB1C8DE992001E043B /* LSYPaperPopViewMessage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LSYPaperPopViewMessage.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +326,7 @@
 				EA65E95D1C8180B40081EA5F /* LSYPaperPopView.swift */,
 				EA65E9991C8186B40081EA5F /* LSYPaperPopView.xib */,
 				EA65E9B01C85910C0081EA5F /* LSYPaperPopViewComment.xib */,
+				EAF0B3FB1C8DE992001E043B /* LSYPaperPopViewMessage.xib */,
 			);
 			name = LSYPaperPopView;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				EA65E9C01C8617AD0081EA5F /* Triangle@2x.png */,
+				EAB22EB91C8E671800BA9B62 /* TriangleUp@2x.png */,
 				EA65E9B21C859C710081EA5F /* Artist1@2x.png */,
 				EA65E9B31C859C710081EA5F /* Artist2@2x.png */,
 				EA65E9B41C859C710081EA5F /* Artist3@2x.png */,
@@ -602,6 +608,7 @@
 				EA5416591C50FA7600E4FFA7 /* fav18@2x.jpg in Resources */,
 				EA65E96A1C8183110081EA5F /* ActionSheetIconSavePhoto@2x.png in Resources */,
 				EA5416A21C51CBCA00E4FFA7 /* Sparkle.png in Resources */,
+				EAB22EBA1C8E671800BA9B62 /* TriangleUp@2x.png in Resources */,
 				EA65E9941C81855D0081EA5F /* TapDragHandle@3x.png in Resources */,
 				EA65E98F1C81855D0081EA5F /* ShareBrowserDown@2x.png in Resources */,
 				EA5416941C51CBCA00E4FFA7 /* CommentPhoto@2x.png in Resources */,
@@ -663,6 +670,7 @@
 				EA65E9921C81855D0081EA5F /* ShareBrowserSelected@3x.png in Resources */,
 				EA54165C1C50FC6600E4FFA7 /* News.plist in Resources */,
 				EA65E9AA1C849EB70081EA5F /* FBPopoverController_BottomLeftCorner@2x.png in Resources */,
+				EAF0B3FC1C8DE992001E043B /* LSYPaperPopViewMessage.xib in Resources */,
 				EAD45B021C731F4900518BD4 /* shining@2x.png in Resources */,
 				EA65E98C1C81855D0081EA5F /* BrowserForwardDown@3x.png in Resources */,
 				EA78CFB21C3D07530092F84D /* Default-iOS7@2x.png in Resources */,
