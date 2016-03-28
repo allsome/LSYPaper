@@ -21,12 +21,14 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
     @IBOutlet private weak var containerViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet weak var pageControlBottomConstraint: NSLayoutConstraint!
+    
     var didScrollOption:((NSInteger,[UIView],CGFloat) -> Void)?
     var didEndDeceleratingOption:(NSInteger -> Void)?
     var pageDidChangeOption:((NSInteger,PageChangeDirectionType) -> Void)?
     var didScrollCrossLeftEdge:(CGFloat -> Void)?
     var didScrollCrossRightEdge:((CGFloat,UIView) -> Void)?
     var backFromLeftEdge:(() -> Void)?
+    
     private var lastPage:Int = 0
     private var targetFrame:CGRect = CGRectZero
     private var views:[UIView] = [] {

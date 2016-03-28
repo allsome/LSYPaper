@@ -15,6 +15,7 @@ class TinyNewsDetailCell: UICollectionViewCell {
     @IBOutlet weak var bottomViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var newsView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.masksToBounds = true

@@ -14,6 +14,7 @@ class SectionData: NSObject {
     var title:String = ""
     var icon:String = ""
     var standByIcon:String = ""
+    
     init(dictionary:[String : AnyObject]) {
         super.init()
         self.setValuesForKeysWithDictionary(dictionary)
