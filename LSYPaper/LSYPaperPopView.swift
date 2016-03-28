@@ -87,7 +87,7 @@ class LSYPaperPopView: UIView {
     }
     
     private func addGesture() {
-        let pan = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(LSYPaperPopView.handlePanGesture(_:)))
         pan.delegate = self
         self.addGestureRecognizer(pan)
         self.panPop = pan

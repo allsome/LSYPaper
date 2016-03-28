@@ -153,7 +153,7 @@ class BigNewsDetailCell: UICollectionViewCell {
         return acos(cosUpper / SCREEN_WIDTH)
     }
     private var webViewRequest:NSURLRequest {
-        return NSURLRequest(URL: NSURL(string: "https://baidu.com")!)
+        return NSURLRequest(URL: NSURL(string: "https://github.com")!)
     }
     
     private var soundID:SystemSoundID {
@@ -197,20 +197,20 @@ class BigNewsDetailCell: UICollectionViewCell {
         newsView.layer.shadowOpacity = 0.4
         newsView.layer.shadowRadius = baseShadowRedius
         upperScreenShot.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 1, 0, 0)
-        let pan = UIPanGestureRecognizer(target: self, action: "handleNewsPanGesture:")
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(BigNewsDetailCell.handleNewsPanGesture(_:)))
         pan.delegate = self
         newsView.addGestureRecognizer(pan)
         panNewsView = pan
-        let tap = UITapGestureRecognizer(target: self, action: "handleNewsTapGesture:")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(BigNewsDetailCell.handleNewsTapGesture(_:)))
         newsView.addGestureRecognizer(tap)
         transform3D.m34 = -1 / transform3Dm34D
         webViewHeightConstraint.constant = SCREEN_WIDTH * 2
         webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, SCREEN_WIDTH * 2 - SCREEN_HEIGHT, 0)
-        let webViewPan = UIPanGestureRecognizer(target: self, action: "handleWebPanGesture:")
+        let webViewPan = UIPanGestureRecognizer(target: self, action: #selector(BigNewsDetailCell.handleWebPanGesture(_:)))
         webViewPan.delegate = self
         webView.addGestureRecognizer(webViewPan)
         panWebView = webViewPan
-        let tapContent = UITapGestureRecognizer(target: self, action: "handleContentTapGesture:")
+        let tapContent = UITapGestureRecognizer(target: self, action: #selector(BigNewsDetailCell.handleContentTapGesture(_:)))
         contentView.addGestureRecognizer(tapContent)
         tapContent.enabled = false
         tapSelf = tapContent

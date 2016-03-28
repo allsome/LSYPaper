@@ -392,11 +392,11 @@ private extension ViewController {
         tinyCollectionView.delegate = self
         var nib = UINib(nibName: tinyCellReuseIdentifier, bundle: nil)
         tinyCollectionView.registerNib(nib, forCellWithReuseIdentifier: tinyCellReuseIdentifier)
-        tinyPanCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
+        tinyPanCollect = UIPanGestureRecognizer(target: self, action: #selector(ViewController.handleCollectPanGesture(_:)))
         tinyPanCollect.delegate = self
         tinyPanCollect.maximumNumberOfTouches = 1
         tinyCollectionView.addGestureRecognizer(tinyPanCollect)
-        tinyTapCollect = UITapGestureRecognizer(target: self, action: "handleCollectTapGesture:")
+        tinyTapCollect = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleCollectTapGesture(_:)))
         tinyCollectionView.addGestureRecognizer(tinyTapCollect)
         tinyCollectionView.collectionViewLayout = tinyCollectionViewLayout
         view.addSubview(tinyCollectionView)
@@ -406,12 +406,12 @@ private extension ViewController {
         fullScreenCollectionView.delegate = self
         nib = UINib(nibName: fullScreenCellReuseIdentifier, bundle: nil)
         fullScreenCollectionView.registerNib(nib, forCellWithReuseIdentifier: fullScreenCellReuseIdentifier)
-        fullScreenPanCollect = UIPanGestureRecognizer(target: self, action: "handleCollectPanGesture:")
+        fullScreenPanCollect = UIPanGestureRecognizer(target: self, action: #selector(ViewController.handleCollectPanGesture(_:)))
         fullScreenPanCollect.delegate = self
         fullScreenPanCollect.maximumNumberOfTouches = 1
         fullScreenCollectionView.addGestureRecognizer(fullScreenPanCollect)
         fullScreenCollectionView.collectionViewLayout = fullScreenCollectionViewLayout
-        fullScreenCollectionView.alpha = 0.0;
+        fullScreenCollectionView.alpha = 0.0
         view.addSubview(fullScreenCollectionView)
     }
 }
