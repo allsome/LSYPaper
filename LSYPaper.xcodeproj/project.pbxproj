@@ -44,7 +44,7 @@
 		EA5416A11C51CBCA00E4FFA7 /* SharePhoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416901C51CBCA00E4FFA7 /* SharePhoto@3x.png */; };
 		EA5416A21C51CBCA00E4FFA7 /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416911C51CBCA00E4FFA7 /* Sparkle.png */; };
 		EA5416A61C520C5900E4FFA7 /* NewsTopShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */; };
-		EA5E010E1CAA6D00004C6A35 /* Demonstrate.gif in Resources */ = {isa = PBXBuildFile; fileRef = EA5E010D1CAA6D00004C6A35 /* Demonstrate.gif */; };
+		EA5E01101CAA72E6004C6A35 /* Demonstrate.gif in Resources */ = {isa = PBXBuildFile; fileRef = EA5E010F1CAA72E6004C6A35 /* Demonstrate.gif */; };
 		EA65E9591C808E4D0081EA5F /* Pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA65E9581C808E4D0081EA5F /* Pop.wav */; };
 		EA65E95E1C8180B40081EA5F /* LSYPaperPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E95D1C8180B40081EA5F /* LSYPaperPopView.swift */; };
 		EA65E9601C8182C90081EA5F /* ActionSheetIconReshare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA65E95F1C8182C90081EA5F /* ActionSheetIconReshare@2x.png */; };
@@ -174,7 +174,7 @@
 		EA5416901C51CBCA00E4FFA7 /* SharePhoto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SharePhoto@3x.png"; sourceTree = "<group>"; };
 		EA5416911C51CBCA00E4FFA7 /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		EA5416A51C520C5900E4FFA7 /* NewsTopShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewsTopShadow@2x.png"; sourceTree = "<group>"; };
-		EA5E010D1CAA6D00004C6A35 /* Demonstrate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Demonstrate.gif; sourceTree = "<group>"; };
+		EA5E010F1CAA72E6004C6A35 /* Demonstrate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Demonstrate.gif; sourceTree = "<group>"; };
 		EA65E9581C808E4D0081EA5F /* Pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Pop.wav; sourceTree = "<group>"; };
 		EA65E95D1C8180B40081EA5F /* LSYPaperPopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LSYPaperPopView.swift; sourceTree = "<group>"; };
 		EA65E95F1C8182C90081EA5F /* ActionSheetIconReshare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActionSheetIconReshare@2x.png"; sourceTree = "<group>"; };
@@ -387,8 +387,8 @@
 				EA78CF6D1C3809FD0092F84D /* LaunchScreen.storyboard */,
 				EA78CF7C1C3812330092F84D /* Extension.swift */,
 				EA78CF851C38222E0092F84D /* Constant.swift */,
+				EA5E010F1CAA72E6004C6A35 /* Demonstrate.gif */,
 				EA78CF7E1C3814EC0092F84D /* LSYPaper-Bridging-Header.h */,
-				EA5E010D1CAA6D00004C6A35 /* Demonstrate.gif */,
 				EA78D0101C464A620092F84D /* DefaultBackground@2x.png */,
 				EA78CFAC1C3D07530092F84D /* Default-iOS7-667h@2x.png */,
 				EA78CFAD1C3D07530092F84D /* Default-iOS7-736h@3x.png */,
@@ -625,7 +625,7 @@
 				EA78CFBF1C3D0F7E0092F84D /* SectionCoverSports@2x.jpg in Resources */,
 				EA54163C1C50F27F00E4FFA7 /* fav1@2x.jpg in Resources */,
 				EA78CFC71C3D10240092F84D /* SectionCoverLens@2x.jpg in Resources */,
-				EA5E010E1CAA6D00004C6A35 /* Demonstrate.gif in Resources */,
+				EA5E01101CAA72E6004C6A35 /* Demonstrate.gif in Resources */,
 				EA54166E1C51C8A200E4FFA7 /* Compose@3x.png in Resources */,
 				EA78CFBB1C3D0F6B0092F84D /* SectionCoverIdeas@2x.jpg in Resources */,
 				EA5416A01C51CBCA00E4FFA7 /* SharePhoto@2x.png in Resources */,
