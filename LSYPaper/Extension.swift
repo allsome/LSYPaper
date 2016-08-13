@@ -9,39 +9,39 @@
 import UIKit
 
 public extension NSObject {
-    public func delay(delay:Double, closure:(() -> Void)) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(delay * Double(NSEC_PER_SEC))),dispatch_get_main_queue(), closure)
+    public func delay(_ delay:Double, closure:(() -> Void)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
 }
 
 public extension UIView {
-    public func setSpecialCorner(cornerOption:UIRectCorner) {
+    public func setSpecialCorner(_ cornerOption:UIRectCorner) {
         self.setSpecialCornerWith(frame: self.bounds, cornerOption: cornerOption)
     }
     
-    public func setSpecialCornerWith(frame frame:CGRect,cornerOption:UIRectCorner) {
-        let maskPath = UIBezierPath(roundedRect: frame, byRoundingCorners: cornerOption, cornerRadii: CGSizeMake(CORNER_REDIUS, CORNER_REDIUS))
+    public func setSpecialCornerWith(frame:CGRect,cornerOption:UIRectCorner) {
+        let maskPath = UIBezierPath(roundedRect: frame, byRoundingCorners: cornerOption, cornerRadii: CGSize(width: CORNER_REDIUS, height: CORNER_REDIUS))
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
-        maskLayer.path = maskPath.CGPath
+        maskLayer.path = maskPath.cgPath
         self.layer.mask = maskLayer
     }
     
-    public func safeSetAnchorPoint(anchorPoint:CGPoint) {
+    public func safeSetAnchorPoint(_ anchorPoint:CGPoint) {
         let oldFrame = self.frame
         self.layer.anchorPoint = anchorPoint
         self.frame = oldFrame
     }
     
-    public func addSpringAnimation(duration:NSTimeInterval,durationArray:[Double],delayArray:[Double],scaleArray:[CGFloat]) {
-        UIView.animateKeyframesWithDuration(duration, delay: 0.0, options: UIViewKeyframeAnimationOptions.CalculationModeLinear, animations: { () -> Void in
+    public func addSpringAnimation(_ duration:TimeInterval,durationArray:[Double],delayArray:[Double],scaleArray:[CGFloat]) {
+        UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIViewKeyframeAnimationOptions(), animations: { () -> Void in
             var startTime:Double = 0
             for index in 0..<durationArray.count {
                 let relativeDuration = durationArray[index]
                 let scale = scaleArray[index]
                 let delay = delayArray[index]
-                UIView.addKeyframeWithRelativeStartTime(startTime + delay, relativeDuration: relativeDuration, animations: { () -> Void in
-                    self.transform = CGAffineTransformMakeScale(scale, scale)
+                UIView.addKeyframe(withRelativeStartTime: startTime + delay, relativeDuration: relativeDuration, animations: { () -> Void in
+                    self.transform = CGAffineTransform(scaleX: scale, y: scale)
                 })
                 startTime += relativeDuration
             }
@@ -61,7 +61,7 @@ public extension UIView {
         let anim = CATransition()
         anim.type = kCATransitionFade
         anim.duration = 0.2
-        self.layer.addAnimation(anim, forKey: nil)
+        self.layer.add(anim, forKey: nil)
     }
 }
 
@@ -75,30 +75,30 @@ public extension UIColor {
         var hex = hexString
         
         if hex.hasPrefix("#") {
-            hex = hex.substringFromIndex(hex.startIndex.advancedBy(1))
+            hex = hex.substring(from: hex.index(hex.startIndex, offsetBy: 1))
         }
         
-        if (hex.rangeOfString("(^[0-9A-Fa-f]{6}$)|(^[0-9A-Fa-f]{3}$)", options: .RegularExpressionSearch) != nil) {
+        if (hex.range(of: "(^[0-9A-Fa-f]{6}$)|(^[0-9A-Fa-f]{3}$)", options: .regularExpression) != nil) {
             
             if hex.characters.count == 3 {
-                let redHex   = hex.substringToIndex(hex.startIndex.advancedBy(1))
-                let greenHex = hex.substringWithRange(Range<String.Index>(hex.startIndex.advancedBy(1)..<hex.startIndex.advancedBy(2)))
-                let blueHex  = hex.substringFromIndex(hex.startIndex.advancedBy(2))
+                let redHex   = hex.substring(to: hex.index(hex.startIndex, offsetBy: 1))
+                let greenHex = hex.substring(with: Range<String.Index>(hex.index(hex.startIndex, offsetBy: 1)..<hex.index(hex.startIndex, offsetBy: 2)))
+                let blueHex  = hex.substring(from: hex.index(hex.startIndex, offsetBy: 2))
                 
                 hex = redHex + redHex + greenHex + greenHex + blueHex + blueHex
             }
             
-            let redHex = hex.substringToIndex(hex.startIndex.advancedBy(2))
-            let greenHex = hex.substringWithRange(Range<String.Index>(hex.startIndex.advancedBy(2)..<hex.startIndex.advancedBy(4)))
-            let blueHex = hex.substringWithRange(Range<String.Index>(hex.startIndex.advancedBy(4)..<hex.startIndex.advancedBy(6)))
+            let redHex = hex.substring(to: hex.index(hex.startIndex, offsetBy: 2))
+            let greenHex = hex.substring(with: Range<String.Index>(hex.index(hex.startIndex, offsetBy: 2)..<hex.index(hex.startIndex, offsetBy: 4)))
+            let blueHex = hex.substring(with: Range<String.Index>(hex.index(hex.startIndex, offsetBy: 4)..<hex.index(hex.startIndex, offsetBy: 6)))
             
             var redInt:   CUnsignedInt = 0
             var greenInt: CUnsignedInt = 0
             var blueInt:  CUnsignedInt = 0
             
-            NSScanner(string: redHex).scanHexInt(&redInt)
-            NSScanner(string: greenHex).scanHexInt(&greenInt)
-            NSScanner(string: blueHex).scanHexInt(&blueInt)
+            Scanner(string: redHex).scanHexInt32(&redInt)
+            Scanner(string: greenHex).scanHexInt32(&greenInt)
+            Scanner(string: blueHex).scanHexInt32(&blueInt)
             
             self.init(red: CGFloat(redInt) / 255.0, green: CGFloat(greenInt) / 255.0, blue: CGFloat(blueInt) / 255.0, alpha: CGFloat(alpha))
         }

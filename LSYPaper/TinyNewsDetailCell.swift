@@ -20,8 +20,8 @@ class TinyNewsDetailCell: UICollectionViewCell {
         super.awakeFromNib()
         layer.masksToBounds = true
         layer.cornerRadius = cellGap
-        newsView.layer.shadowColor = UIColor.blackColor().CGColor
-        newsView.layer.shadowOffset = CGSizeMake(0, 1)
+        newsView.layer.shadowColor = UIColor.black.cgColor
+        newsView.layer.shadowOffset = CGSize(width: 0, height: 1)
         newsView.layer.shadowOpacity = 0.5
         newsView.layer.shadowRadius = 0.5
     }

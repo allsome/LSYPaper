@@ -17,7 +17,7 @@ class SectionPosterView: UIView {
     @IBOutlet private weak var posterImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var shadowImageHeightConstraint: NSLayoutConstraint!
     private var sectionData:SectionData?
-    private var targetFrame:CGRect = CGRectZero
+    private var targetFrame:CGRect = CGRect.zero
 
     override func awakeFromNib() {
         posterImageHeightConstraint.constant = POSTER_HEIGHT
@@ -25,10 +25,10 @@ class SectionPosterView: UIView {
         shadowImage.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 1, 0, 0)
         
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRectMake(0, 2 * POSTER_HEIGHT - SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - POSTER_HEIGHT)
-        gradientLayer.colors = [UIColor(white: 0.0, alpha: 1.0).CGColor,UIColor.clearColor().CGColor]
-        gradientLayer.startPoint = CGPointMake(0.5, 0.3)
-        gradientLayer.endPoint = CGPointMake(0.5, 1.0)
+        gradientLayer.frame = CGRect(x: 0, y: 2 * POSTER_HEIGHT - SCREEN_HEIGHT, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - POSTER_HEIGHT)
+        gradientLayer.colors = [UIColor(white: 0.0, alpha: 1.0).cgColor,UIColor.clear.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.3)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
         shadowImage.layer.addSublayer(gradientLayer)
     }
     
@@ -36,9 +36,9 @@ class SectionPosterView: UIView {
         frame = targetFrame
     }
     
-    class func sectionPosterViewWith(data data:SectionData, frame:CGRect) -> SectionPosterView {
-        let objs = NSBundle.mainBundle().loadNibNamed("SectionPosterView", owner: nil, options: nil)
-        let posterView = objs.last as! SectionPosterView
+    class func sectionPosterViewWith(data:SectionData, frame:CGRect) -> SectionPosterView {
+        let objs = Bundle.main.loadNibNamed("SectionPosterView", owner: nil, options: nil)
+        let posterView = objs?.last as! SectionPosterView
         posterView.posterImage.image = UIImage(named: data.icon)
         posterView.shadowImage.image = UIImage(named: data.icon)
         posterView.titleLabel.text = data.title

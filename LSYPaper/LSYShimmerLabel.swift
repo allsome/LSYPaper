@@ -29,9 +29,9 @@ class LSYShimmerLabel: UILabel {
         }
     }
     
-    var shimmerColor:UIColor = UIColor.whiteColor() {
+    var shimmerColor:UIColor = UIColor.white {
         didSet {
-            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor]
+            gradientLayer.colors = [textColor.cgColor,shimmerColor.cgColor,shimmerColor.cgColor, textColor.cgColor]
         }
     }
     
@@ -49,8 +49,8 @@ class LSYShimmerLabel: UILabel {
     
     override var font:UIFont! {
         didSet {
-            var transform = CGAffineTransformIdentity
-            let fontRef = CTFontCreateWithName(font.fontName as CFStringRef, font.pointSize, &transform)
+            var transform = CGAffineTransform.identity
+            let fontRef = CTFontCreateWithName(font.fontName as CFString, font.pointSize, &transform)
             textLayer.font = fontRef
             textLayer.fontSize = font.pointSize
         }
@@ -64,8 +64,8 @@ class LSYShimmerLabel: UILabel {
     
     override var textColor:UIColor! {
         didSet {
-            gradientLayer.backgroundColor = textColor.CGColor
-            gradientLayer.colors = [textColor.CGColor,shimmerColor.CGColor,shimmerColor.CGColor, textColor.CGColor]
+            gradientLayer.backgroundColor = textColor.cgColor
+            gradientLayer.colors = [textColor.cgColor,shimmerColor.cgColor,shimmerColor.cgColor, textColor.cgColor]
         }
     }
     
@@ -80,9 +80,9 @@ class LSYShimmerLabel: UILabel {
     }
 
     private func initialSetting() {
-        textLayer.backgroundColor = UIColor.clearColor().CGColor
-        textLayer.contentsScale = UIScreen.mainScreen().scale
-        textLayer.rasterizationScale = UIScreen.mainScreen().scale
+        textLayer.backgroundColor = UIColor.clear.cgColor
+        textLayer.contentsScale = UIScreen.main.scale
+        textLayer.rasterizationScale = UIScreen.main.scale
 
         font = super.font
         text = super.text
@@ -91,20 +91,20 @@ class LSYShimmerLabel: UILabel {
         
         gradientLayer.mask = textLayer
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidEnterBackground(_:)), name: UIApplicationDidEnterBackgroundNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationDidEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(UIApplicationDelegate.applicationWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     func startAnimate() {
-        if (gradientLayer.animationForKey(shimmerAnimateKey) == nil) {
+        if (gradientLayer.animation(forKey: shimmerAnimateKey) == nil) {
             let startPointAnimation = CABasicAnimation(keyPath: startPointKeyPath)
-            startPointAnimation.fromValue = NSValue(CGPoint:CGPointMake(-shimmerWidth, 0))
-            startPointAnimation.toValue = NSValue(CGPoint:CGPointMake(1.0, 0))
+            startPointAnimation.fromValue = NSValue(cgPoint:CGPoint(x: -shimmerWidth, y: 0))
+            startPointAnimation.toValue = NSValue(cgPoint:CGPoint(x: 1.0, y: 0))
             startPointAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
             let endPointAnimation = CABasicAnimation(keyPath: endPointKeyPath)
-            endPointAnimation.fromValue = NSValue(CGPoint:CGPointMake(0, 0))
-            endPointAnimation.toValue = NSValue(CGPoint:CGPointMake(1 + shimmerWidth, 0))
+            endPointAnimation.fromValue = NSValue(cgPoint:CGPoint(x: 0, y: 0))
+            endPointAnimation.toValue = NSValue(cgPoint:CGPoint(x: 1 + shimmerWidth, y: 0))
             endPointAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             
             let group = CAAnimationGroup()
@@ -113,46 +113,45 @@ class LSYShimmerLabel: UILabel {
             group.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             group.repeatCount = FLT_MAX
             
-            gradientLayer.addAnimation(group, forKey: shimmerAnimateKey)
+            gradientLayer.add(group, forKey: shimmerAnimateKey)
         }
     }
     
     func stopAnimate() {
-        if (gradientLayer.animationForKey(shimmerAnimateKey) != nil) {
-            gradientLayer.removeAnimationForKey(shimmerAnimateKey)
+        if (gradientLayer.animation(forKey: shimmerAnimateKey) != nil) {
+            gradientLayer.removeAnimation(forKey: shimmerAnimateKey)
         }
     }
     
     
-    func applicationDidEnterBackground(note:NSNotification) {
+    func applicationDidEnterBackground(_ note:Notification) {
         stopAnimate()
     }
     
-    func applicationWillEnterForeground(note:NSNotification) {
+    func applicationWillEnterForeground(_ note:Notification) {
         startAnimate()
     }
     
-    class func CAAlignmentFromNSTextAlignment(textAlignment: NSTextAlignment) -> String {
+    class func CAAlignmentFromNSTextAlignment(_ textAlignment: NSTextAlignment) -> String {
         switch textAlignment {
-        case NSTextAlignment.Left:
+        case NSTextAlignment.left:
             return kCAAlignmentLeft
-        case NSTextAlignment.Center:
+        case NSTextAlignment.center:
             return kCAAlignmentCenter
-        case NSTextAlignment.Right:
+        case NSTextAlignment.right:
             return kCAAlignmentRight
         default:
             return kCAAlignmentNatural
         }
     }
     
-    override func drawRect(rect: CGRect) {}
-    
-    override class func layerClass() -> AnyClass {
+    override func draw(_ rect: CGRect) {}
+
+    override static var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     
-    override func layoutSublayersOfLayer(layer: CALayer) {
-        super.layoutSublayersOfLayer(layer)
+    override func layoutSublayers(of layer: CALayer) {
         textLayer.frame = self.layer.bounds
     }
     

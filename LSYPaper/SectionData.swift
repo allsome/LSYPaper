@@ -17,7 +17,7 @@ class SectionData: NSObject {
     
     init(dictionary:[String : AnyObject]) {
         super.init()
-        self.setValuesForKeysWithDictionary(dictionary)
+        self.setValuesForKeys(dictionary)
     }
     
 }

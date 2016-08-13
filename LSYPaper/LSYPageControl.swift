@@ -9,8 +9,8 @@
 import UIKit
 
 enum PageChangeDirectionType : Int {
-    case Right
-    case Left
+    case right
+    case left
 }
 
 class LSYPageControl: UIView,UIScrollViewDelegate{
@@ -23,14 +23,14 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
     @IBOutlet weak var pageControlBottomConstraint: NSLayoutConstraint!
     
     var didScrollOption:((NSInteger,[UIView],CGFloat) -> Void)?
-    var didEndDeceleratingOption:(NSInteger -> Void)?
+    var didEndDeceleratingOption:((NSInteger) -> Void)?
     var pageDidChangeOption:((NSInteger,PageChangeDirectionType) -> Void)?
-    var didScrollCrossLeftEdge:(CGFloat -> Void)?
+    var didScrollCrossLeftEdge:((CGFloat) -> Void)?
     var didScrollCrossRightEdge:((CGFloat,UIView) -> Void)?
     var backFromLeftEdge:(() -> Void)?
     
     private var lastPage:Int = 0
-    private var targetFrame:CGRect = CGRectZero
+    private var targetFrame:CGRect = CGRect.zero
     private var views:[UIView] = [] {
         didSet {
             let count = views.count
@@ -51,9 +51,9 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         makeRealView.layer.cornerRadius = CORNER_REDIUS
     }
     
-    class func pageControlWith(frame:CGRect, views:[UIView]) -> LSYPageControl {
-        let objs = NSBundle.mainBundle().loadNibNamed("LSYPageControl", owner: nil, options: nil)
-        let pageControl = objs.last as! LSYPageControl
+    class func pageControlWith(_ frame:CGRect, views:[UIView]) -> LSYPageControl {
+        let objs = Bundle.main.loadNibNamed("LSYPageControl", owner: nil, options: nil)
+        let pageControl = objs?.last as! LSYPageControl
         pageControl.targetFrame = frame
         pageControl.layer.masksToBounds = true
         pageControl.layer.cornerRadius = CORNER_REDIUS
@@ -61,7 +61,7 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         return pageControl
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageControl.currentPage = NSInteger((scrollView.contentOffset.x + SCREEN_WIDTH / 2) / SCREEN_WIDTH)
         let targetPage = NSInteger((scrollView.contentOffset.x - 0.1) / SCREEN_WIDTH) + 1
         if targetPage < views.count {
@@ -71,7 +71,7 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         }
         
         if scrollView.contentOffset.x <= 0 {
-            makeRealView.transform = CGAffineTransformMakeTranslation(-scrollView.contentOffset.x, 0)
+            makeRealView.transform = CGAffineTransform(translationX: -scrollView.contentOffset.x, y: 0)
             if (didScrollCrossLeftEdge != nil) {
                 didScrollCrossLeftEdge!(scrollView.contentOffset.x)
             }
@@ -79,25 +79,25 @@ class LSYPageControl: UIView,UIScrollViewDelegate{
         
         let translation = containerViewWidthConstraint.constant - scrollView.contentOffset.x - SCREEN_WIDTH
         if translation <= 0{
-            makeRealView.transform = CGAffineTransformMakeTranslation(translation, 0)
+            makeRealView.transform = CGAffineTransform(translationX: translation, y: 0)
             if (didScrollCrossRightEdge != nil) {
                 didScrollCrossRightEdge!(translation,views.last!)
             }
         }
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (didEndDeceleratingOption != nil) {
             didEndDeceleratingOption!(pageControl.currentPage)
         }
     }
     
-    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let targetContentOffsetX = targetContentOffset.memory.x
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetContentOffsetX = targetContentOffset.pointee.x
         let currentPage = NSInteger((targetContentOffsetX + SCREEN_WIDTH / 2) / SCREEN_WIDTH)
         if lastPage != currentPage {
             if (pageDidChangeOption != nil) {
-                let changeDirection = currentPage > lastPage ? PageChangeDirectionType.Right : PageChangeDirectionType.Left
+                let changeDirection = currentPage > lastPage ? PageChangeDirectionType.right : PageChangeDirectionType.left
                 pageDidChangeOption!(currentPage,changeDirection)
                 lastPage = currentPage
             }

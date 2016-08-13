@@ -29,7 +29,7 @@ class NewsDetailLayout: UICollectionViewLayout {
         super.init()
     }
     
-    func invalidateLayoutwith(newCellWidth:CGFloat,newCellHeight:CGFloat,newCellGap:CGFloat) {
+    func invalidateLayoutwith(_ newCellWidth:CGFloat,newCellHeight:CGFloat,newCellGap:CGFloat) {
         cellWidth = newCellWidth
         cellHeight = newCellHeight
         cellGap = newCellGap
@@ -37,35 +37,35 @@ class NewsDetailLayout: UICollectionViewLayout {
         invalidateLayout()
     }
     
-    override func prepareLayout() {
+    override func prepare() {
         if attributeArray.isEmpty {
-            let itemCount:Int = (collectionView?.numberOfItemsInSection(sectionNumber))!
+            let itemCount:Int = (collectionView?.numberOfItems(inSection: sectionNumber))!
             for index in 0 ..< itemCount {
-                let attribute = UICollectionViewLayoutAttributes(forCellWithIndexPath: NSIndexPath(forItem: index, inSection: sectionNumber))
-                attribute.size = CGSizeMake(cellWidth, cellHeight)
+                let attribute = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: sectionNumber))
+                attribute.size = CGSize(width: cellWidth, height: cellHeight)
                 let pointX:CGFloat = cellGap + cellWidth / 2 + CGFloat(index) * (cellWidth + cellGap)
-                attribute.center = CGPointMake(pointX, CELL_NORMAL_HEIGHT - cellHeight / 2)
+                attribute.center = CGPoint(x: pointX, y: CELL_NORMAL_HEIGHT - cellHeight / 2)
                 attributeArray.append(attribute)
             }
         }
     }
     
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
     
-    override func collectionViewContentSize() -> CGSize {
-        return CGSizeMake((cellWidth + cellGap) * CGFloat(attributeArray.count) + cellGap, cellHeight)
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: (cellWidth + cellGap) * CGFloat(attributeArray.count) + cellGap, height: cellHeight)
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        return attributeArray[indexPath.item]
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return attributeArray[(indexPath as NSIndexPath).item]
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var layoutAttributes = [UICollectionViewLayoutAttributes]()
         for attribute in attributeArray {
-            if CGRectIntersectsRect(attribute.frame, rect ) {
+            if attribute.frame.intersects(rect ) {
                 layoutAttributes.append(attribute)
             }
         }
